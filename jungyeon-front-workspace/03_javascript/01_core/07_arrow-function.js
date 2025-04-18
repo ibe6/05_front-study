@@ -17,3 +17,62 @@
      3) 별도의 실행내용 없이 결과값만 존재할 경우 return 생략 가능 
 */
 
+// case 1.
+// 함수표현식
+const exp1 = function(){
+   console.log('exp1');
+};
+// 화살표함수
+const arrow1 = () => console.log('arrow1'); // 단일 실행문은 {} 생략 가능
+
+arrow1();
+
+// case 2.
+// 함수표현식
+const exp2 = function(a){
+   console.log('exp2');
+   console.log(a);
+};
+// 화살표함수
+const arrow2 = a => { // 단일 매개변수는 () 생략 가능
+   console.log('arrow2');
+   console.log(a);
+};
+
+arrow2(10);
+
+// case 3.
+// 함수표현식
+const exp3 = function(a, b){
+   console.log('exp3');
+   console.log(a, b);
+   return a + b;
+};
+// 화살표함수
+const arrow3 = (a, b) => {
+   console.log('arrow3');
+   console.log(a, b);
+   return a + b;
+};
+
+const result3 = arrow3(10, 20);
+console.log(result3);
+
+// case 4.
+// 함수표현식
+const exp4 = function(x, y) {
+   return x * y;
+};
+// 화살표함수
+const arrow4 = (x, y) => x * y; // 별도의 실행문 없이 바로 특정값 반환일 경우 {}와 return 생략 가능 
+
+const result4 = arrow4(10, 20);
+console.log(result4);
+
+
+// case 5. 화살표함수에서는 arguments 사용불가 => 전개연산자로 대체
+const arrow5 = () => console.log(arguments);
+arrow5(10, 20, 30); // 오류는 안나지만 출력결과가 기존의 arguments와 다름 (사용 불가)
+
+const arrow6 = (...args) => console.log(args);
+arrow6(10, 20, 30);
