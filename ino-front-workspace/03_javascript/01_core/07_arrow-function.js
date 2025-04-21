@@ -17,3 +17,60 @@
      3) 별도의 실행내용 없이 결과값만 존재할 경우 return 생략 가능 
 */
 
+// case 1.
+// 함수표현식
+const exp1 = function() {
+   console.log('exp1');
+};
+// 화살표함수
+const arrow1 = () => console.log('arrow1'); // 단일 실행문은 {} 생략 가능
+
+arrow1();
+
+// case 2.
+// 함수표현식
+const exp2 = function(a){
+   console.log('exp2');
+   console.log(a);
+};
+
+const arrow2 = a => { // 단일 매개변수는 () 생략 가능
+   console.log('exp2');
+   console.log(a);
+};
+
+arrow2(2);
+
+// case 3.
+// 함수표현식
+const exp3 = function(a, b) {
+   console.log('exp3');
+   console.log(a, b);
+   return a + b;
+};
+
+const arrow3 = (a, b) => {
+   console.log('arrow3');
+   console.log(a, b);
+   return a + b;
+};
+
+console.log(arrow3(4, 5));
+
+// case 4.
+// 함수표현식
+const exp4 = function(a, b) {
+   return a*b;
+};
+
+const arrow4 = (a, b) => a*b; 
+// 별도 실행문 없이 바로 특정값 반환시 {} 및 return 생략 가능
+
+console.log(arrow4(45, 5));
+
+// case 5. 화살표 함수에서는 arguments 대신 전개연산자를 사용하자(ES6 요소)
+const arrow5 =  () => console.log(arguments);
+arrow5(10, 20, 30);
+
+const arrow6 = (...args) => console.log(args);
+arrow6(10, 20, 30);

@@ -6,16 +6,48 @@
     <title>Document</title>
     <style>
         /* * : 모든 요소가 다 선택됨 */
-        
+        * {
+            color: red;
+        }
 
         /* 태그명 : 해당 태그의 요소들 다수가 선택됨 */
 
-
+        div {
+            color: blue;
+        }
         /* #아이디명 : 해당 아이디의 요소가 선택됨 */
+        p {
+            color: aquamarine;
+        }
 
+        #idSelector1 {
+            color: violet;
+        }
+
+        #idSelector2 {
+            color: purple;
+        }
+
+        #idSelector1, #idSelector2 {
+            background-color: blue;
+        }
 
         /* .클래스명 : 해당 클래스의 요소들 다수가 선택됨 */
 
+        .classSelector {
+            color:cadetblue;
+        }
+
+        .classSelector2 {
+            color:darkred;
+        }
+
+        .group3 {
+            background-color: wheat;
+        }
+        li.group3 {
+            font-size: 30px;
+        }
     </style>
 </head>
 <body>
@@ -26,7 +58,19 @@
           2) 선택자를 통해 요소를 선택하여 "스타일(css)"과 "기능(script)"을 적용시킬 수 있음
     -->
 
-    
-    
+    <h1>선택자</h1>
+    <div>태그 선택자 테스트1</div>
+    <div>태그 선택자 테스트2</div>
+
+    <p id="idSelector1">id 선택자1</p>
+    <p id="idSelector2">id 선택자2</p>
+    <!-- class component : 여러 요소를 한번에 선택하기 위해 부여하는 속성, 중복 가능, 다수 설정 가능 -->
+    <ul>
+        <li class="classSelector">class selector test1</li>
+        <li class="classSelector">class selector test2</li>
+        <li class="classSelector2">class selector test3</li>
+        <li class="classSelector2 group3">class selector test4</li>
+    </ul>
+    <pre class="group3">class selector test5</pre>
 </body>
 </html>

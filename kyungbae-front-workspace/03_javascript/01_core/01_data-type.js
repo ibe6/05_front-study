@@ -26,13 +26,20 @@
   2. 자바스크립트의 경우 하나의 숫자 타입만 존재
   3. 모든 수를 실수로 취급함 
   4. 추가적으로 특별한 값도 표현가능 
-     1) Infinity  : 양의 무한대
-     2) -Infinity : 음의 무한대
-     3) NaN       : 산술 연산 불가(not-a-number)
+      1) Infinity  : 양의 무한대
+      2) -Infinity : 음의 무한대
+      3) NaN       : 산술 연산 불가(not-a-number)
 */
 
+var integer = 10;
+var double = 5.5;
+var negative = -10;
 
+console.log(integer, typeof (integer));
+console.log(double, typeof (double));
+console.log(negative, typeof negative);
 
+console.log(10 / 4);
 
 /*
   ## 문자열 타입 ##
@@ -42,7 +49,11 @@
   4. 자바는 문자열을 객체로 표현하지만 자바스크립트의 문자열은 원시(primitive) 타입이다
 */
 
-
+var string;
+string = `javascript`
+string = "nodejs"
+string = "큰따옴표와 '' 작은따옴표 ``백틱 구분 가능"
+console.log(string, typeof string);
 
 
 
@@ -53,7 +64,14 @@
   3. 백틱(``)으로 표현
 */
 
+var str = `안녕하세요
+반갑습니다.`
+console.log(str);
 
+var lastName = '홍';
+var firstName = '길동';
+
+console.log(`제 이름은 ${lastName + firstName} 입니다.`); /* 반드시 ``과 함께 사용해야만 함 */
 
 
 
@@ -64,20 +82,22 @@
   2. 논리적 참, 거짓을 나타내는 true, false 값 취급
 */
 
+var flag = true;
+flag = false;
 
-
-
+console.log(flag, typeof flag);
 
 
 /*
   ## undefined ##
   1. var로 선언한 변수에 직접 값을 초기화 하지 않으면 
-     암묵적으로 undefined로 초기화 됨 
+      암묵적으로 undefined로 초기화 됨 
   2. 따라서 직접 초기화 하지 않은 변수를 참조하면 undefined가 반환됨 
   3. undefined는 자바스크립트 엔진이 변수를 초기화 할 때 사용하는 값 
 */
 
-
+var undef;
+console.log(undef, typeof undef);
 
 
 
@@ -88,7 +108,9 @@
   2. 이전에 할당 되어 있던 값에 대한 참조를 제거하는 것을 의미함
 */
 
-
+var nullVar = 'nothing';
+nullVar = null;
+console.log(nullVar, typeof nullVar);
 
 
 
@@ -96,13 +118,17 @@
   ## object ##
   1. 객체 타입 (자바스크립트는 크게 원시(primitive)타입 / 객체타입으로 분류)
   2. 자바스크립트의 거의 모든 것이 객체 (배열, 함수 등등..)
-     number, string, boolean, undefined, null, symbol 외의 모든 값을 객체로 취급 
+      number, string, boolean, undefined, null, symbol 외의 모든 값을 객체로 취급 
 */
 
+var user = {
+  name: '홍길동',
+  age: 1
+};
 
-
-
-
+console.log(user, typeof user);
+console.log(user.name);
+console.log(user.age);
 
 /*
   * 정적 타입(static/strong type) 언어
@@ -111,8 +137,8 @@
     3) 변수 타입 변경 불가 (strong type)
     4) 타입에 맞는 데이터만 할당 가능 
     5) 장단점
-       - 장점 : 신뢰성이 높음 
-       - 단점 : 유연성이 떨어짐 
+        - 장점 : 신뢰성이 높음 
+        - 단점 : 유연성이 떨어짐 
 
   * 동적 타입(dynamic/weak type) 언어
     1) JavaScript, Python 등
@@ -120,6 +146,13 @@
     3) 변수 선언이 아닌 할당(대입)에 의해 타입이 결정됨 (dynamic type)
     4) 재할당에 의해 변수 타입은 언제든지 변경 될 수 있음 (weak type)
     5) 장단점
-       - 장점 : 유연성이 높음 
-       - 단점 : 신뢰성이 떨어짐 
+        - 장점 : 유연성이 높음 
+        - 단점 : 신뢰성이 떨어짐 
 */
+
+var test;
+console.log(typeof test);
+test = 1;
+console.log(typeof test);
+test = 'javascript';
+console.log(typeof test);

@@ -43,9 +43,18 @@
 
 */
 
+console.log(2 ** 3);
 
+// 숫자1, 문자'1' 비교
+console.log(1 == '1'); // 동등비교연산자 (값만 체크)
+console.log(1 === '1'); // 일치비교연산자 (값 + 타입 체크)
 
+console.log(1 == true);
+console.log(1 === true);
 
+// 문자열간의 대소비교 (유니코드 순으로 비교)
+console.log('apple' > 'banana');
+console.log('cat' > 'zebra');
 
 /*
   ## short-circuit evaluation (단축 평가) ##
@@ -54,3 +63,38 @@
   피연산자1 and 피연산자2 => 피연산자1이 false일 경우 피연산자2의 과정 생략
 */
 
+// * if문 대체
+let num = 1;
+
+/*
+if(num % 2 == 0){
+    console.log('짝수입니다.');
+} else {
+    console.log('홀수입니다.');
+}
+*/
+
+// 조건 && 조건이 참일 경우 실행할 구문
+num % 2 == 0 && console.log('짝수입니다.');
+// 조건 || 조건이 거짓일 경우 실행할 구문
+num % 2 == 1 || console.log('홀수입니다.');
+
+// * 기본값 설정
+//   변수 = 대입할값 || default값;
+var name = '' || '이름없음'; // '' 자리가 사용자 입력값이라고 가정, 만일 입력값이 없을 경우 기본값을 대입하고자 할 때
+console.log(name);
+
+let age =  0 || 20;
+console.log(age);
+
+// '', 0 => 값이 없다로 판별 == Falsy값 (false로 간주)
+
+/*
+    ## nullish-coalescing-operator(null 병합 연산자) ##
+    ES11(ECMAScript 2020)에서 도입된 연산자로
+    좌항의 피연산자가 null 또는 undefined일 경우 우항의 피연산자를 반환하고
+    그렇지 않으면 좌항의 피연산자 반환 => 기본값 설정시 사용
+*/
+// let addr = '' ?? '주소없음'; // '' 대입
+let addr = null ?? '주소없음';  // '주소없음' 대입
+console.log(addr); // '' => 기본값 설정이 안됨

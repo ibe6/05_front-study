@@ -7,6 +7,84 @@
 </head>
 <body>
 
+    <style>
+        .wrap1 *{
+            background: yellow;
+            margin: 10px;
+
+            /* 블럭요소에만 크기 지정 가능 */
+            width: 100px;
+            height: 100px;
+        }
+
+        /* 블럭요소를 인라인요소로 */
+        .wrap1>div{
+            display: inline;
+        }
+        /* 인라인요소를 블럭요소로 */
+        .wrap1>span {
+            display: block;
+        }
+    </style>
+
+    <div class="wrap1">
+        <div>블럭요소</div>
+        <span>인라인요소</span>
+    </div>
+
+    <hr>
+
+    <style>
+        .wrap2>div{
+            background:green;
+            margin: 10px;
+            width: 100px;
+            height: 100px;
+            /* 인라인요소(가로배치)이면서 블럭요소의 특징(크기지정)도 가지도록 */
+            display: inline-block;
+        }
+    </style>
+    <div class="wrap2">
+        <div>블럭요소1</div>
+        <div>블럭요소2</div>
+        <div>블럭요소3</div>
+    </div>
+
+    <hr>
+
+    <style>
+        .nav>li{
+            display: inline-block;
+            width: 100px;
+            height: 50px;
+            /* border: 1px solid gray; */
+        }
+        .nav a{
+            text-decoration: none;
+            text-align: center;
+            /* border: 1px solid red; */
+            display: block;
+            height: 50px;
+            line-height: 50px;
+            color: gray;
+        }
+        .nav a:hover{
+            background: lightgray;
+            color:white;
+        }
+    </style>
+
+    <ul class="nav">
+        <li><a href="">메뉴1</a></li>
+        <li><a href="">메뉴2</a></li>
+        <li><a href="">메뉴3</a></li>
+        <li><a href="">메뉴4</a></li>
+        <li><a href="">메뉴5</a></li>
+    </ul>
+
+
+
+
     
 </body>
 </html>

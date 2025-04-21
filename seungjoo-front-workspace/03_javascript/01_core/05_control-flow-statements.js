@@ -10,7 +10,31 @@
      2) 단, 추가로 switch문 비교대상자를 true 작성시
         case문에 조건식을 작성할 수 있음 
 */
+const age = '25'; //'25' | 
 
+let result;
+if(!age){
+   result = "나이를 입력하지 않았습니다.";
+}else{
+
+   if(age<0 ||age>120){
+      result = "잘못된 나이";
+   }else if(age <=7){
+      result = "미취학 아동";
+   }else if(age<=13){
+      result = "초등학생"
+   }else if(age<=19){
+      result = "청소년";
+   }else{
+      result = "성인";
+   }
+
+
+
+
+}
+console.log(`age: &{age}`);
+console.log(`result:&{result}`)
 
 
 
@@ -24,3 +48,8 @@
      자바에서의 for문 작성법과 동일
      단, 초기식 작성시 var나 let을 통해 작성
 */
+
+let n = 1;
+while(n<=10){
+   console.log(n++);
+}

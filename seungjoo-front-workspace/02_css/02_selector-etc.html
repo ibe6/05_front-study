@@ -154,7 +154,7 @@
         <p>테스트5</p>
         <pre>테스트6</pre>
         <p>테스트7</p>
-
+        <hr>
 
 
 
@@ -171,32 +171,90 @@
         */
 
         /* 요소:focus    : 해당 요소에 focusing이 되는 순간 스타일 적용 */
-
+        #test5 input:focus{
+            background-color: pink;
+        }
         /* 요소:checked  : 해당 요소가 checked 되는 순간 스타일 적용 */
         
+        #test5 input:checked{
+
+            width:20px;
+            height:20px;
+        }
+        #test5 input:checked+label{
+            font-size:20px;
+        }
         /* 요소:enabled  : 해당 요소가 활성화 상태일 경우 스타일 적용 */
+        #test5 button:enabled{
+            background-color: violet;
+        }
+        #test5 button:disabled{
+            background-color: yellowgreen;
+        }
         
         /* 요소:disabled : 해당 요소가 비활성화 상태일 경우 스타일 적용 */
         
     </style>
+    <form id = "test5"action="/server/test.do">
+        이름: <input type="text" name = "userName"><br>
+        과일: 
+        <input type="checkbox" name = "fruit" value = "apple" id = "apple">
+        <label for="apple">사과</label>
+        <input type="checkbox" name = "fruit" value = "banana" id = "banana">
+        <br>
+        <button type = "submit">제출</button>
+        <button type = "button" disabled>클릭불가버튼</button>
+        
+
+    </form>
+    <hr>
 
 
 
 
 
     <style>
-        
+        #test6 div{
+            width: 50px;
+            height: 50px;
+            background: yellow;
+            cursor:pointer;
+        }
+        #test6 div:first-of-type:active{
+            background: red;
+            color:white;
+        }
+        #test6 div:last-child:hover{
+            background: violet;
+            color:green;
+
+        }
         /*
             * 반응 선택자
               사용자의 액션에 따라 선택되는 선택자
         */
+
 
         /* 요소:active : 해당 요소를 마우스로 누르고 있는 동안 스타일 적용 */
         
         /* 요소:hover  : 해당 요소에 마우스가 올라가있는 동안 스타일 적용 */
         
     </style>
+
+    <!-- div#test6 이렇게 하면 밑에처럼 생기게 됨-->
+    <div id="test6">
+        <div>active테스트</div> <br>
+        <div>hover테스트</div>
+    </div>
+    <hr>
     
+    <div id = "test7">
+        <span>봄</span>
+        <span>여름</span>
+        <span>가을</span>
+        <span>겨울</span>
+
+    </div>
 
 
     <style>
@@ -205,13 +263,42 @@
               1) 의사 요소
               2) html 상에는 존재하지 않지만 css를 사용하여 스타일을 적용할 수 있는 가상 요소
         */
+        #test7>span+span::before{
+            content: '->';
+
+        }
+        #test7>span:last-of-type::after{
+            content:''
+        }
 
         /* 요소::before   : 선택된 요소내의 앞 공간에 content추가가능 */
         
         /* 요소::after    : 선택된 요소내의 뒤 공간에 content추가가능 */
         
+    </style>  
+    <br>
+    <style>
+        /*
+
+        *선택자 우선순위
+        1) 기본적으로 css는 위에서부터 아래로 적용됨(마지막에 작성된 스타일 반영)
+        2) 단, 동일 요소를 다양한 방식의 선택시 작성 순서에 상관없이 우선순위에 따라 적용됨
+        3)태그선탯자<클래스선택자<아이디선택자<인라인스타일<!important
+        */
+        #test8{
+            width:200px;
+            background:pink;
+        }
+        .class8{
+            background: red;
+        }
+        h3{
+            background: green !important
+
+        }
     </style>
-    
+
+    <h3 id = "test8" class = "class8" style="background:purple">선택자 우선순위 테스트</h3>
 
 
     

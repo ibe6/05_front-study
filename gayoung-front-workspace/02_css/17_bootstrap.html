@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <style>
+        h2 {text-align: center; color: crimson;}
+    </style>
+
+
+</head>
+<body>
+    <h2>Container</h2>
+    <div class="container border pt-10">
+        <h1>My First Bootstrap Page</h1>
+        <p>This is some text.</p>
+    </div>    
+    <div class="container border mt-3">
+        <h1>My First Bootstrap Page</h1>
+        <p>This is some text.</p>
+    </div>    
+
+    <h2>Grid</h2>
+
+    <!-- 
+        가로로 총 12개의 column이 존재한다고 생각하고
+        해당 column들을 row로 group 지어서 배치    
+    -->
+    <div class="container border mt-3">
+        <h1>My First Bootstrap Page</h1>
+        <p>This is some text.</p>
+        
+        <div class="row m-3">
+            <div class="col border">.col</div>
+            <div class="col border">.col</div>
+            <div class="col border">.col</div>
+        </div>
+
+        <div class="row m-3">
+            <div class="col-2 border">.col-2</div>
+            <div class="col-3 border">.col-3</div>
+            <div class="col-7 border">.col-7</div>
+        </div>
+    </div>   
+
+    <hr>
+
+    <h2>Table</h2>
+
+    <div class="container border p-3">
+        <div class="row m-3">
+            <div class="col">
+                <table class="table">
+                    <thead>
+                     <tr>
+                      <th>이름</th>
+                      <th>이메일</th>
+                      <th>가입일</th>
+                     </tr>
+                    </thead>
+                    <tbody>
+                     <tr>
+                      <td>홍길동</td>
+                      <td>hong@example.com</td>
+                      <td>2025-04-17</td>
+                     </tr>
+                     <tr>
+                      <td>김개발</td>
+                      <td>kim@example.com</td>
+                      <td>2025-03-10</td>
+                     </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+
+        <div class="row m-3">
+            <div class="col">
+                <table class="table table-bordered">
+                    <thead>
+                     <tr>
+                      <th>이름</th>
+                      <th>이메일</th>
+                      <th>가입일</th>
+                     </tr>
+                    </thead>
+                    <tbody>
+                     <tr>
+                      <td>홍길동</td>
+                      <td>hong@example.com</td>
+                      <td>2025-04-17</td>
+                     </tr>
+                     <tr>
+                      <td>김개발</td>
+                      <td>kim@example.com</td>
+                      <td>2025-03-10</td>
+                     </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+
+    </div>
+
+
+</body>
+</html>

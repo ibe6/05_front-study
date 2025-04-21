@@ -31,7 +31,11 @@
                ...
             
    -->
-
+   <h1>input tag</h1>
+   <h2>text input</h2>
+   아이디: <input type="text"><br>
+   비밀번호: <input type="password"><br>
+   검색어: <input type="search">
 
 
 
@@ -44,9 +48,18 @@
            <label for="아이디">텍스트</label>
            <input id="아이디">
    -->
+<br><br>
+<label for="userId">아이디</label>:
+<input type="text" id="userId" placeholder="input your id">
+<label for="userPwd">비밀번호</label>:
+<br><br><br><br><br><br>
+<input type="password" id="userPwd" placeholder="input your password">
+<label for=""></label>
 
+<label for="keyword">검색어</label>:
+<input type="search" id="keyword" size="30">
 
-
+기관명: <input type="text" value="SSG I&C" placeholder="SSG" readonly><br><br>
 
    <!--
       * <form>
@@ -72,9 +85,27 @@
         7) 유의사항
            form 내의 input 태그들마다 name 속성값을 부여해야만 값이 넘어가게되어있음 (각 값들을 식별해주는 식별자의 역할)
    -->
+<h1>form tags</h1>
+<fieldset>
+<form action="/server/signup.me" method="post">
+   <label for="user_id">아이디</label>: 
+   <input type="text" name="userId" id="user_id" maxlength="10" required><br>
+   <label for="user_pw">password</label>: 
+   <input type="password" name="userPwd" id="user_pw" minlength="10" required><br>
+   이메일: <input type="email" name="userEmail"><br>
+   홈페이지: <input type="url" name="userUrl">
+   <br><br>
+   <input type="submit" value="회원가입">
+   <input type="radio" value="radio1">
+   <input type="radio" value="radio2">
+   <input type="radio" value="radio3">
+   <input type="radio" value="radio4">
+   <button><submit>제출</submit></button>
+   <submit></submit>
+</form>
+<legend>회원가입란</legend>
+</fieldset>
 
-
-   
 
 
    <!--
@@ -99,8 +130,33 @@
    -->
 
 
+<form action="/server/test.do">
+   <fieldset>
+      <legend>게시글 작성</legend>
+      제목 : <input type="text" name="title" size="35"><br>
+      내용 : <textarea name="content" id="content" cols="35" rows="10" placeholder="내용 입력" style="resize: none;"></textarea>
+      <br><br>
+      <input type="submit" value="제출">
+   </fieldset>
+</form>
 
+<h1>숫자, 날짜 관련 input</h1>
 
+<form action="/server/test.do">
+   <fieldset>
+      <legend>숫자 관련</legend>
+      수량 : <input type="number" value="0">
+      범위 : <input type="range" name="score" min="0" max="100" value="80" step="10">
+      날짜 : <input type="date" value="2025-04-11"> <br>
+      연월 :  <input type="month"><br>
+      주 : <input type="week">
+      시 : <input type="time">
+      시간-로컬 : <input type="datetime-local">
+   </fieldset>
+   <input type="submit">
+   <input type="reset">
+   <input type="button" value="제출">
+</form>
    <!--
       * type="radio"
         1) 라디오버튼
@@ -114,11 +170,39 @@
         2) 제시된 여러개의 값들 중 다수 선택 가능하게 할때 사용
         3) 제출(submit)시 checked(선택된) value값들이 다수 넘어감
    -->
+<form action="">
+   <fieldset>
+      <legend>radiobutton</legend>
+      성별 : 
+      <input id="genderFemale" type="radio" name="sex" value="female">
+      <label for="genderFemale">여</label>
+      <input id="genderMale"type="radio" name="sex" value="male">
+      <label for="genderMale">남</label>
+      <input id="genderNone"type="radio" name="sex" value="none"  checked="true">
+      <label for="genderNone">선택안함</label>
+   </fieldset>
+   <fieldset>
+      <legend>checkbox</legend>
+      <input id="soccer" type="checkbox" name="hobby" value="soccer">
+      <label for="soccer">soccer</label>
+      <input id="basketball" type="checkbox" name="hobby" value="basketball">
+      <label for="basketball">basketball</label>
+      <input id="baseball" type="checkbox" name="hobby" value="baseball">
+      <label for="baseball">baseball</label>
+   </fieldset>
+   <input type="submit">
+</form>
 
-
-
-
-
+<h1>기타 input</h1>
+<form action="/server/test.do">
+   color select : <input type="color" name="color"><br>
+   file select : <input type="file" name="file"><br>
+   hidden info : <input type="hidden" name="hiddenValue" value="zzz"><br>  
+   <input type="submit">
+   <input type="reset">
+   <button type="submit">제출</button>
+   button
+</form>
    <!--
       * <select>, <option>
         1) 목록 상자 태그
@@ -150,7 +234,31 @@
            </datalist>
    -->
 
-
-
+   <h1>목록 상자 태그</h1>
+   <form action="/server/test.do">
+      <fieldset>
+         <legend>일반목록상자</legend>
+         국가번호 : 
+         <select name="country">
+            <option value="01">가나 +01</option>
+            <option value="02">가봉 +02</option>
+            <option selected value="82">한국 +82</option>
+            <option value="99">일본 +99</option>
+         </select>
+      </fieldset>
+      <input type="submit">
+   </form>
+   
+   <fieldset>
+      <legend>콤보상자</legend>
+      이메일 : <input type="text" name="email" size="10">
+      @
+      <input type="text" name="domain" size="15" list="domainList">
+      <datalist id="domainList">
+         <option value="naver.com"></option>
+         <option value="kakao.com"></option>
+         <option value="google.com"></option>
+      </datalist>
+   </fieldset>
 </body>
 </html>

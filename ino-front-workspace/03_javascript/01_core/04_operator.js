@@ -43,10 +43,16 @@
 
 */
 
+console.log(2 ** 3); // 8
 
+// 숫자1, 문자 '1' 비교
+console.log(1 == '1'); // true
+console.log(1 === '1'); // false
 
+// 문자열 간 대소비교(유니코드 순)
 
-
+console.log('apple' < 'banana'); // true
+console.log('cat' > 'Zoo'); // true, 
 /*
   ## short-circuit evaluation (단축 평가) ##
   표현식을 평가하는 도중 평가 결과가 확정 된 경우 나머지 평가 과정을 생략하는 것 
@@ -54,3 +60,32 @@
   피연산자1 and 피연산자2 => 피연산자1이 false일 경우 피연산자2의 과정 생략
 */
 
+
+let num = 1;
+
+if(num % 2 == 0) {
+    console.log('짝수입니다.');
+}else{
+    console.log('홀수입니다.');
+}
+
+// 조건 && 조건이 참일 경우 실행구문
+num % 2 == 0 && console.log('짝수입니다');
+// 조건 || 조건이 거짓일 경우 실행구문
+num % 2 == 0 || console.log('홀수입니다.');
+
+// * 기본값 설정
+// 변수 = 대입할값 || default val;
+var name = '' || 'helloWorld';
+
+console.log(name);
+
+/*
+    ## nullish-coalescing-operator(null 병합 연산자) ##
+    ES11(ECMAScript2020)에 도입된 연산자
+    좌항의 피연산자가 null or undefined일 경우 우항의 피연산자 반환
+    그렇지 않으면 좌항 피연산자 반환
+*/
+
+let addr = null ?? '주소없음';
+console.log(addr);

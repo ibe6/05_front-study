@@ -42,8 +42,15 @@
       +, +=
 
 */
+console.log(2**3);
+//숫자 1, 문자'1' 비교
+console.log(1 =='1') //동등 비교연산자(값만 체크)
+console.log(1 === '1') //일치 비교연산자
 
+console.log(1 ==true)
 
+//문자열간의 대소비교(유니 코드순으로 비교)
+console.log('apple' < 'banana');
 
 
 
@@ -54,3 +61,22 @@
   피연산자1 and 피연산자2 => 피연산자1이 false일 경우 피연산자2의 과정 생략
 */
 
+//if문 대체
+let num = 1;
+
+if(num%2==0){
+    console.log("짝수입니다.");
+}else{
+    console.log("홀수입니다.");
+}
+
+//조건 &&조건이 참일 경우 실행구문
+num%2 == 0 && console.log("짝수입니다.");
+num%2 == 0 || console.log("홀수입니다.");
+
+// * 기본값 설정
+//변수 = 대입할 값 || default값
+let name = '?' || "이름 없음"; // '' 자리가 사용자 입력값이라고 가정, 만일 입력값이 없을 경우 기본값을 대입하고자할떄
+console.log(name);
+
+let age = 0;

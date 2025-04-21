@@ -50,7 +50,8 @@
     /*
       * JavaScript 출력 방식 
         1. 콘솔에 출력
-           [window.]console.log(출력값);
+           [window.]console.log(출력값); 출력찍을 때 이거 사용!
+    
         2. 브라우저 알람창으로 출력
            [window.]alert(출력값);
         3. 브라우저에 출력
@@ -58,8 +59,32 @@
         4. 특정요소에 출력
            요소객체.innerHTML = 출력값;
     */
+   function outputTest(){
+    console.log(10);
+   console.log("hello");
+   console.log('javascript');
+   console.log("hello" + 1000);
+   console.log("hello", 1000);
+   alert("hello javascript");
+
+   document.write("<h2>hello javascript<h2>");
+   }
+  
+ 
+
+
+   
+
+   
 
   </script>
+
+
+<button type="button" onClick="outputTest();">출력테스트</button>
+
+
+
+
 
 </body>
 </html>

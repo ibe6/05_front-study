@@ -5,10 +5,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
+        #p1{
+            font-family: '보람체', '궁서체';
+            font-size:32px;
+            /*굵기*/ font-weight:900; /*기본 값 400*/
+            /*색상*/
+            color:red;
+            color:#12f340;
+            color: rgb(225,235,123);
+        }
+        #p2{
+            /*
+            * 구글 폰트 사용
+            1) http://fonts/google.com 접속
         
+            */
+            font-style: "italic"; /*속성, nomal이 기본값이고 oblique도 있음*/
+        }
+        #p3{
+            font-size:28px;
+            /*자간*/ letter-spacing : -2px;
+            /*단어간*/ word-spacing: 10px;
+            /*행 높이 */ line-height: 32px;
+            /*들여쓰기*/ text-indent: 20px;
+            /*대소문자*/ text-transform:uppercase;
+        }
+
+        #p4{
+            font-size:30px;
+            font-weight:900;
+            /*정렬*/ text-align: center; 
+            text-shadow:5px 5px 10px yellowgreen;
+
+            color:white;
+            text-shadow:0px -5px 8px yellow, 0px,-10px,8px orange, 0px,-15px,14px
+        }
     </style>
 </head>
 <body>
+    <!--p#p${글꼴 및 텍스트 Style Test$}*4-->
+    <h2>글꼴 및 텍스트 관련 스타일 속성</h2>
+    <p id="p1">글꼴 및 텍스트 Style Test1</p>
+    <p id="p2">글꼴 및 텍스트 Style Test2</p>
+    <p id="p3">글꼴 및 텍스트 Style Test3</p>
+    <p id="p4">글꼴 및 텍스트 Style Test4</p>
+
 
     
 </body>

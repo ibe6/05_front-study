@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+<!-- jQuery library -->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+<!-- Popper JS -->
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<!-- Latest compiled JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<style>
+    h2{text-align:center; color: crimson;}
+</style>
+
+</head>
+<body>
+
+    <h2>Container</h2>
+
+    <div class="container border p-3">
+        <h1>My First Bootstrap Page</h1>
+        <p>This is some text.</p>
+    </div>
+
+    <div class="container border mt-3 p-3 bg-dark text-white">
+        <h1>My First Bootstrap Page</h1>
+        <p>This is some text.</p>
+    </div>
+
+    <hr>
+
+    <h2>Grid</h2>
+
+    <!--
+        가로로 총 12개의 column이 존재한다고 생각하고
+        해당 column들을 row로 group 지어서 배치
+    -->
+
+    <div class="container border p-3">
+        <h1>My First Bootstrap Page</h1>
+        <p>This is some text.</p>
+
+        <div class="row m-3">
+            <!-- .col 만 두게 되면 균등하게 분할됨 -->
+            <div class="col border">.col</div>
+            <div class="col border">.col</div>
+            <div class="col border">.col</div>
+        </div>
+
+        <div class="row m-3">
+            <!-- .col-* 로 각 column의 크기 지정-->
+            <div class="col-2 border">.col</div>
+            <div class="col-3 border">.col</div>
+            <div class="col-7 border">.col</div>
+        </div>
+
+        <div class="row m-3">
+            <!-- .col-sm-* : 너비가 576px 미만인 기기에서 자동 배치 -->
+            <div class="col-sm-4 border">.col-sm-4</div>
+            <div class="col-sm-8 border">.col-sm-8</div>
+        </div>
+
+        <div class="row m-3">
+            <!-- .col-md-* : 너비가 768px 미만인 기기에서 자동 배치 -->
+            <div class="col-md-8 border">.col-sm-8</div>
+            <div class="col-md-4 border">.col-sm-4</div>
+        </div>
+    </div>
+
+    <hr>
+
+    <h2>Table</h2>
+
+    <div class="container border p-3">
+
+        <div class="row m-3">
+            <div class="col">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th>Firstname</th>
+                        <th>Lastname</th>
+                        <th>Email</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>John</td>
+                        <td>Doe</td>
+                        <td>john@example.com</td>
+                      </tr>
+                      <tr>
+                        <td>Mary</td>
+                        <td>Moe</td>
+                        <td>mary@example.com</td>
+                      </tr>
+                      <tr>
+                        <td>July</td>
+                        <td>Dooley</td>
+                        <td>july@example.com</td>
+                      </tr>
+                    </tbody>
+                  </table>
+            </div>
+            <div class="col">
+                <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th>Firstname</th>
+                        <th>Lastname</th>
+                        <th>Email</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>John</td>
+                        <td>Doe</td>
+                        <td>john@example.com</td>
+                      </tr>
+                      <tr>
+                        <td>Mary</td>
+                        <td>Moe</td>
+                        <td>mary@example.com</td>
+                      </tr>
+                      <tr>
+                        <td>July</td>
+                        <td>Dooley</td>
+                        <td>july@example.com</td>
+                      </tr>
+                    </tbody>
+                  </table>
+            </div>
+        </div>
+
+        <div class="row m-3">
+            <div class="col">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th>Firstname</th>
+                        <th>Lastname</th>
+                        <th>Email</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>John</td>
+                        <td>Doe</td>
+                        <td>john@example.com</td>
+                      </tr>
+                      <tr>
+                        <td>Mary</td>
+                        <td>Moe</td>
+                        <td>mary@example.com</td>
+                      </tr>
+                      <tr>
+                        <td>July</td>
+                        <td>Dooley</td>
+                        <td>july@example.com</td>
+                      </tr>
+                    </tbody>
+                  </table>
+            </div>
+            <div class="col">
+                <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th>Firstname</th>
+                        <th>Lastname</th>
+                        <th>Email</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>John</td>
+                        <td>Doe</td>
+                        <td>john@example.com</td>
+                      </tr>
+                      <tr>
+                        <td>Mary</td>
+                        <td>Moe</td>
+                        <td>mary@example.com</td>
+                      </tr>
+                      <tr>
+                        <td>July</td>
+                        <td>Dooley</td>
+                        <td>july@example.com</td>
+                      </tr>
+                    </tbody>
+                  </table>
+            </div>
+        </div>
+
+    </div>
+
+    <hr>
+
+    <h2>button</h2>
+
+    <div class="container border p-5">
+
+        <div class="row m-3">
+            <div class="col">
+                <button type="button" class="btn">Basic</button>
+                <button type="button" class="btn btn-primary">Primary</button>
+                <button type="button" class="btn btn-secondary">Secondary</button>
+                <button type="button" class="btn btn-success">Success</button>
+                <button type="button" class="btn btn-info">Info</button>
+                <button type="button" class="btn btn-warning">Warning</button>
+                <button type="button" class="btn btn-danger">Danger</button>
+                <button type="button" class="btn btn-dark">Dark</button>
+                <button type="button" class="btn btn-light">Light</button>
+                <button type="button" class="btn btn-link">Link</button>
+            </div>
+        </div>
+
+        <div class="row m-3">
+            <div class="col">
+                <button type="button" class="btn btn-sm">Basic</button>
+                <button type="button" class="btn btn-sm btn-primary">Primary</button>
+                <button type="button" class="btn btn-sm btn-secondary">Secondary</button>
+                <button type="button" class="btn btn-sm btn-success">Success</button>
+                <button type="button" class="btn btn-sm btn-info">Info</button>
+                <button type="button" class="btn btn-sm btn-warning">Warning</button>
+                <button type="button" class="btn btn-sm btn-danger">Danger</button>
+                <button type="button" class="btn btn-sm btn-dark">Dark</button>
+                <button type="button" class="btn btn-sm btn-light">Light</button>
+                <button type="button" class="btn btn-sm btn-link">Link</button>
+            </div>
+        </div>
+
+        <div class="row m-3">
+            <div class="col">
+                <button type="button" class="btn btn-lg">Basic</button>
+                <button type="button" class="btn btn-lg btn-primary">Primary</button>
+                <button type="button" class="btn btn-lg btn-secondary">Secondary</button>
+                <button type="button" class="btn btn-lg btn-success">Success</button>
+                <button type="button" class="btn btn-lg btn-info">Info</button>
+                <button type="button" class="btn btn-lg btn-warning">Warning</button>
+                <button type="button" class="btn btn-lg btn-danger">Danger</button>
+                <button type="button" class="btn btn-lg btn-dark">Dark</button>
+                <button type="button" class="btn btn-lg btn-light">Light</button>
+                <button type="button" class="btn btn-lg btn-link">Link</button>
+            </div>
+        </div>
+
+        <div class="row m-3">
+            <div class="col">
+                <button type="button" class="btn btn-outline-primary">Primary</button>
+                <button type="button" class="btn btn-outline-secondary">Secondary</button>
+                <button type="button" class="btn btn-outline-success">Success</button>
+                <button type="button" class="btn btn-outline-info">Info</button>
+                <button type="button" class="btn btn-outline-warning">Warning</button>
+                <button type="button" class="btn btn-outline-danger">Danger</button>
+                <button type="button" class="btn btn-outline-dark">Dark</button>
+                <button type="button" class="btn btn-outline-light text-dark">Light</button>
+            </div>
+        </div>
+
+        <div class="row m-3">
+            <div class="col">
+                <button type="button" class="btn btn-primary btn-block">Full-Width Button</button>
+            </div>
+        </div>
+
+        <div class="row m-3">
+            <div class="col">
+                <button class="btn btn-primary">
+                    <span class="spinner-border spinner-border-sm"></span>
+                </button>
+                  
+                <button class="btn btn-primary">
+                    <span class="spinner-border spinner-border-sm"></span>
+                    Loading..
+                </button>
+                  
+                <button class="btn btn-primary" disabled>
+                    <span class="spinner-border spinner-border-sm"></span>
+                    Loading..
+                </button>
+                  
+                <button class="btn btn-primary" disabled>
+                    <span class="spinner-grow spinner-grow-sm"></span>
+                    Loading..
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <h2>input</h2>
+
+    <div class="container border p-3">
+        <div class="row m-3">
+            <div class="col">
+                <div class="form-group">
+                    <label for="sel1">Select list:</label>
+                    <select class="form-control" id="sel1">
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="usr">Name:</label>
+                    <input type="text" class="form-control" id="usr">
+                </div>
+                <div class="form-group">
+                    <label for="pwd">Password:</label>
+                    <input type="password" class="form-control" id="pwd">
+                </div>
+                <div class="form-group">
+                    <label for="comment">Comment:</label>
+                    <textarea class="form-control" rows="5" id="comment"></textarea>
+                </div>
+                <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input type="checkbox" class="form-check-input" value="">Option 1
+                    </label>
+                </div>
+                <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input type="checkbox" class="form-check-input" value="">Option 2
+                    </label>
+                </div>
+                <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input type="checkbox" class="form-check-input" value="" disabled>Option 3
+                    </label>
+                </div>
+            </div>
+            <div class="col">
+                <form action="/action_page.php">
+                    <div class="form-group">
+                      <label for="email">Email address:</label>
+                      <input type="email" class="form-control" placeholder="Enter email" id="email">
+                    </div>
+                    <div class="form-group">
+                      <label for="pwd">Password:</label>
+                      <input type="password" class="form-control" placeholder="Enter password" id="pwd">
+                    </div>
+                    <div class="form-group form-check">
+                      <label class="form-check-label">
+                        <input class="form-check-input" type="checkbox"> Remember me
+                      </label>
+                    </div>
+                    <button type="submit" class="btn btn-primary">로그인</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    
+    <h2>Modal</h2>
+
+    <div class="container border p-3">
+        <div class="row">
+            <div class="col">
+                <!-- Button to Open the Modal -->
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                Open modal
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- The Modal -->
+<div class="modal" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+  
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Modal Heading</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+  
+        <!-- Modal body -->
+        <div class="modal-body">
+          Modal body..
+          <div id="demo" class="carousel slide" data-ride="carousel">
+
+            <!-- Indicators -->
+            <ul class="carousel-indicators">
+              <li data-target="#demo" data-slide-to="0" class="active"></li>
+              <li data-target="#demo" data-slide-to="1"></li>
+              <li data-target="#demo" data-slide-to="2"></li>
+            </ul>
+          
+            <!-- The slideshow -->
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img src="../assets/image/city1.jpg" alt="City1">
+              </div>
+              <div class="carousel-item">
+                <img src="../assets/image/city2.jpg" alt="City2">
+              </div>
+              <div class="carousel-item">
+                <img src="../assets/image/city3.jpg" alt="City3">
+              </div>
+            </div>
+          
+            <!-- Left and right controls -->
+            <a class="carousel-control-prev" href="#demo" data-slide="prev">
+              <span class="carousel-control-prev-icon"></span>
+            </a>
+            <a class="carousel-control-next" href="#demo" data-slide="next">
+              <span class="carousel-control-next-icon"></span>
+            </a>
+          
+          </div>
+        </div>
+  
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+  
+      </div>
+    </div>
+  </div>
+
+    
+
+
+    
+</body>
+</html>

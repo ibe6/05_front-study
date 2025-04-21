@@ -1,0 +1,53 @@
+/* 기본 스타일 */
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+}
+
+/* 폼 스타일 */
+form {
+  border: 1px solid #ccc;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+form label {
+  display: inline-block;
+  width: 80px;
+}
+
+form input, form textarea, form button {
+  margin-top: 5px;
+  padding: 5px;
+  width: 300px;
+}
+form button {
+  margin-top: 5px;
+  padding: 3px;
+  width: 80px;
+  display: block;
+}
+
+form textarea {
+  height: 100px;
+}
+
+/* 테이블 스타일 */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+table th, table td {
+  border: 2px solid #ccc;
+}
+
+table th {
+  color: #fff;
+  background-color: #ffa66a;
+}
+
+table tr {
+  background-color: #ffffe6;
+}

@@ -13,15 +13,57 @@
 
 // 1. 문자열 타입(string)으로 변환 
 
+console.log(10 + '20');// 문자열이 아닌 피연산자(+)가 문자열 타입으로 암무적 변환
+console.log(true + "안녕"); //true안녕
 
 
+console.log(`10 + 20 = ${10+20}`) //템풀릿 리터럴의 표현식 삽입 : 표현식 결과가 문자열 타입으로 암묵적 변환
+
+console.log(String(10)); // String 생성자 함수 이용 : 명시적 변환
+
+console.log((10).toString());
+console.log((true).toString());
 
 // 2. 숫자 타입(number)으로 변환 
 
+//1)산술연산자에 의한 변환 : 숫자가 아닌 피연산자가 숫자타입으로 암묵적으로 변환
+console.log(10-'5');
+console.log(10*'JavaScript'); //nan출력됨, 숫자로 변환이 불가한 피연산자이므로
+
+//2) 비교연산자에 의한 변환 : 숫자가 아닌 피연산자가 숫자타입으로 암묵적으로 변환
+console.log(10>'5');
+console.log(Number('10'));
+console.log(Number('10.1'));
+
+//3)Number 생성자 함수 이용 : 명시적 변환
+
+console.log(Number('10'));
+
+//4)parseInt() 함수이용
+console.log(parseInt('10'));
+console.log(parseFloat('10'));
 
 
 
 // 3. 논리 타입(boolean)으로  변환 
+/*
 
 
+자바스크립트 엔진은 boolean 타입이 아닌 값들을
+Truthy값, Falsy값으로 구분함
+Falsy값 : 값이 없는 경우 (0,0.0, "", undefined, null, Nan)
+*/
 
+if(true) console.log('if(true');
+if(false) console.log('if(false');
+
+if(undefined);// falsy값으로 인식함
+if(0) console.log("if(0)")
+if(NaN) console.log('if(Nan)')
+if(10) console.log("if(10)");
+if('') console.log("if()");
+if('안녕') console.log("if(안녕)");
+
+//boolean 생성자 함수 이용: 명시적 변환
+console.log(Boolean(""));
+console.log(Boolean(1234))

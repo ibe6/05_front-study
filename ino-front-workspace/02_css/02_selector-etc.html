@@ -9,23 +9,51 @@
 
     <style>
         /* 자손선택자(>) : 특정요소의 바로 하위요소(자손) 중 선택 */
+        #test1 > h4 {
+            background-color: red;
+        }
 
+        #test1 > ul > li {
+            background: blue;
+        }
         /* 후손선택자( ) : 특정요소 모든 하위요소(후손)들을 중 선택 */
+        #test1 ul {
+            color: red;
+        }
 
     </style>
 
-
-
+    <div id="test1">
+        <h4>div의 자손 및 후손</h4>
+        <h4>div의 자손 및 후손</h4>
+        <ul>div의 자손 및 후손
+            <li>ul의 자손, div의 후손</li>
+            <li>ul의 자손, div의 후손</li>
+        </ul>
+    </div>
+<hr>
 
     <style>
         /* 동위관계 일반선택자(~) : 특정요소 뒤에 같은레벨로 존재하는 요소들 중 선택 */
-
+        #test2~div {
+            background: green;
+        }
         /* 동위관계 인접선택자(+) : 특정요소 바로 뒤에있는 요소 하나만을 선택 */
-
-    </style>
+        #test2 + div {
+            color: blue;
+        }    
     
+    </style>
+    <div>
+        <div id="test2">div1</div>
+        <div>div2</div>
+        <div>div3</div>
+        <div>div4</div>
+        <h4>h4</h4>
+        <div>div5</div>
+    </div>
 
-
+    <hr>
 
     <style>
         /* 
@@ -36,31 +64,63 @@
 
         /* 요소[속성] : 해당 속성을 가지고 있는 요소 선택 */
 
+        #test3 input[readonly] {
+            color: crimson;
+        }
+
+        #test3 input[name=content] {
+            color: blue;
+        }
         /* 요소[속성=속성값]    : 해당 속성이 속성값과 "일치"하는 요소 선택 */
 
+        #test3 input[value*="니다"] {
+            background-color: violet;
+        }
         /* 요소[속성*=속성값]   : 해당 속성에 속성값이 "포함"되어있는 요소 선택 */
 
+        #test3 input[class^=in] {
+            font-size: 25px;
+        }
         /* 요소[속성^=속성값]   : 해당 속성이 속성값으로 "시작"되는 요소 선택 */
 
         /* 요소[속성$=속성값]   : 해당 속성이 속성값으로 "끝"나는 요소 선택 */
     
     </style>
-
-
+<div id="test3">
+    제목: <input type="text" name="title" value="가입인사드립니다" readonly class="in-title">
+    내용: <input type="text" name="content" value="반갑습니다" class="in-content">
+</div>
 
 
     <style>
         /* * 구조 선택자 */
-
+        #test4 p:first-of-type {
+            color: green;
+        }
         /* 요소:first-of-type  : 선택된 요소들 중 첫번째 요소 선택 */
-
+        #test4 p:last-of-type {
+            color: blue;
+        }
         /* 요소:last-of-type   : 선택된 요소들 중 마지막 요소 선택 */
-
+        #test4 p:nth-of-type(2) {
+            color: violet;
+        }
         /* 요소:nth-of-type(n) : 선택된 요소들 중 n번째 요소 선택 */
-
+        #test4 p:nth-of-type(3n) {
+            color: aqua;
+        }
     </style>
 
-
+    
+<div id="test4">
+    <p>테스트1</p>
+    <p>테스트2</p>
+    <p>테스트3</p>
+    <p>테스트4</p>
+    <p>테스트5</p>
+    <pre>테스트6</pre>
+    <p>테스트7</p>
+</div>
 
 
 
@@ -71,16 +131,38 @@
         */
 
         /* 요소:focus    : 해당 요소에 focusing이 되는 순간 스타일 적용 */
-
+        #test5 input:focus{
+            background-color: pink;
+        }
         /* 요소:checked  : 해당 요소가 checked 되는 순간 스타일 적용 */
-        
+        #test5 input:checked{
+            width: 20px;
+            height: 20px;
+        }
+        #test5 input:checked+label{
+            font-size: 20px;
+        }
         /* 요소:enabled  : 해당 요소가 활성화 상태일 경우 스타일 적용 */
-        
+        #test5 button:enabled{
+            background-color: violet;
+        }
         /* 요소:disabled : 해당 요소가 비활성화 상태일 경우 스타일 적용 */
-        
+        #test5 button:disabled{
+            background-color: yellowgreen;
+        }
     </style>
 
-
+<form id="test5" action="/server/test.do">
+    이름 : <input type="text" name="userName"><br>
+    과일 : 
+    <input type="checkbox" name="fruit" value="apple" id="apple">
+    <label for="apple">사과</label>
+    <input type="checkbox" name="fruit" id="banana" value="banana">
+    <label for="banana">banana</label>
+    <br>
+    <button type="submit">제출</button>
+    <button type="button" disabled>클릭불가</button>
+</form>
 
 
 
@@ -90,14 +172,24 @@
             * 반응 선택자
               사용자의 액션에 따라 선택되는 선택자
         */
-
+        #test6 div:first-of-type:active {
+            background: red;
+            color: white;
+        }
         /* 요소:active : 해당 요소를 마우스로 누르고 있는 동안 스타일 적용 */
-        
+        #test6 div:last-child:hover{
+            background: violet;
+            color: green;
+        }
         /* 요소:hover  : 해당 요소에 마우스가 올라가있는 동안 스타일 적용 */
         
     </style>
-    
-
+    <div id="test6">
+        <div>active test</div>
+        <br>
+        <div>hover test</div>
+    </div>
+    <hr>
 
     <style>
         /* 
@@ -107,13 +199,52 @@
         */
 
         /* 요소::before   : 선택된 요소내의 앞 공간에 content추가가능 */
-        
-        /* 요소::after    : 선택된 요소내의 뒤 공간에 content추가가능 */
-        
+         
+        #test7>span+span::before{
+             content: '→';
+         }
+         /* 요소::after    : 선택된 요소내의 뒤 공간에 content추가가능 */
+         
+         #test7>span:last-of-type::after{
+             content: '♥';
+         }
     </style>
     
+    <div id="test7">
+        <span>봄</span> 
+        <span>여름</span> 
+        <span>가을</span> 
+        <span>겨울</span>
+    </div>
 
+    <hr>
+ 
+    <style>
+        /*
+            * 선택자 우선순위
+              1) 기본적으로 css는 위에서부터 아래로 적용됨 (마지막에 작성된 스타일 반영)
+              2) 단, 동일 요소를 다양한 방식의 선택자로 선택시 작성 순서에 상관없이 우선순위에 따라 적용됨 
+              3) 태그선택자 < 클래스선택자 < 아이디선택자 < 인라인스타일 < !important
+        */
+        #test8{
+            width:200px;
+            background: pink;
+        }
+        .class8{
+            background: yellowgreen;
+            color:white;
+        }
+        h3 {
+            background: red;
+        }
+        h3 {
+            background: teal !important;
+            color: red;
+            width:100px;
+            height:100px;
+        }
+    </style>
 
-    
+    <h3 id="test8" class="class8" style="background:purple">선택자 우선순위 테스트</h3>
 </body>
 </html>

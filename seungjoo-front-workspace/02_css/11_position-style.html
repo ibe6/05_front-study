@@ -13,11 +13,26 @@
               1) HTML 요소 기본 배치를 의미함 (기본값)
               2) 내 마음대로 위치 조정이 불가함 (top, bottom, left, right)
         */
-
+        .wrap1{
+            width:500px;
+            height: 200px;
+            border: 1px solid gray;
+        }
+        .wrap1>div{
+            width: 100px;
+            height: 100px;
+            border: 1px solid red;
+            position: static;
+            top: 100px;
+            left: 100px;
+        }
     </style>
 
+    <div class="wrap1">
+        <div>box</div>
+    </div>
 
-
+    <hr>
 
     <style>
         /* 
@@ -25,11 +40,27 @@
               1) HTML 요소 기본 배치를 따름
               2) 자기 자신을 기준으로 위치 조정을 할 수 있음
         */
-        
+        .wrap2{
+            width: 500px;
+            height: 200px;
+            border: 1px solid gray;
+        }
+        .wrap2>div{
+            width: 100px;
+            height: 100px;
+            border: 1px solid red;
+
+            position: relative;
+            top: 50px;
+            left: 50px;
+        }
     </style>
+
+    <div class="wrap2">
+        <div>box</div>
+    </div>
     
-
-
+    <hr>
 
     <style>
         /* 
@@ -38,10 +69,43 @@
               2) 가까운 조상(position: static;이 아닌 조상) 기준으로 위치 조정 가능
               3) position: static; 인 조상이 없다면 초기 컨테이너 블록을 기준으로 위치 조정 가능
         */
-        
+        .wrap3{
+            width: 500px;
+            height: 500px;
+            border: 1px solid gray;
+            position: relative;
+        }
+        .wrap3>div{
+            width: 100px;
+            height: 100px;
+            border: 1px solid red;
+            position: absolute;
+        }
+        .wrap3>.box1{
+            bottom: 20px;
+            right:20px;
+            background: red;
+
+            z-index:100;
+        }
+        .wrap3>.box2{
+            right:50px;
+            background: orange;
+        }
+        .wrap3>.box3{
+            top: 50px;
+            left:100px;
+            background:green;
+        }
     </style>
 
+    <div class="wrap3">
+        <div class="box1">box1</div>
+        <div class="box2">box2</div>
+        <div class="box3">box3</div>
+    </div>
 
+    <hr>
 
 
     <style>
@@ -50,10 +114,24 @@
               1) HTML 요소의 배치 흐름을 따르지 않음
               2) 뷰포트의 초기 컨테이너 블럭을 기준으로 위치 조정 가능 
         */
-        
+        .fixed-box{
+            width: 50px;
+            height: 50px;
+            background: lime;
+            border-radius: 30px;
+
+            position: fixed;
+            bottom:30px;
+            right: 250px;
+
+            z-index:1000;
+        }
     </style>
 
+    <div class="fixed-box"></div>
 
+
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
     
 </body>
 </html>

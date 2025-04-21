@@ -13,7 +13,7 @@
       ㄴ 객체 자료형으로 메소드(method)와 속성(property)를 가지는 데이터
       ㄴ 배열, {}, 요소 등의 타입이 모두 object
   5. function
-      ㄴ 함수 자료형
+      ㄴ 함수 자료형, 함수도 하나의 데이터 타입으로 사용가능
   6. undefined
       ㄴ 선언 후 값을 할당하지 않은 변수 (즉, 초기화가 되어있지 않은 변수)
       ㄴ 또는 값이 전달되지 않은 매개변수
@@ -23,14 +23,20 @@
 /*
   ## 숫자 타입 ##
   1. number
-  2. 자바스크립트의 경우 하나의 숫자 타입만 존재
+  2. 자바스크립트의 경우 하나의 숫자(넘버) 타입만 존재
   3. 모든 수를 실수로 취급함 
   4. 추가적으로 특별한 값도 표현가능 
      1) Infinity  : 양의 무한대
      2) -Infinity : 음의 무한대
      3) NaN       : 산술 연산 불가(not-a-number)
 */
+var integer = 10
+var double = 5.5;
+var negative = -10;
+console.log(integer, typeof(integer));
+console.log(negative, typeof negative);
 
+console.log(10/4);
 
 
 
@@ -40,21 +46,44 @@
   2. 텍스트 데이터를 나타내는데 사용
   3. 작은 따옴표(''), 큰 따옴표(""), 또는 백틱(``)으로 텍스트 데이터를 감싸서 표현
   4. 자바는 문자열을 객체로 표현하지만 자바스크립트의 문자열은 원시(primitive) 타입이다
+  var는 변수를 선언하는 키워드임
+  node ./01_data-type.js -> 실행, ctrl + option + n
 */
+var string;
+string = 'JavaScript';
+console.log(string, typeof string);
+string= `javascript`
 
+string = '작은 따옴표로 감싼 문자열내의 ""는 문자열로 취급';
+string="큰 따옴표로 감싼 문자열 내의 ''는 문자열로 취급";
+string = `백틱으로 감싼 문자열내의 ""과 ''는 문자열로 취급`;
 
+console.log(string, typeof string);
 
 
 
 /*
-  ## 템플릿 리터럴 ##
+  ## 템플릿 리터럴(백틱으로 표현한것) ##
   1. ES6부터 도입된 멀티라인 문자열
   2. 표현식 삽입(${}) 등 편리한 문자열 처리 기능을 제공 
   3. 백틱(``)으로 표현
+  일반 문자열내에선 줄바꿈이 안됨
 */
+//해결1. 이스케이프 시퀀스 사용
+var str = '안녕하세여\n반갑습니다';
 
+//해결2. 템플릿 리터럴(백틱 사용)
+var multiline = `안녕하세요
+반갑습니다.`;
+console.log(multiline);
+//불편함 이렇게 출력하면
+var lastName = "홍";
+var firstName = "길동";
 
+console.log("제 이름은 " + lastName + firstName + '입니다. ');
 
+//해결 백틱으로 작성, 백틱 내에서 ${변수} 하게 되면 해당 변수의 값이 문자열내에 표현됨
+console.log(`제 이름은 ${lastName}${firstName}입니다.`); //반드시 백틱과 함꼐 사용ㄴ
 
 
 
@@ -64,7 +93,9 @@
   2. 논리적 참, 거짓을 나타내는 true, false 값 취급
 */
 
-
+var flag = true;
+flag = false;
+console.log(flag, typeof flag);
 
 
 
@@ -77,7 +108,7 @@
   3. undefined는 자바스크립트 엔진이 변수를 초기화 할 때 사용하는 값 
 */
 
-
+var undef;
 
 
 
@@ -87,8 +118,9 @@
   1. 변수에 값이 없다는 것을 의도적으로 명시할 때 사용
   2. 이전에 할당 되어 있던 값에 대한 참조를 제거하는 것을 의미함
 */
-
-
+var nullVal = 'something';
+nullVal = null;
+console.log(nullVal, typeof nullVal); //null이 기록된 변수의 타입은 object임
 
 
 
@@ -98,6 +130,12 @@
   2. 자바스크립트의 거의 모든 것이 객체 (배열, 함수 등등..)
      number, string, boolean, undefined, null, symbol 외의 모든 값을 객체로 취급 
 */
+var user = {
+  name : "홍길동",
+  age:17
+}
+console.log(user, typeof user);
+console.log(user.age);
 
 
 

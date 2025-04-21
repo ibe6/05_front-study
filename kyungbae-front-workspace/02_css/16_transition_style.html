@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,35 +8,94 @@
 <body>
 
     <style>
-        
+        .box1 {
+            width: 100px;
+            height: 100px;
+            border: 1px solid gray;
+
+            transition-property: width, background-color, color;
+            transition-duration: 2s;
+            transition-timing-function: ease-in-out;
+        }
+        .box1:hover{
+            width: 300px;
+            background-color: burlywood;
+            color: azure;
+        }
         /* 
             * transition
-              ㄴ 이행(움짐임 과정) 스타일 속성
+                ㄴ 이행(움짐임 과정) 스타일 속성
 
-              1) transition-property        : 이행 과정을 볼 CSS 속성을 지정
-              2) transition-duration        : 이행 시간을 지정 (3s==3초)
-              3) transition-timing-function : 이행 과정이 동작하는 방식을 지정
+                1) transition-property        : 이행 과정을 볼 CSS 속성을 지정
+                2) transition-duration        : 이행 시간을 지정 (3s==3초)
+                3) transition-timing-function : 이행 과정이 동작하는 방식을 지정
         */
+        .box2{
+            width: 200px;
+            height: 200px;
+            border: 1px solid gray;
+            text-align: center;
+            line-height: 200px; /* 상하 가운데 -> 상자 크기와 같은 px 선택 */
+            border-radius: 100px;
+            margin: 100px auto;
+            font-size: 28px;
+            cursor: pointer;
+
+            transition-property: all;
+            transition-duration: 2s;
+        }
+        .box2:active{
+            transform: rotate(900deg);
+        }
         
+        .img-container{
+            width: 192px;
+            height: 128px;
+            background-image: url(../assets/image/city2.jpg);
+            background-size: 192px;
+        }
+        .screen{
+            width: 192px;
+            height: 128px;
+            background: rgba(37, 212, 83, 0.5);
+            font-size: 24px;
+            color: snow;
+            text-align: center;
+            line-height: 128px;
+            opacity: 0;
+
+            transition-property: opacity, transform;
+            transition-duration: 1s;
+        }
+        .img-container:hover+.screen{
+            opacity: 1;
+            transform: translateY(-128px);
+        }
     </style>    
 
+    <div class="box1">box1</div>
+    <hr>
 
+    <div class="box2">회전판</div>
+    <hr>
 
+    <div class="img-container"></div>
+    <div class="screen">도쿄 타워</div>
 
     <!-- 
         * transform 종류
-          1) translateX(이동시킬값)      : 가로축 이동
-          2) translateY(이동시킬값)      : 세로축 이동
-          3) translate(X축이동, Y축이동) : 대각선방향으로 활용
-          4) scaleX(확대시킬배수)        : 가로로 확대 및 축소
-          5) scaleY(확대시킬배수)        : 세로로 확대 및 축소
-          6) scale(X축확대, Y축확대)     : 전체 확대 및 축소
-          7) rotateX(회전각도)           : 가로축기준으로 회전
-          8) rotateY(회전각도)           : 세로축기준으로 회전
-          9) rotate(회전각도)            : 그냥 회전
-         10) skewX(뒤틀각도)             : 가로축으로 뒤틀기
-         11) skewY(뒤틀각도)             : 세로축으로 뒤틀기
-         12) skew(뒤틀각도)              : 전체 뒤틀기
+            1) translateX(이동시킬값)      : 가로축 이동
+            2) translateY(이동시킬값)      : 세로축 이동
+            3) translate(X축이동, Y축이동) : 대각선방향으로 활용
+            4) scaleX(확대시킬배수)        : 가로로 확대 및 축소
+            5) scaleY(확대시킬배수)        : 세로로 확대 및 축소
+            6) scale(X축확대, Y축확대)     : 전체 확대 및 축소
+            7) rotateX(회전각도)           : 가로축기준으로 회전
+            8) rotateY(회전각도)           : 세로축기준으로 회전
+            9) rotate(회전각도)            : 그냥 회전
+            10) skewX(뒤틀각도)             : 가로축으로 뒤틀기
+            11) skewY(뒤틀각도)             : 세로축으로 뒤틀기
+            12) skew(뒤틀각도)              : 전체 뒤틀기
     -->
 
 </body>

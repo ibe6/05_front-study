@@ -16,14 +16,14 @@
       2) 복합 대입 : +=, -=, *=, **=, /=, %=
 
   4. 비교 연산자
-      1) greater than          : >
-         greater than equal    : >=
-      2) less than             : <
-         less than equal       : <=
-      3) equal value           : ==      1 == '1'  결과는 true
-         equal value, type     : ===     1 === '1' 결과는 false
-      4) not equal value       : !=
-         not equal value, type : !==
+      1)  greater than          : >
+          greater than equal    : >=
+      2)  less than             : <
+          less than equal       : <=
+      3)  equal value           : ==      1 == '1'  결과는 true
+          equal value, type     : ===     1 === '1' 결과는 false
+      4)  not equal value       : !=
+          not equal value, type : !==
 
       * 동등/일치 비교 연산자
         동등 비교(loose equality) 연산자와 일치 비교(strict equality) 연산자는 비교의 엄격 정도가 다름 
@@ -43,9 +43,17 @@
 
 */
 
+console.log(2 ** 3); // 제곱 연산자
 
+console.log(1 == '1'); // true
+console.log(1 === '1'); // false
 
+console.log(1 == true); // true
+console.log(1 === true); // false
 
+// 문자열 대소비교 (유니코드 순으로 비교)
+console.log('apple' < 'banana'); // true
+console.log('cat' > 'Zoo'); // true
 
 /*
   ## short-circuit evaluation (단축 평가) ##
@@ -53,4 +61,36 @@
   피연산자1 or 피연산자2  => 피연산자1이 true일 경우 피연산자2의 과정 생략
   피연산자1 and 피연산자2 => 피연산자1이 false일 경우 피연산자2의 과정 생략
 */
+let num = 12;
+/* 
+if (num % 2 == 0) {
+  console.log('짝수');
+} else {
+  console.log('홀수');
+}
+ */
 
+// && 조건이 참일 경우 실행구문
+num % 2 == 0 && console.log('짝수'); // false면 뒤쪽과정 생략하므로 결과 작성
+// || 조건이 거짓일 경우 실행 구문
+num % 2 == 0 || console.log('홀수');
+
+// * 기본값 설정
+// 변수 = 대입할값 || default값;
+let name = '' || '이름없음';
+console.log(name);
+
+let age = 0 || 20;
+console.log(age);
+
+// '', 0 => falsy값
+
+/* 
+  ## nullish-coalescing-operator(null 병합 연산자, ??)
+  ES11 (ECMAScript2020)에 도입된 연산자로
+  좌항의 피연산자가 null 또는 undefined일 경우 우항의 피연산자를 반환하고
+  그렇지 않으면 좌항의 피연산자 반환 -> 기본값 설정시 사용
+*/
+// let addr = '' ?? '주소없음'; // '' 대입
+let addr = null ?? '주소없음';
+console.log(addr);

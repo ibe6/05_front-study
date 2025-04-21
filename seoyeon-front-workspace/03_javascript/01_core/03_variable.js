@@ -22,6 +22,27 @@
   ES5까지 변수를 선언할 수 있는 유일한 방법
 */
 
+var userId;
+console.log(userId);       // 특징1. 할당전: undefined (초기화 없이 선언 가능)
+
+var userId = 'user01';
+console.log(userId);       // 특징2. 재선언 : 가능 (동일 스코프에서 중복 선언 허용)
+
+userId = 'user02';
+console.log(userId);       // 특징3. 재할당 : 가능 
+
+function varScopeTest(){
+  var userPwd = 'pass02';
+
+  if(true){
+    var userAge = 10;
+  }
+
+  console.log(userPwd);
+  console.log(userAge); // 특징4. scope : 함수 스코프
+}
+
+varScopeTest();
 
 
 /*
@@ -29,6 +50,26 @@
   var의 단점을 보완하기 위해 ES6부터 도입된 새로운 변수 선언 키워드 
 */
 
+let userName;
+console.log(userName);       // 특징1. 할당전: undefined (초기화 없이 선언 가능)
+
+// let userName = '홍길동';  // 특징2. 재선언 : 불가능 (동일 스코프에 중복 선언 불가)
+userName = '홍길동';
+userName = '고길동';
+console.log(userName);       // 특징3. 재할당 : 가능
+
+function letScopeTest(){
+  let userAddr = '서울';
+
+  if(true){
+    let userAge = 10;
+  }
+
+  console.log(userAddr);
+  //console.log(userAge);  // 특징4. scope : 블럭 스코프 (if문 안에서 선언된 변수는 if문 밖에서 사용 불가)
+}
+
+letScopeTest();
 
 /*
   ## const ##
@@ -36,6 +77,24 @@
   단, 상수(constant)를 선언하기 위해 사용됨 
 */
 
+// const hobby;           // 특징1. 할당전: 사용 불가능 (초기화 없이 선언 불가)
+const hobby = '요리';
+// const hobby = '등산';  // 특징2. 재선언 : 불가능 (동일 스코프에 중복 선언 불가)
+
+// hobby = '등산';        // 특징3. 재할당 : 불가능 (const로 선언된 변수는 재할당 불가)
+
+function constScopeTest(){
+  const dream = '요리사';
+
+  if(true){
+    const userAge = 10;
+  }
+
+  console.log(dream);
+  // console.log(userAge); // 특징4. scope : 블럭 스코프 (if문 안에서 선언된 변수는 if문 밖에서 사용 불가)
+}
+
+constScopeTest();
 
 
 /*
@@ -44,7 +103,6 @@
            일반적으로 상수명은 대문자로 선언해서 상수임을 명확하게 나타내는걸 권장
            여러 단어로 이루어진 경우 Snake Case(_사용)로 표현하는게 일반적
 */
-
 
 
 
@@ -60,7 +118,63 @@
      4) 함수가 선언된 줄 이전에 해당 함수를 호출 할 수 있음 
 */
 
+// * var 변수 호이스팅
+                           // 실행순서
+console.log(x);            // 2. undefined
+var x;                     // 1. 
+x = 10;                    // 3. x에 10 할당
+console.log(x);            // 4. 10
+                           // --------------------
+console.log(y);            // 2. undefined
+var y = 20;  // var y;     // 1.
+             // y = 20;    // 3. y에 20 할당
+console.log(y);            // 4. 20
+                           // --------------------
+/*
+  위의 코드를 한큐에 실행시 내부적으로 실행되는 순서
+  var x;
+  var y;
+  console.log(x);
+  x = 10;
+  console.log(x);
+  console.log(y);
+  y = 20;
+  console.log(y);
+*/
 
+hoistingQuiz();           // * 함수 호이스팅 (함수 선언 위치보다 이전에 함수 호출 구문 작성 가능)
+
+function hoistingQuiz(){
+  console.log(a);
+  console.log(b); 
+  var a = 100;
+  console.log(a);
+  if(true){
+    console.log(b);
+    var b = 200;
+  }
+  console.log(b);
+
+  nokeyword = '키워드 없이 선언한 변수';
+
+}
+
+/*
+  위의 코드를 한큐에 실행시 내부적으로 실행되는 순서
+  var a;
+  var b;
+  console.log(a); // undefined
+  console.log(b); // undefined
+  a = 100;
+  console.log(a); // 100
+  if(true){
+    console.log(b); // undefined
+    var b = 200;
+  }
+  console.log(b); // 200
+*/
+
+// hoistingQuiz();
 
 
 
@@ -73,3 +187,14 @@
   1. 특정 블럭(함수, 제어문 등)에서 선언된 변수
   2. 선언된 영역에서만 해당 변수를 사용할 수 있음 (var는 제외)
 */
+
+// 전역변수
+console.log(userId);
+console.log(userName);
+console.log(x);
+console.log(y);
+console.log(nokeyword); // 함수내에 var|let|const 키워드 없이 선언된 변수는 전역변수로 사용 가능
+
+// 지역변수
+console.log(userAddr);
+console.log(dream);

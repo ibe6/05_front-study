@@ -5,6 +5,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
+        header, nav, section, article, aside, footer, div{display:block; border:1px solid red;}
+        * {box-sizing: border-box;}
+
+        .wrap{
+            width: 100%;
+            max-width: 1300px;
+            margin: auto;
+
+            /* header,section,footer => 세로배치, width:100% */
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header{
+            height: 200px;
+            /* .header-top, .header-nav => 세로배치, width:100% */
+            display: flex;
+            flex-direction: column;
+        }
+        .header-nav{height: 20%;}
+        .header-top{
+            height: 80%;
+            /* .header-logo,.header-search,.header-alarm => 가로배치, height:100% */
+            display: flex;
+            flex-direction: row;
+        }
+        .header-logo{width:20%}
+        .header-search{width:60%}
+        .header-alarm{width:20%;}
+
+
+        .content{
+            min-height: 500px;
+            display: flex;
+        }
+        .content-news{width: 75%}
+        .content-side{
+            width: 25%;
+            display: flex;
+            flex-direction: column;
+        }
+        .content-myinfo{height: 150px;}
+        .content-ad{height:350px;}
+
+
+
+        .footer{
+            height: 200px;
+            /* .footer-link, .footer-info => 세로배치, width:100% */
+            display: flex;
+            flex-direction: column;
+        }
+        .footer-link {height: 20%}
+        .footer-info {height: 80%;}
 
     </style>
 </head>
@@ -40,6 +94,32 @@
             |                         |     
             └-------------------------┘
     -->
+
+    <div class="wrap">
+
+        <header class="header">
+            <div class="header-top">
+                <div class="header-logo"></div>
+                <div class="header-search"></div>
+                <div class="header-alarm"></div>
+            </div>
+            <nav class="header-nav"></nav>
+        </header>
+
+        <section class="content">
+            <div class="content-news"></div>
+            <div class="content-side">
+                <div class="content-myinfo"></div>
+                <div class="content-ad"></div>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <div class="footer-link"></div>
+            <div class="footer-info"></div>
+        </footer>
+
+    </div>
 
 </body>
 </html>

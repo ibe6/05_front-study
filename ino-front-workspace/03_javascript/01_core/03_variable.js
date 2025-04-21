@@ -22,22 +22,79 @@
   ES5까지 변수를 선언할 수 있는 유일한 방법
 */
 
+var userId;
+console.log(userId); // 특징1. 할당전 : undefined ( 초기화 없이 선언 가능)
+var userId = 'user01'; // 특징2. 재선언 : 가능
+console.log(userId);
 
+var userId = 'user02'; // 특징2. 재할당 : 가능
+console.log(userId);
+
+
+function varScopeTest(){
+  var userPwd = 'pass02';
+
+  if(true) {
+    var userAge = 10;
+  }
+
+  console.log(userPwd);
+  console.log(userAge); // 특징4. scope : 함수 스코프
+}
+
+varScopeTest();
 
 /*
   ## let ##
   var의 단점을 보완하기 위해 ES6부터 도입된 새로운 변수 선언 키워드 
 */
 
+let userName;
+console.log(userName) // 특징1. 할당 전 :undefined (초기화 없이 선언 가능)
+
+// let userName = '홍길동' // 특징2. 재선언 : 불가능 (동일 스코프에 중복 선언 허용x)
+
+userName = '홍길동';
+
+userName = '고길동'; // 특징3. 재할당 : 가능
+
+console.log(userName);
+
+function letScopeTest(){
+  let userAddr = 'Seoul';
+
+  if(true){
+    let userAge = 10;
+  }
+
+  console.log(userAddr);
+  // console.log(userAge); // 특징4. scope : 블럭 스코프 
+}
+
+letScopeTest();
 
 /*
   ## const ##
   let과 동일하게 var의 단점을 보완하기 위해 ES6에 도입된 키워드
   단, 상수(constant)를 선언하기 위해 사용됨 
 */
+// const hoppy;          // 특징1. 할당전 : 사용 불가능 (초기화를 해야 사용 가능)
+const hobby = '요리';
+// const hobby = '등산'; // 특징2. 재선언 : 불가능
 
+// hobby = '등산';       // 특징3. 재할당 : 불가능  
+function constScopeTest(){
+  const dream = '요리사';
 
+  if(true){
+    let userAge = 10;
+  }
 
+  console.log(dream);
+  // console.log(userAge); // 특징4. scope : 블럭 스코프 
+}
+
+constScopeTest();
 /*
   * 상수 : 재할당이 금지된 변수
            const 키워드로 선언된 변수에 원시값 할당하면 더이상 변경 불가
@@ -60,10 +117,32 @@
      4) 함수가 선언된 줄 이전에 해당 함수를 호출 할 수 있음 
 */
 
+// * var 변수 호이스팅
 
+console.log(x);
+var x;
+x = 10;
+console.log(x);
 
+console.log(y);
+var y = 20;
 
+console.log(y);
 
+function hoistingQuiz() {
+  console.log(a);
+  console.log(b);
+  var a = 100;
+  console.log(a);
+  if(true) {
+    console.log(b);
+    var b = 200;
+  }
+  console.log(b);
+  nokeyword = '키워드없는변수';
+}
+
+hoistingQuiz();
 /*
   ## 전역 변수 ##
   1. 특정 함수 밖에 선언된 변수
@@ -73,3 +152,8 @@
   1. 특정 블럭(함수, 제어문 등)에서 선언된 변수
   2. 선언된 영역에서만 해당 변수를 사용할 수 있음 (var는 제외)
 */
+console.log(userId);
+console.log(userName);
+console.log(x);
+console.log(y);
+console.log(nokeyword); // 함수 내 var|let|const 키워드 없이 변수 선언시 -> 전역변수 설정
