@@ -87,6 +87,25 @@ console.log(Number.isNaN(-10));
 console.log(Number.isNaN('10'));            
 console.log(Number.isNaN(true));            
 console.log(Number.isNaN(NaN));             
-console.log(Number.isNaN(undefined));       
+console.log(Number.isNaN(undefined));
+
+let str = '123.456';
+console.log(parseFloat(str));
+console.log(parseInt(str, 2));
+let num = 1.6345;
+console.log(num.toFixed(3));
 
 
+function isNum(num) {
+   let pattern = /^-?[0-9]+(\.[0-9]+)?$/g;
+   return pattern.test(num);
+}
+function getTotal(arr){
+   let num = arr.filter( e => isNum(e) || typeof e == 'number').map( e => parseInt(e)).reduce((a, b) => a+b, 0);
+   return num;
+}
+
+!Number.isNaN(item/1) && typeof item != 'boolean'
+
+const array = ['hello', 'world', 10, 20, 30.23, '40', '-40', '40.223',true, false, () => {}];
+console.log(getTotal(array));

@@ -91,3 +91,51 @@
       → 한쪽 끝의 공백만 제거하려면 trimStart() 나 trimEnd() 를 사용
 */
 
+const str = 'JavaScript';
+
+console.log(`first letter: ${str.at(0)}`)
+console.log(`first letter: ${str.charAt(0)}`)
+console.log(`last letter: ${str.at(-1)}`)
+console.log(`last letter: ${str.charAt(str.length-1)}`)
+
+function yesCheck(str){
+    if (str.replaceAll(" ", "").toUpperCase() == "Y" || "YES") {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+const string = ' y e s';
+console.log('check yes');
+console.log(yesCheck(string));
+
+function Car(p1){
+    this.model = p1;
+}
+
+function addCarMaker(arr){
+    for( ele in arr) {
+        switch (carArr[ele].model.charAt(0)) {
+            case  'K':
+                carArr[ele].maker = 'KIA';
+                break;
+            case 'G':
+                carArr[ele].maker = 'Genesis';
+                break;
+                default:
+                    break;
+        }
+        console.log(carArr[ele]);
+    }
+}
+
+const carArr = new Array(new Car('K3')
+, new Car('K5')
+, new Car('K7')
+, new Car('K9')
+, new Car('GV80')
+, new Car('G80')
+, new Car('GV70'));
+
+addCarMaker(carArr);

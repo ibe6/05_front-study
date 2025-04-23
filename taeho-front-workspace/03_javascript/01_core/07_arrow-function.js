@@ -17,3 +17,33 @@
      3) 별도의 실행내용 없이 결과값만 존재할 경우 return 생략 가능 
 */
 
+const exp1 = function () { console.log('exp1'); };
+const arrow1 = () => console.log('arrow1');
+
+const exp2 = function (a) {
+   console.log('exp2');
+   console.log(a);
+}
+const arrow2 = a => {
+   console.log('arrow2');
+   console.log(a);
+}
+
+const ex3 = function (a, b) {
+   console.log('exp');
+   console.log(a, b);
+   return a + b;
+}
+const arrow3 = (a, b) => {
+   console.log('exp');
+   console.log(a, b);
+   return a + b;
+}
+
+const exp4 = function (x, y) {
+   return x * y;
+};
+
+const arrow4 = (x, y) => x * y; //단순 반환일 경우 {}, return 생략 가능
+
+

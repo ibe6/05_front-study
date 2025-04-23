@@ -22,6 +22,31 @@
      {변수1, 변수2, ..} = 객체;
 */
 
+const car = {
+  maker: 'bmw',
+  model : 'x6',
+  year : 2024
+};
+
+//구조 분해 할당 x => 직접 변수에 대입
+// let maker = car.maker;
+// let model = car.model;
+// let year = car.year;
+
+// *구조 분해 할당 o
+let {maker, model, year} = car; //객체의 프로퍼티명을 변수명으로 사용하여 구조 분해 할당
+
+console.log(maker,model,year); //bmw
 
 
+//변수명을 프로퍼티명과 다르게 하고 싶을떄
 
+const qna = {
+  q : '한국의 수도는?',
+  a : '서울'
+};
+
+let {q : question, a : answer} = qna;
+
+console.log(question);
+console.log(answer);

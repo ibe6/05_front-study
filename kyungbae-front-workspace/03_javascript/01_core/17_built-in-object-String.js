@@ -8,35 +8,35 @@
   ## String의 프로퍼티 및 메소드 ##
 
   1. String.length 속성
-     → 문자열의 길이 반환
+      → 문자열의 길이 반환
 
   2. String.prototype.at(index)
-     → index 위치의 UTF-16 String 반환(마이너스 index 가능)
+      → index 위치의 UTF-16 String 반환(마이너스 index 가능)
 
   3. String.prototype.charAt(index)
-     → index 위치의 유니코드 단일 문자 반환
+      → index 위치의 유니코드 단일 문자 반환
 
   4. String.prototype.concat(string2, string3[, ..., stringN])
-     → 전달된 모든 문자열을 호출 문자열에 붙인 새로운 문자열 반환 (+ 또는 += 연산자의 성능이 concat() 보다 더 우수하다.)
+      → 전달된 모든 문자열을 호출 문자열에 붙인 새로운 문자열 반환 (+ 또는 += 연산자의 성능이 concat() 보다 더 우수하다.)
 
   5. String.prototype.indexOf(searchValue[, fromIndex])
-     → 전달된 searchValue(문자열)와 일치하는 첫 번째 index 반환, 없으면 -1 반환
-     → 옵션 fromIndex : 문자열에서 찾기 시작하는 위치 index, 기본값은 0
+      → 전달된 searchValue(문자열)와 일치하는 첫 번째 index 반환, 없으면 -1 반환
+      → 옵션 fromIndex : 문자열에서 찾기 시작하는 위치 index, 기본값은 0
 
   6. String.prototype.lastIndexOf(searchValue[, fromIndex])
-     → 전달된 문자열과 일치하는 마지막 index 반환, 없으면 -1 반환
-     → 옵션 fromIndex : 탐색의 시작점으로 사용할 index, 기본값은 +Infinity, fromIndex >= str.length 인 경우 모든 문자열을 탐색
+      → 전달된 문자열과 일치하는 마지막 index 반환, 없으면 -1 반환
+      → 옵션 fromIndex : 탐색의 시작점으로 사용할 index, 기본값은 +Infinity, fromIndex >= str.length 인 경우 모든 문자열을 탐색
 
   7. String.prototype.startsWith(searchString[, position])
-     → 전달된 searchString으로 시작하면 true 아니면 false 반환
-     → 옵션 position : searchString이 발견될 것으로 예상되는 시작 위치 index, 기본값은 0
+      → 전달된 searchString으로 시작하면 true 아니면 false 반환
+      → 옵션 position : searchString이 발견될 것으로 예상되는 시작 위치 index, 기본값은 0
 
   8. String.prototype.endsWith(searchString[, length])
-     → 전달된 searchString으로 끝나면 true 아니면 false 반환
-     → 옵션 length : 찾고자 하는 문자열의 길이, 기본값은 문자열의 전체 길이
+      → 전달된 searchString으로 끝나면 true 아니면 false 반환
+      → 옵션 length : 찾고자 하는 문자열의 길이, 기본값은 문자열의 전체 길이
 
   9. String.prototype.match(regexp)
-     → 전달된 정규식과 일치하는 요소들을 Array로 반환, 일치하지 않으면 null 반환
+      → 전달된 정규식과 일치하는 요소들을 Array로 반환, 일치하지 않으면 null 반환
   
   10. String.prototype.search(regexp)
       → 전달된 정규식과 일치하는 첫 번째 항목의 인덱스를 반환, 일치하지 않으면 -1 반환
@@ -91,3 +91,107 @@
       → 한쪽 끝의 공백만 제거하려면 trimStart() 나 trimEnd() 를 사용
 */
 
+const str = 'JavaScript';
+
+console.log(`첫 글자: ${str.at(0)}`);
+console.log(`첫 글자: ${str.charAt(0)}`);
+console.log(`마지막 글자: ${str.at(-1)}`);
+console.log(`마지막 글자: ${str.charAt(-1)}`); // charAt은 음수 데이터 사용 불가
+console.log(`마지막 글자: ${str.charAt(str.length - 1)}`);
+
+console.log(`a의 위치: ${str.indexOf('a')}`);
+console.log(`a의 위치: ${str.lastIndexOf('a')}`);
+
+console.log(`Java로 시작하는지: ${str.startsWith('Java')}`);
+console.log(`Script로 끝나는지: ${str.endsWith('Script')}`);
+
+console.log(str.padStart(15, '*')); // str의 길이가 15가 되도록 *을 왼쪽에 채움
+console.log(str.padEnd(15, '*')); // str의 길이가 15가 되도록 *을 오른쪽에 채움
+
+console.log(str.replace('a', 'A'));
+console.log(str.replaceAll('a', 'A'));
+
+console.log(str.slice(4));
+console.log(str.slice(0, 4));
+
+console.log(str.substring(4));
+console.log(str.substring(0, 4));
+
+const months = 'Jan,Feb,Mar,Apr,May';
+const monthArr = months.split(',');
+console.log(monthArr);
+monthArr.forEach((item, idx) => console.log(`인덱스: ${idx}, 요소: ${item}`));
+
+console.log(months.toUpperCase());
+console.log(months.toLowerCase());
+
+const str2 = '   Java Script   ';
+console.log(str2.trim());
+console.log(str2.trimStart());
+console.log(str2.trimEnd());
+
+/*
+    실습. yesCheck() 함수 구현하기 
+
+    1. 기능 
+        인자가 'yes' | 'Yes' | 'y' | 'Y', '   yes', 'y es' 등 yes를 의미하는 값이면 true를 반환하는 함수
+    2. 인자
+        문자열 1개
+    3. 반환
+        true 또는 false
+*/
+
+const yesCheck = (text) => {
+  return text.toLowerCase().trim().replaceAll(' ', '') == 'yes' || text.toLowerCase().trim() == 'y';
+};
+
+console.log(yesCheck('y  eS'));
+
+/*
+    실습. addCarMaker() 함수 구현하기
+
+    1. 기능
+        인자로 전달된 배열의 각 요소 car 객체의 model 프로퍼티값이 
+        K로 시작하면 maker: 'Kia', G로 시작하면 maker: 'Genesis' 를 
+        배열의 각 요소 car 객체에 추가한 후 해당 객체 정보 출력
+    2. 인자
+        car 객체가 저장된 배열
+    3. 반환
+        없음
+
+    ex) 
+    // 여러 car객체{} 들이 담겨있는 배열 
+    const cars = [    
+      { model: 'K3',  },
+      { model: 'K5',  },
+      { model: 'K8',  },
+      { model: 'K9',  },
+      { model: 'GV70',  },
+      { model: 'G80',  },
+      { model: 'GV80',  },
+    ];
+    addCarMaker(cars);
+*/  
+
+const addCarMaker = (arr) => {
+  arr.forEach( a => {
+    if(a.model.at(0) == 'K'){
+      a.maker = 'Kia'
+    }else if(a.model.at(0) == 'G'){
+      a.maker = 'Genesis'
+    }
+    console.log(a);
+  })
+};
+
+const cars = [    
+  { model: 'K3',  },
+  { model: 'K5',  },
+  { model: 'K8',  },
+  { model: 'K9',  },
+  { model: 'GV70',  },
+  { model: 'G80',  },
+  { model: 'GV80',  },
+];
+addCarMaker(cars);
+// console.log(cars);

@@ -44,7 +44,12 @@
 */
 
 
+console.log(2 ** 3);            //8
+console.log(1 == '1');           //t - 타입을 떠나서 값이 같은지 확인한다 - 동등비교연산자
+console.log(1 === '1');         //f - 값+타입이 같아야한다 - 일치비교연산자
+console.log(1 == true);         //t - 1은 값이 있어서 true, 결국 값이 같음
 
+console.log('apple' < 'bananananana');
 
 
 /*
@@ -54,3 +59,32 @@
   피연산자1 and 피연산자2 => 피연산자1이 false일 경우 피연산자2의 과정 생략
 */
 
+let num = 1;
+// if(num % 2 == 1){
+//     console.log('짝');
+// }else{
+//     console.log('홀');
+// }
+
+num % 2 == 0 && console.log('짝');  //참일경우 실행
+num % 2 == 0 || console.log('홀'); //거짓일경우 실행
+
+
+var name = '' || '이름없음'; //사용자가 이름을 입력하면 입력값이 대입되고 없으면 '이름없음'이 대입된다.
+console.log(name);           //이름 없음
+name = '재이';
+console.log(name);           // 재이 출력
+
+var age = 0 || 20;          //숫자는 0이 기본값임
+
+
+//몰라도댐
+/**
+ * null 병합연산자
+ * 좌항의 피연산자가 null 또는 undifined일 결루 우항의 피연산자를반환하고, 아니면 좌항의 피연산자 반환이 될까요 안될까요
+ */
+let addr = '' ?? '주소없음';
+console.log(addr);              //빈문자열 출력 : 빈문자열이 존재하는 값으로 취급되어 좌항 피연산자가 출력이 될까요 안될까요
+
+let addr2 = null ?? '주소없음';
+console.log(addr2);              //주소없음 출력

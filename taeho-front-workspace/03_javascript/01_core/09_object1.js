@@ -15,7 +15,26 @@
         ㄴ ...
 */
 
+// 객체 리터럴로 정의
+const person = {
+  //프로퍼티 : 객체의 상태를 나타내는 값(속성)
+  name: '나',
+  age: 20,
+  hobbies: [  //프로퍼티로 배열 ㄱㄴ
+    'game',
+    'travel'
+  ],
+  home: {     //객체도 ㄱㄴ
+    adress: '서울',
+    phone: '123'
+  },
+  getInfo: function () {  //내부에 메서드도 ㄱㄴ ~~ toString
+    return `${this.name}님은 ${this.age}살입니다.`;
+  }, //후행쉼표(trailing comma) 사용 가능 - 뒤에 구문이 더 없어도 사용 가능
+};
 
+console.log(person);
+console.log(person.getInfo());
 
 
 
@@ -31,7 +50,18 @@
   3. 함수(function)을 프로퍼티 값으로 작성시 해당 객체의 메소드로 칭함
 */
 
+const obj = {
+  normal: 'normal case',              //  식별자 네이밍 규칙을 따르는 case
+  's p a c e': 'space use',            // 공백 사용 - 식별자 네이밍 규칙이 아닌 case
+  'test!~!~!~!~!@@': 'special use',
+  '1number': 'start number',
+  0: 1,                               // 숫자로 작성된 key는 내부적으로 문자열로 변환    '0': 1
+  var: 'reserved word use',           //예약어 사용 - 권장X
 
+  normal: 'new value'                 // 기존에 존재한 프로퍼티를 다시 선언시 마지막으로 덮어씌워짐
+};
+
+console.log(obj);
 
 
 /*
@@ -43,7 +73,9 @@
 */
 
 
-
+console.log(obj.normal);      //new value
+console.log(obj['normal']);   //선호하는 방식 아님
+console.log(obj[0]);
 
 
 /*
@@ -53,14 +85,38 @@
   => 자바스크립트에서는 함수도 하나의 값으로 취급하므로 
      프로퍼티 값으로 함수를 할당할 수 있음 
 */
+const movie = {
+  title: '원스',
+  'title en': 'Once',
+  showTm: 98,
+  openDt: '2000-02-03',
+  status: '개봉',
+  printActor: (flag) => {
+    if (flag == '주연') {
+      console.log('더보이즈주연');
 
+    } else if (flag == '조연') {
+      console.log('수');
+      console.log('키피');
+    }
+  },
+  toString: function () {
+    //화살표함수 내에서는 this가 제대로 바인딩되지 않음 -> this 대신에 객체명
+    return `제목 : ${this.title} 상영시간: ${this.showTm}`;
+  },
+}
+
+movie.printActor('주연');
 
 
 /*
   ## 동적으로 프로퍼티 추가,수정,삭제 ##
 */
 
-
+movie.nation = 'usa'; //프로퍼티 추가
+movie['title en'] = '한번';
+movie.status = '상영종료';
+delete movie.showTm;
 
 /*
   ## in 연산자 ##
@@ -68,7 +124,15 @@
   '프로퍼티명' in 객체 => 존재하면 true, 존재하지 않으면 false
 */
 
+const academy = {
+  name: 'ssg',
+  address: '서울시',
+}
 
+console.log('name' in academy);
+console.log('qwidj' in academy);
+
+'name' in academy && console.log("만약이름프로퍼티가존재하면 출력");
 
 /*
   ## for in 반복문 ##
@@ -77,3 +141,6 @@
   3. 조회 목적으로만 사용하는게 좋으며 추가/수정/제거는 하지 않는 것이 좋음
 */
 
+for (let prop in academy) { //프로퍼티를 순회함
+  console.log(`프로퍼티명: ${prop}, 프로퍼티값:${academy[prop]}`); //사용되는 prop이 String의 타입이므로 대괄호 academy.prop으로 안됨
+}

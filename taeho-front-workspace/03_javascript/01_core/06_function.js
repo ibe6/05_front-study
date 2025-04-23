@@ -17,6 +17,17 @@
 
   함수명();
 */
+hello('대태호'); //함수 선언문으로 정의한 함수는 함수 선언보다 위에서 호출 가능 - 호이스팅
+// hi('이재이');    //함수 표현식의 경우에는 안댐
+
+function hello(name) {
+  console.log(`${name}님 안녕하세요`);
+}
+function hello(name) {
+  console.log(`${name}님 환영합니다.`);
+}
+
+hello("fe");
 
 
 
@@ -33,6 +44,15 @@
   변수명();
 */
 
+const hi = function (name) {
+  console.log(`${name}님 안녕하세요,`);
+};
+hi('홍길동');
+
+const calc = function add(a, b) {
+  console.log(a + b);
+};
+calc(1, 11);
 
 
 
@@ -45,8 +65,32 @@
   4. 인자가 전달되지 않는 경우에 사용할 디폴트값을 지정할 수 있음 
 */
 
+const paramTest = function (param) {
+  console.log(param);
+}
+paramTest(10);
+paramTest("asd");
+paramTest([1, 2, 3]);
+
+paramTest(1, 2, 3);       //여러개 값을 배열이 아니라 그냥 넘기면 초과되는 값은 무시함
+
+const spreadTest = function (...args) {
+  for (let arg of args) {
+    console.log(arg);
+  }
+}
+spreadTest(1, 2, 4, true, 'e');
+
+const argumentsTest = function () {
+  console.log(arguments, typeof arguments);
+};
+argumentsTest();              //[Arguments] {} object
+argumentsTest(1, "2", true);    //[Arguments] { '0': 1, '1': '2', '2': true } object
 
 
+function defaulfTest(x = 0, y = 0) { //매개변수 기본값 설정, 매개변수에 맞지 않게 전달하면 undefined가 뜸. 기본값 설정 가능
+  console.log(`${x}, ${y}`);
+};
 
 
 /*
@@ -55,3 +99,16 @@
   2. return 값; 을 통해 호출한 곳으로 값이 반환되며 함수 종료
   3. return; 을 통해 함수 강제 종료 가능
 */
+
+function welcome(name) {
+  return `${name}님 환영`;
+}
+
+let welcomeResult = welcome('ewf');
+console.log(welcomeResult);
+
+const bye = function () {
+  console.log('wef');
+  return;
+}
+

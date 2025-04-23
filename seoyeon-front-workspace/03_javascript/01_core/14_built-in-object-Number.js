@@ -66,8 +66,8 @@ console.log(Number.MIN_VALUE);
      → 소수점 뒤에 나타날 자릿수, 0 ~ 20 사이 값을 가짐, 기본값은 0
 */
 
-console.log(Number.isFinite(10));           
-console.log(Number.isFinite(-10));          
+console.log(Number.isFinite(10));           // true
+console.log(Number.isFinite(-10));          // true
 console.log(Number.isFinite(Infinity));     
 console.log(Number.isFinite(-Infinity));    
 console.log(Number.isFinite(NaN));          
@@ -86,7 +86,60 @@ console.log(Number.isNaN(10));
 console.log(Number.isNaN(-10));             
 console.log(Number.isNaN('10'));            
 console.log(Number.isNaN(true));            
-console.log(Number.isNaN(NaN));             
+console.log(Number.isNaN(NaN));             // true
 console.log(Number.isNaN(undefined));       
 
+let str = '123.756';
+console.log(Number.parseFloat(str));        // 123.756
+console.log(Number.parseInt(str));          // 123
 
+let num = 1.23456;
+console.log(num.toFixed());                 // 1
+console.log(num.toFixed(3));                // 1.235
+console.log(num.toFixed(1));                // 1.2
+
+
+/*
+  실습. getTotal() 함수 구현하기
+  1. 기능
+     인자로 전달된 배열에 포함된 요소들 중 숫자만 더해서 반환하는 함수
+     단, 소수 이하 자릿수는 모두 버린 뒤 더하기를 수행함
+         숫자로 이루어진 문자열도 덧셈 연산 진행할 것
+  2. 인자
+     배열
+  3. 반환
+     배열에 포함된 숫자만 모두 더한 값
+   ex) const array = ['hello', 'world', 10, 20, 30.23, '40', { cpu: 'i7' }, true, false, () => {}];
+       console.log(getTotal(array));  // 100 출력
+*/
+
+// function getTotal(arr) {
+//    let total = 0;
+
+//    for (const item of arr) {
+//       if (typeof item === 'number') {
+//          total += Math.floor(item);
+//       }
+
+//       else if (typeof item === 'string' && !isNaN(item)){
+//          total += Math.floor(Number(item));
+//       }
+//    }
+
+//    return total;
+// };
+
+const getTotal = (arr) => {
+   let total = 0;
+   arr.forEach( item => {
+      //console.log(item / 1);
+      if( !Number.isNaN(item/1) && typeof item != 'boolean' ){
+         total += Math.floor(item);
+      }
+   } );
+
+   return total;
+};
+
+const array = ['hello', 'world', 10, 20, 30.23, '40', { cpu: 'i7' }, true, false, () => {}];
+console.log(getTotal(array));

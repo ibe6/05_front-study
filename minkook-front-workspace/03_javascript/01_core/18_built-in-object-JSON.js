@@ -67,3 +67,25 @@
   JSON.parse(text)                 text
     {x: 10, y: 20}          '{"x": 10, "y": 20}'
 */
+
+
+//1. JavaScript 객체 => JSON 문자열 변환
+const product = {
+  name:'마우스',
+  brand:'logitech',
+  price:50000,
+  model:['G304','MX master',],
+};
+console.log(product); //객체
+console.log(JSON.stringify(product)); //JSON 문자열로 변환
+
+//2. JSON 문자열 => JavaScript 객체 변환
+const jsonStr = '{"name":"홍길동","age":20,"hobbies":["game","travel"],"home":{"address":"seoul","phone":"02-1234-5678"}}';
+console.log(jsonStr); //JSON 문자열
+
+
+const obj = JSON.parse(jsonStr); //JSON 문자열을 JavaScript 객체로 변환
+console.log(obj); //객체
+console.log(obj.name); //객체의 프로퍼티 접근
+console.log(obj.age); //객체의 프로퍼티 접근
+console.log(obj.hobbies); //객체의 프로퍼티 접근

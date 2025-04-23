@@ -16,8 +16,26 @@
 */
 
 
+// * object literal
+const person = {
+  // property : states of object 
+  name: 'honggildong',
+  age: 20,
+  hobbies: ['game', 'travel'],
+  home: { 
+    address: 'seoul',
+    phone: '02-1234-5678',
+  },
+  getInfo: function(){ // method
+    return `
+    name: ${this.name}
+    age: ${this.age}
+    hobbies: ${this.hobbies}
+    home: ${this.home}`;
+  }, // trailing comma 사용 가능, 문제 x
+};
 
-
+console.log(person.getInfo());
 
 /*
   ## 프로퍼티 키 ##
@@ -31,9 +49,20 @@
   3. 함수(function)을 프로퍼티 값으로 작성시 해당 객체의 메소드로 칭함
 */
 
+let obj = {
+  // 식별자 네이밍 규칙을 따르는 case
+  normal: 'normal case',
+  // 따르지 않는 case
+  's p a c e': 'abnormal case',
+  'test@': 'abnormal case2',
+  '132case': 'abnormal case3',
+  0: 1,
+  var: '예약어 사용 가능',
+  normal: '중복 선언시 마지막 프로퍼티로 덮어씌워짐'
+};
 
 
-
+console.log(obj);
 /*
   ## 프로퍼티 접근 ##
   1. 마침표 표기법 (dot notation)
@@ -41,6 +70,10 @@
   2. 대괄호 표기법 (square bracket notation)
      ㄴ 객체['프로퍼티명']
 */
+
+console.log(obj.normal);
+console.log(obj["s p a c e"]);
+console.log(obj['132case']);
 
 
 
@@ -54,22 +87,54 @@
      프로퍼티 값으로 함수를 할당할 수 있음 
 */
 
+const movie = {
+  title: '데드풀과 울버린',
+  'title en': 'Deadpool',
+  showTm: 128,
+  openDt: '2024-07-25',
+  status: '개봉',
+  printActor: (flag) => {
+    if(flag == '주연') {
+      console.log('라이언 래이놀즈');
+      console.log('휴 잭맨');
+    }else {
+      console.log('카란 소니');
+      console.log('모레나 바카린');
+    }
+  },
+  toString: function() {
+    // 메소드 내 현재 객체를 가리키고자 할 경우 this.을 통한 접근 필요, this를 하지 않을 경우 전역변수중 찾음
+    // 단, 화살표 함수 내에서는 this가 제대로 바인딩 되지 않음 => this 대신 객체명. 을 통한 접근
+    return `title: ${this.title}, showTm: ${this.showTm}분, openDt: ${this.openDt}`;
+  }
+};
 
-
+movie.printActor('주연');
+movie['printActor']('조연');
+console.log(movie.toString());
 /*
   ## 동적으로 프로퍼티 추가,수정,삭제 ##
 */
 
-
-
+movie.nation = 'usa';
+movie['openDt'] = '2024-07-28';
+delete movie.showTm;
 /*
   ## in 연산자 ##
   특정 객체 내에 특정 프로퍼티가 존재하는지 여부를 확인할 수 있는 연산자
   '프로퍼티명' in 객체 => 존재하면 true, 존재하지 않으면 false
 */
 
+console.log('showTm' in movie);
 
+const academy = {
+  name: 'SSG I&C',
+  address: '서울시 강남구 삼성동',
+};
 
+console.log('name' in academy);
+console.log('address' in academy);
+console.log('phone' in academy);
 /*
   ## for in 반복문 ##
   1. 객체가 가지고 있는 속성(property)명을 임의의 순서로 순차적으로 반환
@@ -77,3 +142,9 @@
   3. 조회 목적으로만 사용하는게 좋으며 추가/수정/제거는 하지 않는 것이 좋음
 */
 
+for (const key in academy) {
+  if (Object.prototype.hasOwnProperty.call(academy, key)) {
+    const element = academy[key];
+    console.log(element);
+  }
+  }

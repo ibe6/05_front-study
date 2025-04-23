@@ -28,6 +28,12 @@ const arrow1 = () => console.log('arrow1'); // 단일 실행문은 {} 생략 가
 arrow1();
 
 
+// case 2.
+// 함수표현식
+const exp2 = function(a){
+   console.log('exp2');
+   console.log(a);
+}
 
 
 
@@ -35,14 +41,8 @@ arrow1();
 
 
 
-
-
-
-
-
-
-
-
+// case3.
+// 함수표현식
 const exp3 = function(a, b){
    console.log('exp3');
    console.log(a, b);

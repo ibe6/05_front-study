@@ -17,6 +17,29 @@
         크기에 제약도 없기 때문에 자바에서의 ArrayList 컬렉션과 유사함
 */
 
+// 1. 배열 리터럴을 통한 배열 생성
+const arr1 = ['banana', 'kiwi', 'pineapple'];
+console.log(arr1);
+
+// 2. 배열 생성자 함수를 통한 배열 생성
+const arr2 = new Array(); // 인자를 전달하지 않을 경우
+console.log(arr2);        // 텅빈 배열 []
+
+const arr3 = new Array(10); // 인지가 1개고 숫자일 경우 length(크기) 프로퍼티로 설정
+console.log(arr3);          // 크기 10짜리 배열 [emty * 10]
+
+const arr4 = new Array(1, 2, 3); // 인자가 여러개고 숫자가 아닌 다른 타입의 인자를 전달할 경우
+console.log(arr4);               // 인자들이 요소로 담겨있는 배열
+
+// 3. Array.of 메소드를 통한 배열 생성
+const arr5 = Array.of(10, 20, 30, 'hello', 'js');
+console.log(arr5);
+
+console.log(arr5[0]);
+console.log(arr5[1]);
+console.log(arr5[2]);
+
+console.log(arr5.length);
 
 
 
@@ -36,7 +59,19 @@
           본문
         }
 */
+const fruits = ['banana', 'apple', 'kiwi'];
+for(let i=0; i<fruits.length; i++){
+   console.log(`인덱스: ${i}, 요소: ${fruits[i]}`);
+}
+console.log('------------------------')
+for(let i in fruits){
+   console.log(`인덱스: ${i}, 요소: ${fruits[i]}`);
+}
 
+const cities = ['seoul', 'roma', 'newyork', 'sideny'];
+for(let city of cities){
+   console.log(`요소: ${city}`);
+}
 
 
 
@@ -59,9 +94,17 @@
   
 */
 
+const foodList = ['물회', '삼계탕', '냉면', '물회', '수박'];
 
+console.log( foodList.indexOf('물회') );        // 0
+console.log( foodList.indexOf('물회', 1) );     // 3
+console.log( foodList.indexOf('삼겹살') );      // -1
 
+console.log( foodList.lastIndexOf('물회') );    // 3
+console.log( foodList.lastIndexOf('삼겹살') );  // -1
 
+console.log( foodList.includes('냉면') );       // true
+console.log( foodList.includes('삼겹살') );     // false
 
 
 /*
@@ -92,9 +135,21 @@
 
 */
 
+const months = ['Jan', 'Mar', 'Apr', 'Apr', 'Jun', 'Jun'];
 
+console.log(months.pop());
+console.log(months);
 
+console.log(months.push('Jul'));
+console.log(months);
 
+months.shift(); // 'Jan'
+months.unshift('Fab'); // 6
+months.unshift('Jan'); // 7
+console.log(months);
+
+months.splice(4, 1, 'May');
+console.log(months);
 
 /*
 
@@ -121,10 +176,30 @@
 
 */
 
+const idol1 = ['아이브', '오마이걸'];
+const idol2 = ['에스파', '트와이스'];
+const idol3 = ['블랙핑크', '레드벨벳'];
+
+const mix1 = idol1.concat(idol2);
+console.log(mix1);
+
+const mix2 = idol3.concat(idol1, idol2);
+console.log(mix2);
+
+const extraction = mix2.slice(1, 3);
+console.log(extraction);
 
 
+const seasons = ['spring', 'summer', 'automn', 'winter']
+console.log(seasons.toString());
+console.log(seasons.join());
+console.log(seasons.join(' → '));
 
-
+const itr = seasons.entries();
+for( let obj of itr ){
+   // console.log(obj); // [인덱스수, 요소]
+   console.log(`인덱스: ${obj[0]}, 요소${obj[1]} `);
+}
 
 /*
 
@@ -173,4 +248,52 @@
      → thisArg(Optional) : callbackFn을 실행할 때 this로 사용되는 값
   
 */
+
+const numbers = [30, 21, 101, 18, 1, 201, 70, 7];
+console.log(`정렬 전 numbers: ${numbers}`);
+numbers.sort();
+console.log(`정렬 후 numbers: ${numbers}`); // 숫자가 내부적으로 문자열로 변환되서 유니코드 순서로 정렬됨
+
+numbers.sort( (left, right) => left - right ); // 오름차순 == 왼쪽의 숫자가 더 크면 순서 변경해야됨 == 양수 반환
+console.log(`오름차순 정렬 후 numbers: ${numbers}`);
+numbers.sort( (left, right) => right - left ); // 내림차순
+console.log(`내림차순 정렬 후 numbers: ${numbers}`);
+
+const names = ['하보람', '나보람', '강보람', '가보람', '박보람'];
+names.sort();
+console.log(`오름차순 정렬 후 names: ${names}`);
+names.sort( (left, right) => right > left ? 1 : -1);
+console.log(`내림차순 정렬 후 names : ${names}`);
+
+
+const lectures = ['Java', 'MySQL', 'MyBatis', 'HTML', 'CSS', 'JavaScript'];
+lectures.forEach( (element, idx, arr) => {
+   console.log(`element: ${element}`);
+   console.log(`idx: ${idx}`);
+   console.log(`arr: ${arr}`);
+} );
+
+// lectures.forEach( (element) => console.log(`과목: ${element}`) );
+
+const newLectures = lectures.map( element => '과목: ' + element );
+console.log(newLectures);
+
+const datas = [true, 1, 'text', {}, []];
+// 배열의 요소들이 타입을 모아둔 새로운 배열
+datas.map( item => typeof item ) // [boolean, number, string, object, object]
+      .forEach( item => console.log(item) );
+
+// 배열의 요소들 중 type이 object인 요소들만 모아둔 새로운 배열
+const objectDatas = datas.filter( item => typeof(item) == 'object' );
+console.log(objectDatas);
+
+
+// 종합
+const nums = [12, 5, 90, 45, 1, 18, 2, 19];
+// 짝수인 데이터들만 *2한 결과를 내림차순 정렬해서 출력
+nums.filter( num => num % 2 == 0 )
+    .map( num => num * 2)
+    .sort( (left, right) => right - left )
+    .forEach( num => console.log(num) );
+
 

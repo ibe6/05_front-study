@@ -7,7 +7,7 @@
      1) JSON은 반드시 속성을 큰 따옴표("")로 묶은 문자열로 표시
      2) JSON은 숫자가 0으로 시작하는 것을 허용하지 않음음
      3) JSON은 반드시 소숫점 뒤에 적어도 한 자릿수가 뒤따라야 함함
-     4) JSON은 NaN과 Infinity를 지원하지 않음음
+     4) JSON은 NaN과 Infinity를 지원하지 않음
      5) JSON은 trailing comma(후행 쉼표)를 허용하지 않음
   5. 예시 형식
      {
@@ -60,10 +60,31 @@
      2) 서버로부터 받은 JSON 문자열 데이터를 JavaScript 데이터로 바꿀 때 주로 활용
 
         obj                 JSON.stringify(obj)
-  {a: '홍', b: 10}         '{"a": "홍", "b", 10}'
+  {a: '홍', b: 10}         '{"a": "홍", "b": 10}'
   JavaScript 객체 ==========요청시 전송(request)=================> 서버
 
   JavaScript 객체 <=========응답시 전송(response)================= 서버
   JSON.parse(text)                 text
     {x: 10, y: 20}          '{"x": 10, "y": 20}'
 */
+
+// 1. JavaScript 객체 => JSON 문자열로 변환
+const product = {
+  name: '마우스',
+  brand: 'logitech',
+  price: 50000,
+  model: ['G304', 'MX Master', ],
+};
+
+console.log(product);
+console.log(JSON.stringify(product)); // JSON 문자열
+
+// 2. JSON 문자열 => JavaScript 객체로 변환
+const jsonStr = '{"name":"이마크", "age":"27", "hobbies":["춤", "랩", "작곡"]}';
+console.log(jsonStr);
+// console.log(jsonStr.name);
+
+const obj = JSON.parse(jsonStr);
+console.log(obj);
+console.log(obj.name);
+console.log(obj.hobbies);

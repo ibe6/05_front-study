@@ -14,7 +14,25 @@
         ㄴ 생성자 함수
         ㄴ ...
 */
-
+// 객체 리터럴({}로 정의하는 방법)
+const person = {
+  //프로퍼티 : 객체의 상태를 나타내는 값(속성)
+  name: "홍길동", 
+  age: 20,
+  hobbies:[
+    "game",
+    "travel"
+  ],
+  home:{
+    address : "seoul",
+    phone : "02-2445-2345"
+  },
+  getInfo: function(){  //프로퍼티가 함수로 정의될 경우 메서드라고 함
+    return `${this.name}님은 ${this.age}세 입니다.`;
+  }, //후행쉼표 사용 가능
+//프로퍼티 나열은 쉼표로 구분
+}
+console.log(person);
 
 
 
@@ -30,6 +48,18 @@
   2. 각 자료형에 맞는 형식대로 작성해야됨 
   3. 함수(function)을 프로퍼티 값으로 작성시 해당 객체의 메소드로 칭함
 */
+const obj = {
+  //식별자 네이밍 규칙 따르는 case
+  normal : "normal case",
+  //식별자 네이밍 규칙이 아닌 case
+  's p a c e ': 'space use', //공백 사용
+  'test!': 'special use', // 특수문자 사용, 숫자로 시작도 가능
+  0:1,
+  var: 'reserver', // 예약어 사용
+  //기존에 존재하는 키 중복 선언시 마지막 프로퍼티로 덮어씌워짐
+  normal: 'new value'
+};
+console.log(obj);
 
 
 
@@ -41,6 +71,12 @@
   2. 대괄호 표기법 (square bracket notation)
      ㄴ 객체['프로퍼티명']
 */
+console.log(obj.normal);
+
+console.log(obj.var);
+
+//대괄호 표기법
+console.log(obj['normal']);
 
 
 
@@ -53,12 +89,43 @@
   => 자바스크립트에서는 함수도 하나의 값으로 취급하므로 
      프로퍼티 값으로 함수를 할당할 수 있음 
 */
+const movie = {
+  title: '데드풀과 울버린',
+  'title en': "Deadpool",
+  showTm: 128,
+  status:'개봉',
+  printActor:(flag) => {
+    if(flag=='주연'){
+      console.log('라이언 레이놀즈');
+      console.log('휴잭맨');
+    }else if(flag == "조연"){
+      console.log('카란 소니');
+      console.log('모레나 바카린');
+    }
+  },
+  toString: function(){
+    //메소드 내에서 현재 객체를 가리키고자 할경우 this.
+    //단, 화살표 함수 내에서는 this가 바인딩 되지 않음 -> 객체명.으로 하기
+    return `'제목:${this.title}', '상영시간:${this.showTm}'분`;
+  }
+
+};
+movie.printActor('조연');
+console.log(movie.toString());
 
 
 
 /*
   ## 동적으로 프로퍼티 추가,수정,삭제 ##
 */
+movie.nation = 'usa';
+
+movie.status = '상영종료';
+delete movie.showTm;
+console.log(movie);
+
+
+
 
 
 
@@ -67,6 +134,8 @@
   특정 객체 내에 특정 프로퍼티가 존재하는지 여부를 확인할 수 있는 연산자
   '프로퍼티명' in 객체 => 존재하면 true, 존재하지 않으면 false
 */
+console.log(`name` in academy);
+console.log(`address` in academy);
 
 
 
@@ -76,4 +145,7 @@
   2. 반환되는 속성명은 string 타입이므로 속성값을 확인하기 위해서는 대괄호 표기법을 사용해야됨
   3. 조회 목적으로만 사용하는게 좋으며 추가/수정/제거는 하지 않는 것이 좋음
 */
+for(let prop in academy){
+  console.log(`프로퍼티명: @{prop}, 프로퍼티 값: ${academ[prop]}`);
+}
 

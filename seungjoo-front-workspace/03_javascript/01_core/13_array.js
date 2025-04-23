@@ -1,5 +1,5 @@
  /*
-  ## Array ##
+  ## Array ##  --> 자바에서의 ArrayList
   1. 다수의 데이터를 담을 수 있음 
   2. 크기에 제약없고, 타입에 제약없음
   3. 타입은 object 
@@ -16,8 +16,22 @@
   ## 변수 선언시 별도의 자료형 지정이 없기 때문에 어떤자료형이든 다 담을 수 있음 
         크기에 제약도 없기 때문에 자바에서의 ArrayList 컬렉션과 유사함
 */
+//1.배열 리터럴을 통한 배열 생성
+const arr1 = ['banana','kiwi','pineapple'];
 
+//2. 배열 생성자 함수를 통한 배열 생성
+const arr2 = new Array(); //인자를 전달하지 않을 경우 텅빈 배열[]
+console.log(arr2); // 텅빈 배열[]
 
+const arr3 = new Array(10); //인자가 1개고 숫자일 경우 length(크기) 프로퍼티 설정
+console.log(arr3);
+
+const arr4 = new Array(1,2,3); //인자가 여러개고 숫자가 아닌 다른 타입의 인자를 전달할경우
+console.log(arr4);             //인자들이 요소로 담겨있는 배열
+
+//3. Array.of 메소드를 통한 배열 생성]
+const arr5 = Array.of(10,20,30,'hello', 'js');
+console.log(arr5);
 
 
 /*
@@ -29,13 +43,22 @@
           본문
         }
 
-  2. array에서의 for of 문
+  2. array에서의 for of 문  -->자바에서의 향상된 for문 느낌
      1) 배열의 요소를 자동으로 가져옴
      2) 형식
         for(요소 of 배열) {
           본문
         }
 */
+const fruits = ['banana', 'apple', 'kiwi'];
+for(let i = 0; i<fruits.length;i++){
+   console.log(`인덱스:${i}, 요소:${fruits[i]}`);
+}
+console.log(`-----`);
+
+for(let i in fruits){
+   console.log(`인덱스:${i}, 요소:${fruits[i]}`);
+}
 
 
 
@@ -59,7 +82,11 @@
   
 */
 
+const foodList = ['물회','삼계탕','냉면','물회','수박'];
 
+console.log(foodList.indexOf('물회')); //0
+console.log(foodList.indexOf('물회', 1)); //3
+console.log(foodList.indexOf('삼겹살')); //-1
 
 
 
@@ -91,7 +118,17 @@
      → 옵션 item1, item2, ... : 배열에 추가할 요소들
 
 */
+const months = ['Jan','Mar', 'Apr', 'Apr', 'Jun', 'Jun'];
+console.log(months.pop());
+console.log(months);
 
+months.shift(); //'Jan'
+months.unshift('Feb'); //6
+months.unshift('Jan'); //7
+console.log(months);
+
+months.splice(4,1,'May');
+console.log(months);
 
 
 

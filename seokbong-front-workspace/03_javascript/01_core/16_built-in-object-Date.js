@@ -2,6 +2,9 @@
   ## Date ##
   특정 날짜 및 시간 정보를 가지는 내장 객체
 
+  > UTC(협정 세계시)
+  > KST(한국 표준시)
+
   1. Date() 생성자
       → 특정 날짜와 시간을 가진 Date 객체를 반환
       → 호출 형식
@@ -15,10 +18,14 @@
         8) new Date(year, monthIndex, day, hours, minutes, seconds)
         9) new Date(year, monthIndex, day, hours, minutes, seconds, milliseconds)
 */
+// 현재 날짜 및 시간
+console.log(new Date());
 
-
-
-
+// 특정 날짜 및 시간 세팅
+console.log(new Date(0));
+console.log(new Date( 24 * 60 * 60 * 1000 ));
+console.log(new Date( '2025/07/29/19/17/:50:00' ));
+console.log(new Date( 2025, 6, 29, 17, 50, 30, 500 ))
 
 /*
   ## Date 메소드 ##
@@ -56,3 +63,29 @@
   11. Date.prototype.toXXXString
       → 사람이 읽을 수 있는 형식의 문자열로 Date 객체의 날짜 반환 
 */
+
+console.log(Date.now());
+console.log(new Date.getTimeNow());
+
+const date = new Date();
+console.log(date.getFullYear());
+console.log(date.getMonth());
+console.log(date.getDate());
+// getHours, getMinutes,  getseconds
+
+date.setFullYear(2024);
+date.setMonth(2);
+date.setDate(15);
+//setHours, setMinutes, setSeconds
+
+console.log(date);
+
+const today = new Date();
+console.log(today);
+console.log(today.toISOString); //UTC 기준
+
+console.log(today.toString());
+console.log(today.toLocaleString());
+
+console.log(today.toDateString());
+console.log(today.toTimeString());

@@ -94,3 +94,21 @@ login(idCheck, pwdCheck);
 login(emailCheck, tokenCheck);
 // 로그인 처리시 아이디, 이메일을 체크해야됨
 login(idCheck, emailCheck);
+
+// case 3. 경우에 따라 실행시킬 구문을 내가 원하는 횟수만큼 반복시켜서 실행되도록
+
+function repeat(action, count){
+  for(let i =0; i < count; i++){
+    action();
+  }
+}
+
+repeat( () => console.log('do action!'), 10);
+repeat( () => console.log('hi everyone!'), 20);
+repeat( idCheck, 3);
+
+/*
+  즉, 고차함수 내에서 변하지 않는 공통 로직은 미리 정의해두고
+  경우에 따라서 변경되어야 되는 로직은 추상화해서
+  함수 외부에서 내부로 전달(콜백함수) 하는 방식
+*/

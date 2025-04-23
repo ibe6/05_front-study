@@ -21,7 +21,9 @@
   4. 외부함수는 내부함수 변수를 사용할 없음
      단, 내부함수는 외부함수의 변수를 사용할 수 있음 
 */
-
+(function helloWorld(command){
+  console.log(`${command} hello world`);
+})('ino');
 function outer(a){
   console.log('외부함수', a);
 
@@ -94,3 +96,13 @@ const login = (check1, check2) => {
   check2();
 }
 login(idCheck, pwCheck);
+
+// case 3. 경우에 따라 실행시킬 구문을 내가 원하는 횟수만큼 반복실행
+
+function repeat(action, count){
+  for(i=0;i<count;i++){
+    action();
+  }
+};
+
+repeat(() => {console.log('hello world')}, 3);

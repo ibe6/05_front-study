@@ -48,7 +48,7 @@ console.log(Math.PI);
 
 console.log(Math.abs(-10));                     
 console.log(Math.abs('-10'));                   
-console.log(Math.abs(''));                      
+console.log(Math.abs('-20.23'));                      
 console.log(Math.abs([]));                      
 console.log(Math.abs(null));                    
 console.log(Math.abs(undefined));               
@@ -103,3 +103,8 @@ console.log(Math.min(10));
 console.log(Math.min(10, 20));                  
 console.log(Math.min(10, 20, 30));              
 console.log(Math.min());                        
+
+console.log(Math.random());
+
+// 1 ~ 10 사이 정수 난수
+console.log(Number.parseInt(Math.random() * 10 + 1));

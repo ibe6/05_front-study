@@ -17,8 +17,25 @@
         크기에 제약도 없기 때문에 자바에서의 ArrayList 컬렉션과 유사함
 */
 
+// 1. 배열 리터럴을 통한 배열 생성
+const arr1 = ['banana', 'apple', 'kiwi'];
+arr1.push('pineapple');
+// 2. 배열 생성자 함수를 통한 배열 생성
+const arr2 = new Array();
+console.log(`arr2 : ${arr2}`) // 인자 미전달시 텅 빈 배열
+for(i in arr1){
+   console.log(arr1[i]);
+}
 
+const arr3 = new Array(10); // 인자가 1개고 숫자일경우 크기 프로퍼티 설정
 
+const arr4 = new Array(1, 2, 3, 'hi'); // 인자가 여러개고 숫자가 아닌 다른 타입 인자 전달시
+console.log(arr4); // 인자가 요소로 담긴 배열
+
+// 3. Array.of 메소드를 통한 배열 생성
+const arr5 = Array.of(1,2,3,4,5);
+arr5.push(6)
+console.log(arr5);
 
 /*
   ## 배열과 for문 ##
@@ -36,9 +53,16 @@
           본문
         }
 */
+for (let i=0;i<arr5.length;i++){
+   console.log(`idx: ${i}, value: ${arr5[i]}`);
+}
+for(idx in arr5){
+   console.log(arr5[idx]);
+}
 
-
-
+for (ele of arr5) {
+   console.log(`ele : ${ele}`);
+}
 
 /*
   ## Array 탐색 관련 메소드 ##
@@ -120,8 +144,12 @@
      → 배열의 각 인덱스에 대한 키/값 쌍을 포함하는 새 배열 반복자(Iterator) 객체를 반환
 
 */
-
-
+const seasons = ['spring','summer', 'autumn', 'winter'];
+const itr = seasons.entries();
+for( let obj of itr){
+   // console.log(obj) [index, element]
+   console.log(`idx: ${obj[0]}, component: ${obj[1]}`);
+}
 
 
 
@@ -174,3 +202,34 @@
   
 */
 
+
+const numvers = [30, 21, 101, 10, 1 , 201, 60 ,6];
+console.log(`numbers before sort: ${numvers}`); // 숫자의 내부 정렬 로직은 문자열 변환 후 유니코드 순서로 결정
+numvers.sort( (a, b) => b - a ); // 오름차순 -> 좌항 숫자가 더 클 경우 순서 변경 필요 -> 양수 반환
+console.log(`numbers after sort: ${numvers}`);
+numvers.forEach( (a) => console.log(a) );
+
+const lectures = ['Java', 'MySQL', 'MyBatis', 'HTML', 'CSS', 'JavaScript'];
+
+lectures.forEach( (ele, idx, arr) => {
+   console.log(`element : ${ele}`);
+   console.log(`index : ${idx}`);
+   console.log(`arr : ${arr}`);
+});
+
+
+const newLectures = lectures.map(ele => '과목: ' + ele);
+console.log(newLectures);
+
+const datas = [true, 1, 'test', {}, []];
+// 배열의 요소들의 타입을 모아둔 새로운 배열
+datas.map( item => typeof item).forEach( item => console.log(item));
+
+console.log(lectures.filter((ele) => ele.length > 5));
+
+console.log(datas.filter( item => typeof(item) == 'object'));
+
+const nums = [12, 5, 90, 45, 1, 18, 2, 19];
+// 짝수 데이터만 *2 내림차순 정렬 출력
+console.log('짝수 데이터만 *2 내림차순 정렬 출력');
+nums.filter( item => item % 2 == 0).map(item => item * 2).sort( (a, b) => b-a).forEach( n => console.log(n));

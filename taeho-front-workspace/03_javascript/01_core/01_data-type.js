@@ -30,7 +30,14 @@
      2) -Infinity : 음의 무한대
      3) NaN       : 산술 연산 불가(not-a-number)
 */
+var integer = 10;
+var double = 5.5;
+var negative = -10;
 
+console.log(integer, typeof (integer));
+console.log(double, typeof (double));
+console.log(negative, typeof (negative));
+console.log(10 / 4);
 
 
 
@@ -41,8 +48,13 @@
   3. 작은 따옴표(''), 큰 따옴표(""), 또는 백틱(``)으로 텍스트 데이터를 감싸서 표현
   4. 자바는 문자열을 객체로 표현하지만 자바스크립트의 문자열은 원시(primitive) 타입이다
 */
-
-
+var string;
+string = 'js';
+string = 'jss'
+string = '작은 따음표로 감싼 문자열내의 ""는 문자열로취급';
+string = "큰따음표로 감싼 문자열 내의''는 문자열로 취급";
+string = `백틱으로 감싼 문자열 내의 ""과''는 문자열로 취급`
+console.log(string, typeof string);
 
 
 
@@ -52,6 +64,23 @@
   2. 표현식 삽입(${}) 등 편리한 문자열 처리 기능을 제공 
   3. 백틱(``)으로 표현
 */
+var str = '안녕하세요.\n반갑습니다.';
+var multiline = `안
+녕
+하
+세
+요
+이렇게백틱쓰면
+할수잇ㅁㄴㅇ`;
+
+console.log(str);
+console.log(multiline);
+
+var lastName = '이';
+var firstName = '서연';
+console.log('옆에 애 이름은' + lastName + firstName + '입니다.');
+
+console.log(`옆에애 이름은 ${lastName}${firstName}입니다.`);
 
 
 
@@ -64,8 +93,10 @@
   2. 논리적 참, 거짓을 나타내는 true, false 값 취급
 */
 
+var flag = true;
+flag = false;
 
-
+console.log(flag, typeof (flag));
 
 
 
@@ -77,7 +108,8 @@
   3. undefined는 자바스크립트 엔진이 변수를 초기화 할 때 사용하는 값 
 */
 
-
+var undef;
+console.log(undef, typeof (undef));
 
 
 
@@ -88,7 +120,9 @@
   2. 이전에 할당 되어 있던 값에 대한 참조를 제거하는 것을 의미함
 */
 
-
+var nullVal = 'something';
+nullVal = null;
+console.log(nullVal, typeof (nullVal));
 
 
 
@@ -99,10 +133,15 @@
      number, string, boolean, undefined, null, symbol 외의 모든 값을 객체로 취급 
 */
 
+var user = {
+  name: '대태호',
+  age: 1,
+  height: 130
+};
 
 
-
-
+console.log(user);
+console.log(user.age);
 
 /*
   * 정적 타입(static/strong type) 언어
@@ -120,6 +159,14 @@
     3) 변수 선언이 아닌 할당(대입)에 의해 타입이 결정됨 (dynamic type)
     4) 재할당에 의해 변수 타입은 언제든지 변경 될 수 있음 (weak type)
     5) 장단점
-       - 장점 : 유연성이 높음 
-       - 단점 : 신뢰성이 떨어짐 
+       - 장점 : 유연성이 높음
+       - 단점 : 신뢰성이 떨어짐
 */
+
+var test;
+console.log(typeof test);
+test = 1;
+console.log(typeof test);
+test = 'js';
+console.log(typeof test);
+

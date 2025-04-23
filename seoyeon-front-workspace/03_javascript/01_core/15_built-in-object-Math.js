@@ -102,4 +102,8 @@ console.log(Math.max());
 console.log(Math.min(10));                             
 console.log(Math.min(10, 20));                  
 console.log(Math.min(10, 20, 30));              
-console.log(Math.min());                        
+console.log(Math.min());      
+
+console.log(Math.random());
+// 1~10 사이의 정수 난수
+console.log(Number.parseInt(Math.random() * 10 + 1));

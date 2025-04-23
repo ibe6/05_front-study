@@ -91,3 +91,6 @@
       → 한쪽 끝의 공백만 제거하려면 trimStart() 나 trimEnd() 를 사용
 */
 
+const str = 'Javascript';
+
+console.log(`첫글자 : ${str.at(0)}`);

@@ -21,13 +21,46 @@
   ## var ##
   ES5까지 변수를 선언할 수 있는 유일한 방법
 */
+var userId;
+console.log(userId);    /*할단 전 undefined*/
 
+var userId = 'userId';
+console.log(userId);    /* 재선언 가능 : 동일한 스코프ㅔ서 재선언 가능*/
+
+userId = 'user01';
+console.log(userId);
+
+function varScopeTest() {
+  var userPwd = '123';
+  if (true) {
+    var userAge = 10;  /*함수 스코프 : if 블럭 바깥에서도 var변수 사용 가능 */
+  }
+
+  console.log(userPwd);
+  console.log(userAge);
+}
 
 
 /*
   ## let ##
   var의 단점을 보완하기 위해 ES6부터 도입된 새로운 변수 선언 키워드 
 */
+
+let userName;
+console.log(userName);
+
+// let userName = '재이' let은 재선언 안됨;
+userName = '재이';
+
+function letScopeTest() {
+  let userPwd1 = '123';
+  if (true) {
+    let userAge2 = 10;
+  }
+
+  console.log(userPwd1);
+  // console.log(userAge2);   블럭 스코프 : if블럭에 선언된 let은 if블럭 내에서만 사용 가능
+}
 
 
 /*
@@ -36,7 +69,20 @@
   단, 상수(constant)를 선언하기 위해 사용됨 
 */
 
+// const hobby;                 할당전 사용 불가능
+const hobby = '요리';
+// const hobby = '넥플렉스';  재선언 불가
+// hobby = '밥먹기';            재할당 불가능
 
+function constScopeTest() {
+  const dream = '나는짱쎄';
+  if (true) {
+    const userAge = 10;
+  }
+
+  console.log(dream);
+  // console.log(userAge);      안댐 블럭스코프
+}
 
 /*
   * 상수 : 재할당이 금지된 변수
@@ -60,8 +106,28 @@
      4) 함수가 선언된 줄 이전에 해당 함수를 호출 할 수 있음 
 */
 
+console.log(x); // 2       //undefine
+var x;          // 1
+x = 10;         // 3
+console.log(x); // 4       //10
+
+console.log(y); // 2       //undefine
+var y = 10;     // 1        // y선언문만 먼저 실행 대입은 나중에 그래서 밑에 선언되면 값이 안들어있을 뿐 존재하는 변수임
+console.log(x); // 3       //10
 
 
+hoistingQuiz();
+
+function hoistingQuiz() {
+  console.log(a); //u
+  console.log(b); //u
+  var a = 100;
+  if (true) {
+    console.log(b); //u
+    var b = 200;
+  }
+  console.log(b); //200
+}
 
 
 /*
@@ -73,3 +139,8 @@
   1. 특정 블럭(함수, 제어문 등)에서 선언된 변수
   2. 선언된 영역에서만 해당 변수를 사용할 수 있음 (var는 제외)
 */
+
+console.log(userId);
+console.log(userName);
+console.log(x);
+console.log(y);

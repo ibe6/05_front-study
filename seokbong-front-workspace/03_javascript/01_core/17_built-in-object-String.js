@@ -91,3 +91,107 @@
       → 한쪽 끝의 공백만 제거하려면 trimStart() 나 trimEnd() 를 사용
 */
 
+const str = 'JavaScript';
+
+console.log(`첫 글자 : ${str.at(0)}`);
+console.log(`첫 글자 : ${str.charAt(0)}`);
+console.log(`마지막 글자 : ${str.at(-1)}`);
+console.log(`마지막 글자 : ${str.charAt(str.length-1)}`);
+
+console.log(`a의 위치: ${str.indexOf('a')}`);
+console.log(`a의 위치: ${str.lastIndexOf('a')}`);
+
+console.log(`Java로 시작하는지: ${str.startsWith('Java')}`);
+console.log(`Script로 끝나는지: ${str.endsWith('Script')}`);
+
+console.log(str.padStart(15, '*')); // str의 길이가 15가 되도록 *을 왼쪽에 채움
+console.log(str.padEnd(15, '*')); // str의 길이가 15가 되도록 *을 오른쪽에 채움
+
+console.log(str.replace('a', 'A'));
+console.log(str.replaceAll('a', 'A'));
+
+console.log(str.slice(4));
+console.log(str.slice(0, 4));
+
+console.log(str.substring(4));
+console.log(str.substring(0, 4));
+
+const months = 'Jan, Feb, Mar, Apr, May' ;
+const monthArr = months.split(',');
+// console.log(monthArr);
+monthArr.forEach( (item, idx) => console.log(`인덱스: ${idx}, 요소: ${item}`) ); 
+
+console.log(months.toUpperCase());
+console.log(months.toLowerCase());
+
+const str2 = '  Java Script   ';
+console.log(str2.trim());
+console.log(str2.trimStart());
+console.log(str2.trimEnd());
+
+/*
+    실습. yesCheck() 함수 구현하기 
+
+    1. 기능 
+       인자가 'yes' | 'Yes' | 'y' | 'Y', '   yes', 'y es' 등 yes를 의미하는 값이면 true를 반환하는 함수
+    2. 인자
+       문자열 1개
+    3. 반환
+       true 또는 false
+*/
+const yesCheck = (str) => {
+    const changeStr = str.toLowerCase().trim().replaceAll(' ','');
+    return changeStr === 'yes' || changeStr === 'y';
+};
+
+const testArr = ['yes', 'Yes', 'yEs', 'y', 'Y', '  yes', '  y es', 'Y es', 'NO', 'no', 'n'];
+testArr.forEach( item => console.log(yesCheck(item)) );
+
+
+/*
+    실습. addCarMaker() 함수 구현하기
+
+    1. 기능
+       인자로 전달된 배열의 각 요소 car 객체의 model 프로퍼티값이 
+       K로 시작하면 maker: 'Kia', G로 시작하면 maker: 'Genesis' 를 
+       배열의 각 요소 car 객체에 추가한 후 해당 객체 정보 출력
+    2. 인자
+       car 객체가 저장된 배열
+    3. 반환
+       없음
+
+    ex) 
+    // 여러 car객체{} 들이 담겨있는 배열 
+    const cars = [    
+      { model: 'K3',  },
+      { model: 'K5',  },
+      { model: 'K8',  },
+      { model: 'K9',  },
+      { model: 'GV70',  },
+      { model: 'G80',  },
+      { model: 'GV80',  },
+    ];
+    addCarMaker(cars);
+*/  
+
+const addCarMaker = (arr) => {
+    arr.map( car => {
+        if(car.model.startsWith('K')){
+            car.maker = 'Kia';
+        }else if(car.model.startsWith('G')){
+            car.maker = "Genesis";
+        }
+        return car;
+    } ).forEach( car => console.log(car) );
+};
+
+const cars = [    
+    { model: 'K3',  },
+    { model: 'K5',  },
+    { model: 'K8',  },
+    { model: 'K9',  },
+    { model: 'GV70',  },
+    { model: 'G80',  },
+    { model: 'GV80',  },
+];
+addCarMaker(cars);

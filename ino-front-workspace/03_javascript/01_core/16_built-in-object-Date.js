@@ -16,10 +16,10 @@
         9) new Date(year, monthIndex, day, hours, minutes, seconds, milliseconds)
 */
 
-
-
-
-
+console.log(new Date(0));
+console.log(new Date(24 * 60 * 60 * 1000)); // 1 day past( hour * min * sec * millisec)
+console.log(new Date('2025/07/29/17:50:00')); // -> 9시간 전  시간 표기(KST - 9)
+console.log(new Date(2025, 6, 29, 17, 50,30, 500));
 /*
   ## Date 메소드 ##
 
@@ -56,3 +56,16 @@
   11. Date.prototype.toXXXString
       → 사람이 읽을 수 있는 형식의 문자열로 Date 객체의 날짜 반환 
 */
+
+console.log(Date.now());
+console.log(new Date().getTime());
+
+const date = new Date();
+console.log(date.getFullYear());
+console.log(date.getMonth() + 1); // 0 - 11 
+
+console.log(date.toISOString());
+console.log(date.toString());
+console.log(date.toLocaleString());
+console.log(date.toDateString());
+console.log(date.toTimeString());

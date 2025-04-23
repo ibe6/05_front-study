@@ -1,4 +1,4 @@
- /*
+/*
   ## Array ##
   1. 다수의 데이터를 담을 수 있음 
   2. 크기에 제약없고, 타입에 제약없음
@@ -17,28 +17,67 @@
         크기에 제약도 없기 때문에 자바에서의 ArrayList 컬렉션과 유사함
 */
 
+// 1. 배열 리터럴 생성
+const arr1 = ['banana', 'kiwi', 'pineapple'];
+console.log(arr1);
 
+// 2. 배열 생성자 함수
+const arr2 = new Array(); // 인자를 전달하지 않을 경우 빈 배열 = []
+console.log(arr2);
 
+const arr3 = new Array(10); // 인자가 1개고 숫자일 경우 length(크기) 프로퍼티로 설정
+console.log(arr3);          // 크기 10짜리 배열 [empty * 10]
+
+const arr4 = new Array(1, 2, 3); // 인자가 여러개고 숫자가 아닌 다른 타입의 인자를 전달할 경우
+console.log(arr4);             // 인자들이 요소로 담겨있는 배열
+
+// 3. Array.of 메소드를 통한 배열 생성
+const arr5 = Array.of(10, 20, 30, 'hello', 'js');
+console.log(arr5);
+
+console.log(arr5[0]);
+console.log(arr5[1]);
+console.log(arr5[2]);
+console.log(arr5[3]);
+console.log(arr5[4]);
+
+console.log(arr5.length);
 
 /*
   ## 배열과 for문 ##
   1. for in 문
-     1) 배열의 인덱스를 자동으로 가져옴
-     2) 형식
+      1) 배열의 인덱스를 자동으로 가져옴
+      2) 형식
         for(인덱스 in 배열) {
           본문
         }
 
   2. array에서의 for of 문
-     1) 배열의 요소를 자동으로 가져옴
-     2) 형식
+      1) 배열의 요소를 자동으로 가져옴
+      2) 형식
         for(요소 of 배열) {
           본문
         }
 */
 
+const fruits = ['banana', 'apple', 'kiwi']
+for (let i = 0; i < fruits.length; i++) {
+  console.log(`인덱스: ${i}, 요소: ${fruits[i]}`);
+}
 
+console.log('---------------------------------');
 
+for (const i in fruits) {
+  if (Object.prototype.hasOwnProperty.call(fruits, i)) {
+    const element = fruits[i];
+    console.log(`인덱스: ${i}, 요소: ${element}`);
+  }
+}
+
+const cities = ['seoul', 'roma', 'newyork', 'sidney'];
+for(let city of cities){ // 인덱스 활용 불가
+  console.log(`요소: ${city}`);
+}
 
 /*
   ## Array 탐색 관련 메소드 ##
@@ -59,118 +98,207 @@
   
 */
 
+const foodList = ['물회', '삼계탕', '냉면', '물회', '수박'];
 
+console.log(foodList.indexOf('물회'));
+console.log(foodList.indexOf('물회', 1));
+console.log(foodList.indexOf('삼겹살'));
 
+console.log(foodList.lastIndexOf('물회'));
+console.log(foodList.lastIndexOf('삼겹살'));
 
-
+console.log(foodList.includes('냉면'));
+console.log(foodList.includes('삼겹살'));
 
 /*
       
   ## Array 동적으로 요소 추가/삭제 관련 메소드 ##
 
   1. Array.prototype.push(element1[, element2[, ...]])
-     → 배열의 끝에 하나 이상의 요소를 추가하고 배열의 새로운 길이를 반환
+      → 배열의 끝에 하나 이상의 요소를 추가하고 배열의 새로운 길이를 반환
 
   2. Array.prototype.pop()
-     → 배열의 마지막 요소를 제거하고 그 요소를 반환
-     → 배열이 비어 있으면 undefined 반환
+      → 배열의 마지막 요소를 제거하고 그 요소를 반환
+      → 배열이 비어 있으면 undefined 반환
   
   3. Array.prototype.unshift(element1[, element2[, ...]])
-     → 배열의 앞에 하나 이상의 요소를 추가하고 배열의 새로운 길이를 반환
+      → 배열의 앞에 하나 이상의 요소를 추가하고 배열의 새로운 길이를 반환
 
   4. Array.prototype.shift()
-     → 배열의 첫번째 요소를 제거하고 그 요소를 반환
-     → 배열이 비어 있으면 undefined 반환
+      → 배열의 첫번째 요소를 제거하고 그 요소를 반환
+      → 배열이 비어 있으면 undefined 반환
 
   5. Array.prototype.splice(start[, deleteCount[, item1[, item2[, ...]]]])
-     → 배열의 기존 요소를 삭제 또는 교체하거나 새 요소를 추가하여 배열의 내용을 변경함
-     → start : 배열의 변경을 시작할 인덱스
-     → 옵션 deleteCount : 배열에서 제거할 요소의 개수
-       1) 생략하면 start 부터 모든 요소를 제거
-       2) 0 이하이면 아무 요소도 제거하지 않음
-     → 옵션 item1, item2, ... : 배열에 추가할 요소들
+      → 배열의 기존 요소를 삭제 또는 교체하거나 새 요소를 추가하여 배열의 내용을 변경함
+      → start : 배열의 변경을 시작할 인덱스
+      → 옵션 deleteCount : 배열에서 제거할 요소의 개수
+        1) 생략하면 start 부터 모든 요소를 제거
+        2) 0 이하이면 아무 요소도 제거하지 않음
+      → 옵션 item1, item2, ... : 배열에 추가할 요소들
 
 */
 
+const months = ['january', 'march', 'april', 'april', 'jun', 'jun'];
 
+console.log(months.pop());
+console.log(months);
 
+console.log(months.push('july'));
+console.log(months);
 
+console.log(months.shift());
+console.log(months.unshift('feburary'));
+months.unshift('january');
+console.log(months);
+
+months.splice(4, 1, 'may');
+console.log(months);
 
 /*
 
   ## Array 기타 메소드 ##
   
   1. Array.prototype.concat(items1[, items2[, ...]])
-     → 배열의 요소들을 하나로 합친 새로운 배열 반환 
+      → 배열의 요소들을 하나로 합친 새로운 배열 반환 
 
   2. Array.prototype.slice(start, end)
-     → 배열의 start 인덱스 이상 end 인덱스 미만 범위의 요소들을 새로운 배열로 복사해서 반환 
+      → 배열의 start 인덱스 이상 end 인덱스 미만 범위의 요소들을 새로운 배열로 복사해서 반환 
 
   3. Array.prototype.reverse()
-     → 배열 내의 요소들을 역순으로 변경하여 반환 
+      → 배열 내의 요소들을 역순으로 변경하여 반환 
 
   4. Array.prototype.toString() 
-     → 배열 내의 요소들을 콤마(,)로 연결한 문자열 반환 
+      → 배열 내의 요소들을 콤마(,)로 연결한 문자열 반환 
 
   5. Array.prototype.join([separator])
-     → 배열의 각 요소를 separator 로 연결한 하나의 문자열을 반환
-     → separator 생략 시 콤마(,)로 연결
+      → 배열의 각 요소를 separator 로 연결한 하나의 문자열을 반환
+      → separator 생략 시 콤마(,)로 연결
   
   6. Array.prototype.entries()
-     → 배열의 각 인덱스에 대한 키/값 쌍을 포함하는 새 배열 반복자(Iterator) 객체를 반환
+      → 배열의 각 인덱스에 대한 키/값 쌍을 포함하는 새 배열 반복자(Iterator) 객체를 반환
 
 */
 
+const p1 = ['aa', 'bb', 'cc'];
+const p2 = ['dd', 'ee'];
+const p3 = ['ff', 'gg'];
 
+const mix1 = p1.concat(p2);
+console.log(mix1);
 
+const mix2 = p3.concat(p1, p2);
+console.log(mix2);
 
+const ext = mix2.slice(1,4);
+console.log(ext);
 
+const num = ['11', '22', '33', '44'];
+console.log(num.toString());
+console.log(num.join());
+console.log(num.join(' - '));
+
+const itr = num.entries();
+for (const number of itr) {
+  // console.log(number);
+  console.log(`인덱스: ${number[0]}, 요소: ${number[1]}`);
+}
 
 /*
 
   ## Array 고차 함수 (콜백함수를 인자로 전달받는 함수) ##
 
   1. Array.prototype.sort([callbackFn(element1, element2)])
-     → callbackFn에 의해 배열 내의 요소들을 정렬시켜 반환 
-     → callbackFn 생략시 기본 오름차순으로 정렬 (문자열 요소일 경우 사전등재순으로 정렬)
-     → callbackFn
-       1) 반환값 : number (양수 반환시 비교되는 두 요소의 순서가 변경됨)
-       2) 매개변수 
+      → callbackFn에 의해 배열 내의 요소들을 정렬시켜 반환 
+      → callbackFn 생략시 기본 오름차순으로 정렬 (문자열 요소일 경우 사전등재순으로 정렬)
+      → callbackFn
+        1) 반환값 : number (양수 반환시 비교되는 두 요소의 순서가 변경됨)
+        2) 매개변수 
           (1) element1 : compare할 비교 요소1
           (2) element2 : compare할 비교 요소2
-       즉, 오름차순 정렬시키고자 할 경우 => element1가 더 클 경우 양수 반환하도록 
-           내림차순 정렬시키고자 할 경우 => element2가 더 클 경우 양수 반환하도록 
+        즉, 오름차순 정렬시키고자 할 경우 => element1가 더 클 경우 양수 반환하도록 
+            내림차순 정렬시키고자 할 경우 => element2가 더 클 경우 양수 반환하도록 
         
 
   2. Array.prototype.forEach(callbackFn(element[, index[, array]])[, thisArg])
-     → 각 배열 요소에 대해 제공한 callbackFn 함수를 한 번씩 실행함
-     → callbackFn
-       1) 반환값 : 없음(undefined)
-       2) 매개변수
-         (1) element : 배열에서 처리 중인 현재 요소
-         (2) index   : 배열에서 처리 중인 현재 요소의 인덱스
-         (3) array   : forEach() 메소드를 호출한 배열
-     → thisArg(Optional) : callbackFn을 실행할 때 this로 사용되는 값
+      → 각 배열 요소에 대해 제공한 callbackFn 함수를 한 번씩 실행함
+      → callbackFn
+        1) 반환값 : 없음(undefined)
+        2) 매개변수
+          (1) element : 배열에서 처리 중인 현재 요소
+          (2) index   : 배열에서 처리 중인 현재 요소의 인덱스
+          (3) array   : forEach() 메소드를 호출한 배열
+      → thisArg(Optional) : callbackFn을 실행할 때 this로 사용되는 값
 
   3. Array.prototype.map(callbackFn(currentValue[, index[, array]])[, thisArg])
-     → 제공된 callbackFn 함수에 의해 반환된 요소들을 모은 새로운 배열을 반환함
-     → callbackFn
-       1) 반환값 : 배열의 각 요소를 callbackFn 내부에서 처리한 값
-       2) 매개변수
-         (1) currentValue : 처리할 현재 요소
-         (2) index        : 처리할 현재 요소의 인덱스
-         (3) array        : map() 메소드를 호출한 배열
-     → thisArg(Optional) : callbackFn을 실행할 때 this로 사용되는 값
+      → 제공된 callbackFn 함수에 의해 반환된 요소들을 모은 새로운 배열을 반환함
+      → callbackFn
+        1) 반환값 : 배열의 각 요소를 callbackFn 내부에서 처리한 값
+        2) 매개변수
+          (1) currentValue : 처리할 현재 요소
+          (2) index        : 처리할 현재 요소의 인덱스
+          (3) array        : map() 메소드를 호출한 배열
+      → thisArg(Optional) : callbackFn을 실행할 때 this로 사용되는 값
 
   4. Array.prototype.filter(callbackFn(element[, index[, array]])[, thisArg])
-     → 제공된 callbackFn 함수에 의해 구현된 테스트를 통과한 요소들만 모은 새로운 배열을 반환함
-     → callbackFn
-       1) 반환값 : true 또는 false
-       2) 매개변수
-         (1) element : 배열에서 처리 중인 현재 요소
-         (2) index   : 배열에서 처리 중인 현재 요소의 인덱스
-         (3) array   : filter() 메소드를 호출한 배열
-     → thisArg(Optional) : callbackFn을 실행할 때 this로 사용되는 값
+      → 제공된 callbackFn 함수에 의해 구현된 테스트를 통과한 요소들만 모은 새로운 배열을 반환함
+      → callbackFn
+        1) 반환값 : true 또는 false
+        2) 매개변수
+          (1) element : 배열에서 처리 중인 현재 요소
+          (2) index   : 배열에서 처리 중인 현재 요소의 인덱스
+          (3) array   : filter() 메소드를 호출한 배열
+      → thisArg(Optional) : callbackFn을 실행할 때 this로 사용되는 값
   
 */
+console.log(`-------------------------------------------------------------`);
+// sort -------------------------
+const numbers = [19, 3, 501, 232, 139, 10090, 9, -13, -2, -105, - 35, -99];
+console.log(`정렬 전: ${numbers}`);
+numbers.sort();
+console.log(`정렬 후: ${numbers}`); // 숫자가 내부적으로 문자열로 변환되어 유니코드 순서로 정렬
+numbers.sort( (left, right) => left - right ); // 오름차순 == 좌항 숫자가 더 크면 순서 변경해야됨
+console.log(`오름차순 적용 후: ${numbers}`);
+numbers.sort( (left, right) => right - left ); // 내림차순
+console.log(`내림차순 적용 후: ${numbers}`);
 
+const korean = ['문자', '한글', '가나다', '컴퓨터', '엑셀'];
+korean.sort();
+console.log(`오름차순 정렬: ${korean}`);
+korean.sort( (left, right) => right > left ? 1 : -1 );
+console.log(`내림차순 정렬: ${korean}`);
+
+console.log(`-------------------------------------------------------------`);
+// forEach --------------------------
+const alpha = ['abc', 'bcd', 'cde', 'def', 'fgp'];
+alpha.forEach((element, idx, arr) => {
+  console.log(`element: ${element}`);
+  console.log(`index: ${idx}`);
+  console.log(`array: ${arr}`);
+});
+
+// alpha.forEach(element => console.log(`alpha: ${element}`));
+
+console.log(`-------------------------------------------------------------`);
+// map -------------------------------
+const newAlpha = alpha.map(element => 'alpha: ' + element);
+console.log(newAlpha);
+
+const datas = [true, 1, 'text', {}, []];
+// 배열의 요소들의 타입을 모아둔 새로운 배열
+datas.map(item => typeof item)
+    .forEach(item => console.log(item));
+
+console.log(`-------------------------------------------------------------`);
+// filter -----------------------------
+// 배열의 요소들 중 type이 object인 요소들만 모아둔 새로운 배열
+const objectDatas = datas.filter( item => typeof(item) == 'object');
+console.log(objectDatas);
+
+console.log(`-------------------------------------------------------------`);
+// 종합
+const nums = [33, 12, 39, 102, 89, 72, 64];
+// 짝수인 데이터들만 *2한 결과를 내림차순 정렬해서 출력
+nums.filter( item => item % 2 == 0 )
+    .map( item => item * 2 )
+    .sort((left, right) => right - left)
+    .forEach( num => console.log(num));

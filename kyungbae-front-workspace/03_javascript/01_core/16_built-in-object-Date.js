@@ -2,6 +2,9 @@
   ## Date ##
   특정 날짜 및 시간 정보를 가지는 내장 객체
 
+  > UTC (협정 세계시) : 국제 표준시로 기술적인 표기에서 사용
+  > KST (한국 표준시) : UTC + 09:00
+
   1. Date() 생성자
       → 특정 날짜와 시간을 가진 Date 객체를 반환
       → 호출 형식
@@ -15,40 +18,45 @@
         8) new Date(year, monthIndex, day, hours, minutes, seconds)
         9) new Date(year, monthIndex, day, hours, minutes, seconds, milliseconds)
 */
+// 현재 날짜 및 시간
+console.log(new Date());
 
-
-
+// 특정 날짜 및 시간 세팅
+console.log(new Date(0));
+console.log(new Date(24 * 60 * 60 * 1000));   // 24시간 밀리초 계산
+console.log(new Date(`2025/07/29/17:50:00`)); // 출력시간은 UTC 기준이라 9시간 차이남
+console.log(new Date(2025, 6, 29, 17, 50, 30, 500));
 
 
 /*
   ## Date 메소드 ##
 
   1. Date.now()
-     → 현지 시간을 타임스탬프 형식으로 반환
+      → 현지 시간을 타임스탬프 형식으로 반환
 
   2. Date.prototype.getFullYear()
-     → 현지 시간 기준 연도 반환
+      → 현지 시간 기준 연도 반환
   
   3. Date.prototype.getMonth()
-     → 현지 시간 기준 월 반환 (0 - 11)
+      → 현지 시간 기준 월 반환 (0 - 11)
 
   4. Date.prototype.getDate()
-     → 현지 시간 기준 일 반환 (1 - 31)
+      → 현지 시간 기준 일 반환 (1 - 31)
 
   5. Date.prototype.getDay()
-     → 현지 시간 기준 요일 반환 (일 - 토 => 0 - 6)
+      → 현지 시간 기준 요일 반환 (일 - 토 => 0 - 6)
 
   6. Date.prototypye.getHours()
-     → 현지 시간 기준 시 반환 (0 - 23)
+      → 현지 시간 기준 시 반환 (0 - 23)
 
   7. Date.prototype.getMinutes()
-     → 현지 시간 기준 분 반환 (0 - 59)
+      → 현지 시간 기준 분 반환 (0 - 59)
 
   8. Date.prototype.getSeconds()
-     → 현지 시간 기준 초 반환 (0 - 59)
+      → 현지 시간 기준 초 반환 (0 - 59)
   
   9. Date.prototype.getMiliseconds()
-     → 현지 시간 기준 밀리초 반환 (0 - 999)
+      → 현지 시간 기준 밀리초 반환 (0 - 999)
   
   10. Date.prototype.getTime()
       → 1970년 1월 1일 00:00:00(UTC)을 기점으로 경과된 밀리초 반환
@@ -56,3 +64,32 @@
   11. Date.prototype.toXXXString
       → 사람이 읽을 수 있는 형식의 문자열로 Date 객체의 날짜 반환 
 */
+console.log('==================================================');
+
+const now = Date.now();
+console.log(now);
+console.log(new Date().getTime());
+
+console.log('------------------------------------');
+
+const date = new Date();
+console.log(date.getFullYear());
+console.log(date.getMonth()+1);
+console.log(date.getDate());
+
+console.log('------------------------------------');
+
+date.setFullYear(2024);
+date.setMonth(2);
+date.setDate(15);
+
+console.log(date);
+
+console.log('------------------------------------');
+
+const today = new Date();
+console.log(today);
+console.log(today.toISOString()); // UTC 기준
+
+console.log(today.toString()); // KST 기준
+console.log(today.toLocaleString());

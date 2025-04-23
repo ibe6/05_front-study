@@ -1,23 +1,40 @@
- /*
-  ## Array ##
-  1. 다수의 데이터를 담을 수 있음 
-  2. 크기에 제약없고, 타입에 제약없음
-  3. 타입은 object 
-  4. 형식 : [element, element, ..]
-  5. 선언 방법 
-      1) 변수 = new Array([크기]);
-      2) 변수 = new Array(element, element, ..);
-      3) 변수 = [];
-      4) 변수 = [element, element, ..];
-  6. 배열 내의 element 접근 방식
-      배열[index]
-  7. 후행쉼표를 지원함
+/*
+ ## Array ##
+ 1. 다수의 데이터를 담을 수 있음 
+ 2. 크기에 제약없고, 타입에 제약없음
+ 3. 타입은 object 
+ 4. 형식 : [element, element, ..]
+ 5. 선언 방법 
+     1) 변수 = new Array([크기]);
+     2) 변수 = new Array(element, element, ..);
+     3) 변수 = [];
+     4) 변수 = [element, element, ..];
+ 6. 배열 내의 element 접근 방식
+     배열[index]
+ 7. 후행쉼표를 지원함
 
-  ## 변수 선언시 별도의 자료형 지정이 없기 때문에 어떤자료형이든 다 담을 수 있음 
-        크기에 제약도 없기 때문에 자바에서의 ArrayList 컬렉션과 유사함
+ ## 변수 선언시 별도의 자료형 지정이 없기 때문에 어떤자료형이든 다 담을 수 있음 
+       크기에 제약도 없기 때문에 자바에서의 ArrayList 컬렉션과 유사함
 */
 
+// 1. 배열 리터럴을 통한 배열 생성
+const arr1 = ['banana', 'kiwi', 'pineapple'];
+console.log(arr1);
 
+//2. 배열 생성자 함수를 통한 배열 생성
+const arr2 = new Array();
+console.log(arr2);
+
+const arr3 = new Array(10);
+console.log(arr3);
+
+const arr4 = new Array(1, 2, 3);
+console.log(arr4);
+
+//3. Array.of메서드를 통한 배열 생성
+const arr5 = Array.of(1, '2', 'fwe');
+
+console.log(arr5[0]);
 
 
 /*
@@ -37,6 +54,19 @@
         }
 */
 
+const fruits = ['banana', 'apple', 'kiwi'];
+for (let i = 0; i < fruits.length; i++) {
+   console.log(`인덱스${i}. 요소 ${fruits[i]}`);
+};
+
+for (let i in fruits) {            //문자열로된 인덱스를 반환함
+   console.log(`인덱스${i}. 요소 ${fruits[i]}`);
+};
+
+const cities = ['seoul', 'roma', 'newyork', 'sidney'];
+for (let city of cities) {
+   console.log(city);
+}
 
 
 
@@ -59,9 +89,14 @@
   
 */
 
+const foodList = ['물회', '삼계탕', '냉면', '물회', '수박'];
+console.log(foodList.indexOf('물회'));
+console.log(foodList.indexOf('물회', 1)); //1번인덱스부터 찾음
+console.log(foodList.indexOf('weoifjoiwjefoi')); //업으면 -1
 
+console.log(foodList.lastIndexOf('물회')); //마지막서부터 탐색
 
-
+console.log(foodList.includes('삼계탕')); //true
 
 
 /*
@@ -92,9 +127,15 @@
 
 */
 
+const months = ['jan', 'mar', 'apr', 'apr', 'june', 'jun'];
+console.log(months.pop());          //마지막 요소 제거+반환
+console.log(months.push('jul'));    //추가 + 추가후배열길이반환
 
 
+months.shift();                     // 첫번째 요소 제거 + 반환
+months.unshift('feb');              //첫번째에 요소 추가 + 추가후배열길이반환
 
+months.splice(4, 1, 'May');         // 4번 인덱스부터 1개를 삭제하고 may를 집어넣는다.
 
 /*
 
@@ -121,9 +162,34 @@
 
 */
 
+const idoll = ['에스파', '더보이즈'];
+const idoll2 = ['Way V', 'NCT 127'];
+const idoll3 = ['NCT Dream,', 'NCT U'];
+
+const mix1 = idoll.concat(idoll2);     //합친 새로운 배열 생성
+const mix2 = idoll3.concat(idoll, idoll2);
+
+console.log(mix2);         //[ 'NCT Dream,', 'NCT U', '에스파', '더보이즈', 'Way V', 'NCT 127' ]
+const extraction = mix2.slice(1, 2);    //mix2에서 1번부터 2번인덱스 전까지
+console.log(extraction);   //[ 'NCT U' ]
 
 
+const seasons = ['spring', 'summner', 'autumn', 'winter'];
+console.log(seasons.toString()); //spring,summner,autumn,winter
+console.log(seasons.join("~~~~~~")); //spring~~~~~~summner~~~~~~autumn~~~~~~winter
 
+const itr = seasons.entries();
+for (let entry of itr) {
+   console.log(`인덱스:${entry[0]} 요소 ${entry[1]}`); //여기서 인덱스는 숫자
+   /*
+      인덱스:0 요소 spring
+      인덱스:1 요소 summner
+      인덱스:2 요소 autumn
+      인덱스:3 요소 winter
+
+      for(let i of seasons)를해도 같은 결과가 나오지만, 인덱스가 숫자가 아님
+   */
+}
 
 
 /*
