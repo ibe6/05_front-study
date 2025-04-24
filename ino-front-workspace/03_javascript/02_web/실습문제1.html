@@ -184,7 +184,13 @@
         단, 링크 클릭시 새탭에 열리도록 설정하시오.
         링크 이동 경로는 해당 객체의 url값으로, 링크 노출 이름은 해당 객체의 name값으로 설정
       */
-
+      const result6 = document.getElementById('result6');
+      sites.forEach( site => {
+        const link = document.createElement('a');
+        link.href = site.url;
+        link.textContent = site.name;
+        result6.appendChild(link);
+      })
     }
   </script>
 
@@ -212,9 +218,19 @@
         사용자가 입력한 두 숫자값을 가져와 연산기호에 맞는 산술연산을 진행하고
         해당 결과를 #result7에 출력하시오.
       */
-      
+      let num1 = document.getElementById('num1').value;
+      let num2 = document.getElementById('num2').value;
+      let result;
+      switch(operator){
+        case '+': result = num1 + num2; break;
+        case '-': result = num1 - num2; break;
+        case 'x': result = num1 * num2; break;
+        case '/': result = num1 / num2; break;
+        case '%': result = num1 % num2; break;
+      }
 
-
+      let resultView = document.getElementById('result7');
+      resultView.textContent = result;                    
     }
   </script>
 
@@ -233,18 +249,23 @@
   <p id="result8" style="border:1px solid lightgray; padding: 5px;">결과 출력하는 영역</p>
 
   <script>
-
+    let arr = new Array();
     // 입력 버튼 클릭시 실행되는 함수
     function inputStr() {
       // 텍스트 상자에 쓰여진 값을 전역 배열에 추가시키고 
       // 사용자가 입력한 값은 초기화 하기 (즉, 텍스트 상자를 빈 문자열로 초기화)
-
+      const text = document.getElementById('input8');
+      console.log(text.value);
+      arr.push(text.value);
+      text.value = '';
     }
 
     // 출력 버튼 클릭시 실행되는 함수
     function outputStr(){
       // 전역 배열에 담긴 값을 #result8에 출력시키기
-
+      let result = '';
+      arr.forEach( a => result += a);
+      document.getElementById('result8').textContent = result;
     }
 
   </script>

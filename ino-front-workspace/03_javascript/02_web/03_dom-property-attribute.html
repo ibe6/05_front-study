@@ -326,8 +326,12 @@
   <div id="person2">JESSICA</div>
 
   <script>
-
-    
+    person1 = document.getElementById('person1');
+    person2 = document.getElementById('person2');
+    console.log(`dataname : ${person1.getAttribute('data-name')}`);  
+    console.log(`dataname : ${person1.dataset.name}`);  
+    person2.dataset.mobile = 'galaxy';
+    console.log(person2.getAttribute('data-mobile'));
   </script>
 
 

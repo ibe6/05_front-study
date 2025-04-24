@@ -61,8 +61,25 @@
   <button id="btn3">고전이벤트모델3</button>
 
   <script>
+    const btn1 = document.getElementById('btn1');
+    btn1.onclick = function() {
+      console.log('click1');
+    }
+    btn1.onclick = function(){ // 해당 핸들러만 가동
+      alert('btn1');
+    }
 
+    // arrow func
+    document.getElementById('btn2').onclick = () => {
+      console.log('btn2 clicked, delete btn1 click event handler');
+      btn1.onclick = null; // 이벤트 핸들러 제거
+    }
 
+    function action(){
+      console.log('run action func');
+    }
+
+    document.getElementById('btn3').onclick = action;
   </script>
 
 
@@ -79,11 +96,13 @@
 
   <h3>인라인 이벤트 모델 방식</h3>
 
-  <button>인라인이벤트모델</button>
+  <button onclick="inlineModel()">인라인이벤트모델</button>
+  <button onclick="console.log('콘솔출력 버튼 실행')">콘솔출력</button>
 
   <script>
-
-
+    function inlineModel(){
+      console.log('inline event model');
+    }
   </script>
 
 
@@ -120,8 +139,23 @@
   <button id="btn6">표준이벤트모델3</button>
 
   <script>
+    const btn4 = document.getElementById('btn4');
+    btn4.addEventListener('click', function(){
+      alert('helloWorld');
+    })
+    btn4.addEventListener('click', function(){ // 여러개의 이벤트 핸들러 할당 가능
+      console.log('hihihi');
+    })
 
-
+    const btn5 = document.getElementById('btn5');
+    btn5.addEventListener('mouseenter', () => { // css의 hover와 비슷한 개념
+      console.log('btn5에 마우스 올라감');
+    });
+    btn5.addEventListener('mouseout', () => {
+      console.log('btn5에 마우스 빠져나감');
+    });
+    // 기명함수, 실행이 아닌 이름 기입만 해야함.
+    document.getElementById('btn6').addEventListener('dblclick', action);
   </script>
 
 
@@ -153,17 +187,49 @@
   -->
 
   <button id="origin">고전이벤트모델 방식</button>
-  <button id="inline">인라인이벤트모델 방식</button>
+  <button id="inline" onclick="inline()">인라인이벤트모델 방식</button>
   <button id="listener">표준이벤트모델 방식</button>
 
   <script>
+    // 고전 이벤트 방식(익명 함수)
+    document.getElementById('origin').onmouseenter = function(evt) { 
+      // parameter 삽입시 해당 파라미터에 window.event 객체를 담아서 준다.
+      // 이벤트 발생시 브라우저(유저가 보는 뷰, 최상위 객체)에서 Event 객체 생성하여 window.event 프로퍼티에 저장
+      console.log(window.event);
+      console.log('event : ', window.event.type);
+      console.log('evt: ', evt);
+      console.log('event : ', evt.type);
+      // event occur element
+      console.log(`event target: ${window.event.target}`);
+      console.log(evt.target);
 
+    };
 
+    //인라인 방식
 
+    function inline(evt){
+      window.event.target.textContent ='clicked';
+      window.event.target.style.color = 'green';
+    }
+    
+    //표준 방식
 
+    document.getElementById('listener').addEventListener('mouseenter', function(evt){
+      console.log(window.event.target); // o
+      console.log(evt.target); // o 
+      console.log(this) // x
+    })
 
+    
+    document.getElementById('listener').addEventListener('click', (evt) => {
+      console.log(window.event.target); // o
+      console.log(evt.target); // o
+      console.log(this) // x
+    })
 
-
+// 기명함수, 화살표 함수 내부 this 사용 불가
+// 기명함수 => window.event.target 활용
+// 화살표 => 매개변수설정서 .target 활용
 
     /*
       * this
@@ -175,17 +241,22 @@
         4. 화살표 함수의 경우 자체 바인딩이 this 에 포함되지 않는다.
         5. this 는 이벤트 핸들러가 화살표 함수인 경우에는 사용할 수 없으므로 주의가 필요하다.
     */
+
   </script>
 
 
   <h3>적용 예시1</h3>
 
-  <button id="red">red</button>
-  <button id="green">green</button>
-  <button id="blue">blue</button>
+  <button id="red" onclick="changeBackground()">red</button>
+  <button id="green" onclick="changeBackground()">green</button>
+  <button id="blue" onclick="changeBackground()">blue</button>
 
   <script>
-    
+    function changeBackground(){
+      const target = window.event.target;
+      console.log(target);
+      target.style.backgroundColor = target.textContent;
+    }
 
   </script>
 
@@ -219,7 +290,20 @@
   </div>
 
   <script>
-
+    const ancestor = document.getElementById('ancestor');
+    const parent = document.getElementById('parent');
+    const child = document.getElementById('child');
+    
+    ancestor.addEventListener('click', (evt) => {
+      console.log('ancestor event handler')
+    })
+    parent.addEventListener('click', (evt) => {
+      console.log('parent event handler')
+      evt.stopPropagation();    
+    })
+    child.addEventListener('click', (evt) => {
+      console.log('child event handler')
+    })
 
   </script>
 
@@ -271,8 +355,29 @@
   </table>
 
   <script>
+    // tbody 내의 tr 요소 클릭시 alert 발생
+    const trList = document.querySelectorAll('#notice>tbody>tr'); // NodeList [tr, tr, tr]
+    trList.forEach(tr => {
+      // tr.addEventListener('click', (evt) => { // 다수 요소
+      //   console.log(evt); 
+      //   console.log(`tr event`)
+      //   alert('tr component selected');
+      // })
+      tr.addEventListener('click', function() { // 다수 요소
+        console.log(this.children[1].textContent); 
+        console.log(`tr event`)
+        alert(`${this.children[1].textContent}tr component selected`);
+      })
+    });
 
+    // when tr component children's checkbox clicking, event propaganda to parent component tr
 
+    const checkboxList = document.querySelectorAll('#notice input[type=checkbox]');
+    checkboxList.forEach( checkbox => {
+      checkbox.addEventListener('click', (evt) => {
+        evt.stopPropagation();
+      })
+    })
   </script>
 
   <hr>
@@ -300,8 +405,23 @@
   </form>
 
   <script>
+    // 동일 이벤트의 이벤트 핸들러 직접 부여시 => 내가 작성한 이벤트 핸들러가 우선순위 더 높음
+    // => 먼저 작동함
+    document.getElementById('naver-link').addEventListener('click', (evt) => {
+      console.log('hello World');
+      // if (!confirm('move page?')) {
+      //   evt.preventDefault(); 
+      // }
+      confirm('move page?')? console.log('move page') : evt.preventDefault();
+    })
 
-
+    document.getElementById('submit').addEventListener('click', (evt) => {
+      if (document.getElementById('userPwd').value != document.getElementById('checkPwd').value) {
+        alert('wrong password');
+        document.getElementById('checkPwd').focus(); // input이 포커싱되도록하는함수
+        evt.preventDefault();
+      }
+    })
   </script>
 
   <hr>

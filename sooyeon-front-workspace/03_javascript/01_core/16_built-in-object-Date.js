@@ -2,6 +2,9 @@
   ## Date ##
   특정 날짜 및 시간 정보를 가지는 내장 객체
 
+  > UTC 협정 세계사 : 국제 표준시로 기술적인 표기에서 사용
+  > KST 한국 표준시 : UTC-9시간
+
   1. Date() 생성자
       → 특정 날짜와 시간을 가진 Date 객체를 반환
       → 호출 형식
@@ -16,7 +19,10 @@
         9) new Date(year, monthIndex, day, hours, minutes, seconds, milliseconds)
 */
 
-
+console.log(new Date());
+console.log(new Date(60 * 1000));
+console.log(new Date('2025/2/3'));
+console.log(new Date(2025,2,3));
 
 
 
@@ -56,3 +62,14 @@
   11. Date.prototype.toXXXString
       → 사람이 읽을 수 있는 형식의 문자열로 Date 객체의 날짜 반환 
 */
+
+console.log(Date.now());
+console.log(new Date().getTime());
+
+ const date = new Date();
+ console.log(date.getFullYear());
+
+
+ const today = new Date();
+ console.log(today);
+ console.log(today.toISOString()); //UTC기준

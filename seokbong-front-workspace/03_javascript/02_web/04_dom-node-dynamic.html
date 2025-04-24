@@ -7,14 +7,71 @@
 </head>
 <body>
 
+  <!--
+    <h1>안녕하세요</h1>
+    => 텍스트 노드 : 안녕하세요
+    => 요소 노드 : <h1>안녕하세요</h1>
+  -->
+
   <!-- 
     ## 동적으로 노드 생성 및 추가 ##
     1. Document.prototype.createElement(tagName) : 인자로 전달받은 태그 이름에 해당하는 요소 노드 생성 후 반환 
     2. Document.prototype.createTextNode(text)   : 인자로 전달받은 텍스트 값으로 텍스트 노드 생성 후 반환 
     3. Node.prototype.appendChild(childNode)     : 인자로 전달받은 노드를 appendChild를 호출한 노드의 마지막 자식 노드로 추가
   -->
+    
+  <h2>동적으로 노드 생성 및 추가</h2>
 
+  <div id ='drink'>
+    <h4>커피</h4>
+    <!-- 여기에 추가 -->
+  </div>
 
+  <button onclick="createNode1();">클릭</button>
+
+  <script>
+    function createNode1(){
+      // <h4>콜라</h4>, <h4>우유</h4> 요소를 #drink 자식노드로 추가하기
+
+      // 1) 요소 노드 + 텍스트 노드
+      // 요소 노드 객체 생성
+      const cokeH4 = document.createElement('h4'); // <h4></h4>
+      // 텍스트 노드 객체 생성
+      const cokeText = document.createTextNode('콜라'); // 콜라
+      // 결합 == 텍스트 노드를 요소 노드의 자식으로 추가
+      cokeH4.appendChild(cokeText); //<h4>콜라</h4>
+      // 완성된 요소 노드를 #drink  자식 노드로 추가
+      document.getElementById('drink').appendChild(cokeH4);
+
+      // 2) 요소 노드 + textContent
+      // 요소 노드 객체 생성
+      const milkH4 = document.createElement('h4');  // <h4></h4>
+      // 요소 노드의 textContent 프로퍼티에 값 할당
+      milkH4.textContent = '우유'; // <h4>우유</h4>
+      // 완성된 요소 노드를 #drink 자식 노드로 추가
+      document.getElementById('drink').appendChild(milkH4);
+
+    }
+  </script>
+
+  <h2>텍스트 노드를 가지지 않는 요소 노드(ex. input, img..) 생성 및 추가</h2>
+
+  <div id="img_container"></div>
+
+  <button onclick="createNode2();">클릭</button>
+
+  <script>
+    function createNode2(){
+      // <img src="" width="" height="" alt="">
+      const imgEl = document.createElement('img'); // <img>
+      imgEl.src = '../../assets/image/flower1.jpg'; // <img src="">
+      imgEl.width = 200; // <img src="" width="">
+
+      document.getElementById('img_container').appendChild(imgEl);
+    }
+  </script>
+
+  <hr>
 
   <!-- 
     ## 노드 복사, 교체, 삭제 ##
@@ -22,7 +79,7 @@
         → 노드의 사본을 생성해서 반환 
         → deep(Optional) : 깊은 복사 여부 (기본값: false)
                          : true로 설정시 깊은 복사하여 모든 자손 노드가 포함된 사본을 생성
-                         : false일 경우 얖은 복사를 진행하여 노드 자신만의 사본을 생성 
+                         : false일 경우 얕은 복사를 진행하여 노드 자신만의 사본을 생성 
 
     2. Node.prototype.replaceChild(newChild, oldChild) 
         → 호출한 노드의 자식 노드 중 oldChild 노드를 newChild 노드로 교체
@@ -34,6 +91,84 @@
     4. Element.prototype.remove()
         → 호출한 노드를 DOM에서 제거
   -->
+
+  <h2>노드 복사</h2>
+
+  <ul id="copy">
+    <li>li 요소</li>
+  </ul>
+
+  <button onclick="copyNode();">클릭</button>
+
+  <script>
+    function copyNode(){
+      
+      const shallowClone = document.getElementById('copy').cloneNode(); // 얕은 복사(false가 기본값)
+      console.log(shallowClone); // ul요소 노드만 복제되고 내부의 텍스트노드, 요소노드는 복제되지 않음
+
+      const deepClone = document.getElementById('copy').cloneNode(true); // 깊은 복사
+      console.log(deepClone);
+
+    }
+  </script>
+
+  <hr>
+
+  <h2>노드 교체</h2>
+
+  <div id="replace">
+    <img src="../../assets/image/flower2.jpg" width="200px">
+  </div>
+
+  <button onclick="replaceNode();">클릭</button>
+
+  <script>
+    function replaceNode(){
+      const imgClone = document.querySelector('#img_container > img').cloneNode();
+
+      const replaceDiv = document.getElementById('replace');
+      replaceDiv.replaceChild(imgClone, replaceDiv.firstElementChild);
+    }
+  </script>
+
+  <hr>
+
+  <h2>노드 삭제</h2>
+
+  <style>
+    #remove{
+      width: 200px;
+      height: 100px;
+      background-color: yellow;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    #item1{background-color: red;}
+    #item2{background-color: orange;}
+    #item3{background-color: green;}
+  </style>
+  <div id="remove">
+    <span id="item1">item1</span>
+    <span id="item2">item2</span>
+    <span id="item3">item3</span>
+  </div>
+
+  <button onclick="removeNode();">클릭</button>
+
+  <script>
+    function removeNode(){
+      // #item1 요소 제거하기
+      const removeDiv = document.getElementById('remove');
+
+      // 방법1.
+      // removeDiv.removeChild(removeDiv.firstElementChild);
+
+      // 방법2.
+      // removeDiv.firstElementChild.remove();
+      document.getElementById('item1').remove();
+    }
+  </script>
 
 </body>
 </html>

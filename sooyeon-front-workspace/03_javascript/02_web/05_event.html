@@ -55,18 +55,16 @@
   -->
 
   <h3>고전 이벤트 모델 방식</h3>
-
   <button id="btn1">고전이벤트모델1</button>
   <button id="btn2">고전이벤트모델2</button>
   <button id="btn3">고전이벤트모델3</button>
-
   <script>
-
-
+  
   </script>
 
 
   <!-- 
+  //오래된 방식으로 사용을 권장하지 않음
     ## 인라인 이벤트 모델 ## 
     1. HTML 요소에 직접 이벤트 핸들러 속성(Event Handler Attribute) 등록하고 이벤트 핸들러를 호출하는 방식
     2. 이벤트 핸들러 작성시 주로 기명 함수를 사용함 
@@ -75,20 +73,28 @@
        function inline(){
 
        }
+       쓰
+       지
+       마
   -->
+
 
   <h3>인라인 이벤트 모델 방식</h3>
 
-  <button>인라인이벤트모델</button>
+  <button onclick="inlineModel()">인라인이벤트모델</button>
+  <button onclick="console.log('콘솔 출력 버튼 바로 사용')">콜솔출력</button>
 
   <script>
-
+    function inlineModel() {
+      console.log('인라인 이벤트 모델 방식');
+    }
 
   </script>
 
 
   <!-- 
     ## 표준 이벤트 모델 ##
+    W3C에서 공식적으로 지정함 웹 표준의 이벤트 모델 방식
     1. EventTarget 인터페이스의 addEventListener() 메소드를 호출하는 방식
     2. addEventListener 구문
        1) addEventListener('eventType', eventHandler)
@@ -120,7 +126,28 @@
   <button id="btn6">표준이벤트모델3</button>
 
   <script>
+    const btn4 = document.getElementById('btn4');
+    const btn5 = document.getElementById('btn5');
 
+    //익명함수
+    btn4.addEventListener('click', function () {
+      console.log('btn 클릭');
+    });
+    btn4.addEventListener('click', function () {
+      alert('btn 클릭 두번째 이것도됨'); //동일한 버튼에 동일한 function을 정의했을 경우 덮어씌워지지 않고 2개 모두 작동
+    });
+
+    //화살표 함수
+    btn5.addEventListener('mouseenter', () => {
+      console.log('버튼5에 마우스가 올라감');
+    });
+    btn5.addEventListener('mouseout', () => {
+      console.log('버튼5에 마우스가 나가부럿다');
+    });
+
+    //기명함수
+    document.getElementById('btn6')
+            .addEventListener('dblclick', inlineModel); //더블클릭시 위에 스크립트에 정의해두었던 기명함수 재사용
 
   </script>
 
@@ -157,7 +184,14 @@
   <button id="listener">표준이벤트모델 방식</button>
 
   <script>
+    //고전
+    document.getElementById('origin').onmouseenter = function(evt){ //window.event를 매개변수로 받을 수 있음
+      console.log('윈도우이벤트' + window.event); //이벤트가 발생되면 Event라는 객체를 생성 -> 윈도우 event 프로퍼티에 저장
+      console.log('이벤트 종류' + window.event.type);
 
+      console.log('매개변수로 받은 윈도우 이벤트' + evt);
+      console.log('매개변수로 받은 윈도우 이벤트 타입' + evt.type);
+    };
 
 
 

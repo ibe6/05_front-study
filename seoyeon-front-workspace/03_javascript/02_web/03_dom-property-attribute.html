@@ -364,8 +364,15 @@
   <div id="person2">JESSICA</div>
 
   <script>
+    const pereson1 = document.getElementById('person1');
+    console.log(`data-name: ${person1.dataset.name}`);
+    console.log(`data-aGe: ${person1.dataset.age}`);
+    console.log(`data-home-address: ${person1.dataset.homeAddress}`);
 
-    
+    const person2 = document.getElementById('person2');
+    person2.dataset.mobile = '010-1111-2222';
+    person2.dataset.dayOfBirth = '2015-08-26';
+
   </script>
 
 

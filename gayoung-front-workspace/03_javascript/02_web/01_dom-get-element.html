@@ -128,6 +128,26 @@
     ----------------------------------------------------------------------------------
   -->
 
+    <h2> id를 이용한 요소 노드 취득 </h2>
+    <div id="area1" class="area">
+      div 영역
+      <p id="area2"> p 영역 </p>
+    </div>
+
+    <div id="area1" class="area">
+      div영역
+    </div>
+
+    <script>
+      const el = document.getElementById('area1');
+
+      console.log(el); 
+      // 중복된 id의 요소가 여러개일 경우 첫번째 요소만 선택됨.
+
+      console.dir(el);
+
+
+    </script>
 
 
 

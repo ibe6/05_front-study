@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body>
+
+  <h2>요소 생성</h2>
+
+  <!-- 
+    * 동적으로 요소 생성 
+    1) 문자열로 요소 만들기 
+        → 변수 = '<b>안녕하세요</b>';
+    2) jQuery 객체로 요소 만들기
+        → 변수 = $('<b></b>').text('안녕하세요');
+        → 변수 = $('<b>안녕하세요</b>');
+
+    * 동적으로 만들어진 요소 추가 
+    1) 문자열로 만들어진 요소 추가 
+        → 요소.html('문자열로생성한요소');
+    2) jQuery 객체로 만들어진 요소 추가 
+        → jQuery객체.appendTo(요소)     : 해당 요소의 마지막 자손으로 추가 
+        → jQuery객체.prependTo(요소)    : 해당 요소의 첫번째 자손으로 추가
+        → jQuery객체.insertBefore(요소) : 해당 요소의 이전 형제로 추가
+        → jQuery객체.insertAfter(요소)  : 해당 요소의 다음 형제로 추가
+        ---------------------------------------------------------------------
+        → 요소.append(jQuery객체)  : 해당 요소의 마지막 자손으로 추가 
+        → 요소.prepend(jQuery객체) : 해당 요소의 첫번째 자손으로 추가
+        → 요소.before(jQuery객체)  : 해당 요소의 이전 형제로 추가
+        → 요소.after(jQuery객체)   : 해당 요소의 다음 형제로 추가
+  -->
+
+  <style>
+    .added{color:palegreen}
+  </style>
+
+  <h1 id="test1">
+    <span>A</span>
+  </h1>
+
+  <h1 id="test2">
+    <span>A</span>
+  </h1>
+
+  <h1 id="test3">
+    <span>A</span>
+  </h1>
+
+  <h1 id="test4">
+    <span>A</span>
+  </h1>
+
+  <script>
+    
+
+  </script>
+
+  <hr>
+
+  <h2>요소 복제</h2>
+
+  <!-- 
+    * 요소객체 복제 메소드
+    요소.clone([true|false]) : 해당 요소를 복제해서 반환 
+      → true 옵션  : 복제할 요소의 이벤트도 같이 복사
+      → false 옵션 : 복제할 요소의 이벤트는 복사 x, 생략시 기본값
+  -->
+
+  <style>
+    .item{
+      background:yellowgreen;
+      width:100px;
+      height:100px;
+      text-align:center;
+      line-height:100px;
+      margin:10px;
+      font-size:25px;
+      color:white;
+      font-weight:bold;
+    }
+    .purple{
+      background:purple;
+    }    
+  </style>
+
+  <div id="clone-test">
+    <div id="item1" class="item"> <!--복제할 요소-->
+      <span>안녕</span>
+    </div> 
+  </div>
+
+  <button id="clone">복제</button>
+
+  <!-- 복제한 요소 붙여넣기할 영역 -->
+  <div id="clone-result"></div>
+
+  <script>
+    
+
+  </script>
+
+  <hr>
+
+  <h2>요소 제거 및 잘라내기</h2>
+
+  <!-- 
+    * 하위 요소 제거 메소드
+    1) 요소.empty() : 해당 요소의 하위 요소들 제거 
+
+    * 선택 요소 제거 및 잘라내기 메소드
+    1) 요소.remove() : 해당 요소 제거 후 반환 (이벤트는 같이 반환 안됨)
+    2) 요소.detach() : 해당 요소 제거 후 반환 (이벤트도 같이 반환됨)
+
+  -->
+
+  <div id="remove-test">
+    <div id="item2" class="item"><!--제거할요소-->
+        <span>안녕</span>
+    </div>
+  </div>
+
+  <button id="empty">제거</button>
+  <button id="remove">잘라내기1</button>
+  <button id="detach">잘라내기2</button>
+
+  <!-- 잘라낸 요소 붙여넣기할 영역 -->
+  <div id="remove-result"></div>
+
+  <script>
+    
+
+  </script>
+
+
+  <hr>
+
+  <h2>연습</h2>
+
+  <button id="create-btn">요소생성</button>
+  <br><br>
+
+  <div id="result"></div>
+
+  <script>
+    const productList = [
+      {
+        name: '마우스',
+        price: 10000
+      },
+      {
+        name: '키보드',
+        price: 20000
+      },
+      {
+        name: '마이크',
+        price: 30000
+      }
+    ];
+
+    /*
+      문제1. 
+      #create-btn 요소 클릭시 위의 객체배열의 내의 값으로 table 요소 생성해서 #result에 출력하기
+      이때 3행 3열짜리 테이블이 만들어져야하며
+      첫번째 열에는 상품명
+      두번째 열에는 상품가격
+      세번째 열에는 해당상품에대한정보를 볼 수 있는 버튼 두기
+    */
+   
+
+
+
+    /*
+      문제2.
+      동적으로 만들어진 테이블 요소 내의 각 행의 마지막 셀에 있는 버튼 클릭시
+      해당 행의 상품 정보(상품명, 상품가격)를 alert로 띄워주기 
+    */
+   
+
+  </script>
+  
+</body>
+</html>

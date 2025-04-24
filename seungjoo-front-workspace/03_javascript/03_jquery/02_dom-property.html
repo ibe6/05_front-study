@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body>
+
+  <h2>innerHTML 및 textContent 속성 제어</h2>
+
+  <!-- 
+    * textContent 속성 관련 메소드
+      1) 요소.text()        : 해당 요소의 textContent 속성값 반환 
+      2) 요소.text('문구')  : 해당 요소의 textContent 속성값 변경
+
+    * innerHTML 속성 관련 메소드
+      1) 요소.html()        : 해당 요소의 innerHTML 속성값 반환 
+      2) 요소.html('문구')  : 해당 요소의 innerHTML 속성값 변경
+  -->
+
+  <div id="content"><b>box</b></div>
+
+  <div class="content">테스트1</div>
+  <div class="content">테스트2</div>
+  <div class="content">테스트3</div>
+
+  <button onclick="contentProp();">확인</button>
+
+  <script>
+    function contentProp() {
+
+    }
+  </script>
+
+  <hr>
+
+  <h2>style 속성 제어</h2>
+
+  <!-- 
+    * style 속성 관련 메소드
+    1) 요소.css('css속성')               : 해당 css속성값을 반환
+    2) 요소.css('css속성', 'css속성값')  : 해당 요소에 전달된 css 반영
+    3) 요소.css({css속성: 'css속성값', 
+                  css속성: 'css속성값'}) : 해당 요소에 다수의 css 한꺼번에 반영 가능 
+  -->
+
+  <ul class="ott" style="background-color: lightblue;">
+    <li id="netflex"><a href="#">넷플릭스</a></li>
+    <li id="disneyplus"><a href="#">디즈니플러스</a></li>
+    <li id="tving"><a id="tving-link" href="#">티빙</a></li>
+    <li id="wave"><a href="#">웨이브</a></li>
+    <li id="coupangplay"><span>쿠팡플레이</span></li>
+  </ul>
+
+  <button onclick="styleProp();">확인</button>
+
+  <script>
+    function styleProp(){
+      
+
+    }
+  </script>
+
+  <hr>
+
+  <h2>value 속성 제어</h2>
+
+  <!-- 
+    * value 속성 관련 메소드
+    1) 요소.val()       : 해당 요소의 value 속성값 반환
+    2) 요소.val('문구') : 해당 요소의 value 속성값 변경
+  -->
+
+  아이디 : <input type="text" id="userId">
+  <button onclick="valueProp();">확인</button>
+
+  <script>
+
+    function valueProp() {
+      
+
+    }
+  </script>
+
+  <hr>
+
+  <h2>class 속성 제어</h2>
+
+  <!-- 
+    * className 속성 관련 메소드 
+    1) 요소.addClass('클래스명')    : 해당 요소에 클래스 추가
+    2) 요소.removeClass('클래스명') : 해당 요소에 클래스 제거
+    3) 요소.toggleClass('클래스명') : 해당 요소의 클래스 반전
+    4) 요소.hasClass('클래스명')    : 해당 요소에 클래스가 있으면 true/아니면 false 반환
+  -->
+
+  <style>
+    .blind {
+      display: none;
+    }
+  </style>
+
+  <div id="hello">hello world</div>
+  <button onclick="hide();">숨기기</button>
+  <button onclick="show();">보이기</button>
+  <button onclick="toggle();">토글</button>
+
+  <script>
+    function hide() {
+      
+    }
+
+    function show() {
+      
+    }
+
+    function toggle() {
+      
+    }
+  </script>
+
+  <hr>
+
+  <h2>HTML Attribute 제어</h2>
+
+  <!-- 
+    * HTML 요소의 Attribute 속성 관련 메소드
+    1) 요소.attr('attr명')            : 해당 attribute 속성값 반환
+    2) 요소.attr('attr명', 'attr값')  : 해당 attribute 속성값 수정
+    3) 요소.removeAttr('attr명')      : 해당 attribute 삭제
+  -->
+
+  <img id="img-forest" src="../../assets/image/forest1.jpg" width="192px"> <br>
+  <button onclick="attribute();">확인</button>
+
+  <script>
+    function attribute() {
+      
+
+    }
+  </script>
+
+  <hr>
+
+  <h2>DOM Property 제어</h2>
+
+  <!-- 
+    * DOM 객체의 Property 속성 관련 메소드
+    1) 요소.prop('prop명')            : 해당 property 속성값 반환
+    2) 요소.prop('prop명', 'prop값')  : 해당 property 속성값 수정
+  -->
+
+  <img id="img-city" src="../../assets/image/city1.jpg" width="192px" class="city">
+
+  <div id="yesorno">
+    <input type="radio" name="flag" value="yes" checked> 예
+    <input type="radio" name="flag" value="no"> 아니오
+  </div>
+  <button onclick="property();">확인</button>
+
+  <script>
+    function property() {
+      
+
+    }
+  </script>
+
+  <hr>
+
+  <h2>data-* 속성 제어</h2>
+
+  <!-- 
+    * data 속성 관련 메소드 
+    1) 요소.data('data속성')       : 해당 data 속성값 반환
+    2) 요소.data('data속성', 'data속성값') : 해당 data 속성 추가 및 수정
+  -->
+
+  <div id="user" data-name="Go GilDong" data-home-address="Seoul" data-zipCode="12345">고길동</div>
+
+  <script>
+    
+    
+  </script>
+
+  
+
+
+</body>
+</html>

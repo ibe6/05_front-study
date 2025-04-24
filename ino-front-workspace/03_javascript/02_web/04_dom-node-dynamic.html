@@ -13,9 +13,23 @@
     2. Document.prototype.createTextNode(text)   : 인자로 전달받은 텍스트 값으로 텍스트 노드 생성 후 반환 
     3. Node.prototype.appendChild(childNode)     : 인자로 전달받은 노드를 appendChild를 호출한 노드의 마지막 자식 노드로 추가
   -->
+<h2>node dynamically add</h2>
+<div id="drink">
+  <h4>커피</h4>
+</div>
+<button onclick="createNode1()">click</button>
 
-
-
+<script>
+  function createNode1(){
+    const div = document.querySelector('#drink');
+    let cokeNode = document.createElement('h4'); // element object 생성
+    cokeNode.appendChild(document.createTextNode('coke')); // text object 생성
+    let milk = document.createElement('h4'); // 반복
+    milk.appendChild(document.createTextNode('milk'));
+    div.appendChild(cokeNode);
+    div.appendChild(milk);
+  }
+</script>
   <!-- 
     ## 노드 복사, 교체, 삭제 ##
     1. Node.prototype.cloneNode([deep: true|false]) 

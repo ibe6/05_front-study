@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body>
+
+  <h2>show, hide, toggle 메소드</h2>
+
+  <!-- 
+    * show, hide, toggle 메소드
+    1. 요소의 크기(width,height)가 조정되면서 보여지고 사라지는 효과의 메소드
+    2. 사용법
+       요소.show|hide|toggle(['ms']);
+        → show    : 가로 세로 크기가 점점 커지면서 display를 기존 상태로 처리
+        → hide    : 가로 세로 크기가 점점 작아지면서 display를 최종 none으로 처리
+        → toggle  : show() <==> hide() 
+  -->
+
+  <script>
+    
+
+  </script>
+
+  <button id="show">show</button>
+  <button id="hide">hide</button>
+  <button id="toggle">toggle</button><br><br>
+
+  <img src="../../assets/image/city1.jpg" width="300px" id="img-city"><br><br>
+  <div id="box1" style="width:100px; height:100px; background:red">box1</div>
+
+  <hr>
+
+  <h2>fadeIn, fadeOut, fadeToggle, fadeTo 메소드</h2>
+
+  <!-- 
+    * fadeIn, fadeOut, fadeToggle, fadeTo 메소드
+    1. 요소의 투명도(opacity)가 조정되면서 보여지고 사라지는 효과의 메소드
+    2. 사용법
+      요소.fadeIn|fadeOut|fadeToggle(['ms']);
+       → fadeIn     : 투명도가 불투명해지면서 display를 기존 상태로 처리
+       → fadeOut    : 투명도가 투명해지면서 display를 최종 none으로 처리
+       → fadeToggle : fadeIn() <==> fadeOut()
+      요소.fadeTo('ms', opacity값)
+       → fadeTo     : 전달된 투명도로 처리 
+  -->
+
+  <img id="img-flower" src="../../assets/image/flower1.jpg" width="100px">
+  <br>
+  <button id="fadeIn">fadeIn</button>
+  <button id="fadeOut">fadeOut</button>
+  <button id="fadeToggle">fadeToggle</button>
+  <button id="fadeTo">fadeTo</button>
+
+  <script>
+
+  </script>
+
+  <hr>
+
+
+  <h2>slideUp, slideDown, slideToggle 메소드</h2>
+
+  <!-- 
+    * slideUp, slideDown, slideToggle 메소드
+    1. 요소의 세로 크기가 조정되면서 보여지고 사라지는 효과의 메소드
+    2. 사용법
+       요소.slideUp|slideDown|slideToggle(['ms'])
+        → slideUp     : 높이가 줄어들면서 display를 최종 none으로 처리
+        → slideDown   : 높이가 늘어나면서 display를 기존 상태로 처리
+        → slideToggle : slideUp() <==> slideDown()
+  -->
+  <style>
+    div{
+      background:beige;
+      border:1px solid yellow;
+      width:300px;
+      height:30px;
+      line-height:30px;
+      text-align:center;
+      border-radius:10px;
+      cursor:pointer;
+    }
+    p{
+      border:1px solid lightgray;
+      width:300px;
+      height:100px;
+      border-radius:10px;
+      margin-top:5px;
+      padding:10px;
+      box-sizing:border-box;
+      display:none;
+    }
+  </style>
+
+  <div id="qna">
+    <div>Q. 반품 언제되나요?</div>
+    <p>A. 지금 확인중입니다.</p>
+
+    <div>Q. 상품 위치를 알고 싶습니다.</div>
+    <p>A. 배송 조회 해보세요. 거기 다 나와요</p>
+
+    <div>Q. 이 사이즈 있나요??</div>
+    <p>A. 네 있어요 ^_^</p>
+
+    <div>Q. 판매자가 연락이 안됩니다.</div>
+    <p>A. 신고하세요.</p>
+
+    <div>Q. 연락 가능한 시간을 알려주세요.</div>
+    <p>A. 플러스친구 카카오톡을 활용하면 24시간내에 답변드리겠습니다.</p>
+  </div>
+
+  <script>
+
+
+  </script>
+  
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>

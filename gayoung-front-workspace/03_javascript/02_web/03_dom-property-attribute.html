@@ -59,9 +59,21 @@
     <img src="../../assets/image/city1.jpg" width="100px" height="100px">
   </div>
 
+      
   <script>
     
+      const imgEl = document.querySelector('#div1 > img');
 
+      console.log(imgEl.getAttribute('src'));
+      console.log(imgEl.getAttribute('alt'));
+      imgEl.setAttribute('src', '../../assets/image/city2.jpg');
+      imgEl.setAttribute('width', '300px');
+      imgEl.removeAttribute('height');
+
+      console.dir(imgEl);
+      console.log(imgEl.src);
+      // imgEl.width = '500px';
+      imgEl.width = 500;
 
   </script>
 
@@ -102,6 +114,9 @@
   <div id="div4">XSS(Cross-Site Scripting Attacks) 테스트</div>
 
   <script>
+    const imgElStr = `<img src="x" onerror="alert('메롱메롱')">`; 
+    // 삽입시킬 img 요소
+    document.getElementsById('div4').innerHTML = imgElStr;
     
 
 
@@ -247,10 +262,32 @@
   <div id="person2">JESSICA</div>
 
   <script>
+    const person1 = document.getElementById('person1');
+    console.log(`data-name: ${person1.dataset.name}`);
+    console.log(`data-aGe: ${person1.dataset.age}`);
+    console.log(`data-home-address: ${person1.dataset.homeAddress}`);
 
-    
+    const person2 = document.getElementById('person2');
+    person2.dataset.mobile = '010-1111-2222';
+    person2.dataset.dayOfBirth = '1987-09-18';
   </script>
 
+  <h2>동적으로 노드 생성 및 추가</h2>
+
+  <div id="drink">
+    <h4>커피</h4>
+  </div>
+
+  <button onclick="createNode1();">클릭</button>
+  
+  <script>
+    function createNode1(){
+      // <h4>콜라
+
+      document.getElementById('drink').innerHTML
+    }
+  </script>
+  
 
 
 

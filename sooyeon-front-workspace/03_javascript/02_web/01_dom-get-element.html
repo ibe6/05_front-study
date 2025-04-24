@@ -128,18 +128,125 @@
     ----------------------------------------------------------------------------------
   -->
 
+  <h2>id를 이용한 요소 노드 취득</h2>
+  
+  <div id="area1" class="area">
+    div영역
+    <p id="area2">p영역</p>
+  </div>
+
+  <div id="area1" class="area">
+    div영역
+  </div>
+
+  <script>
+    const el = document.getElementById('area1');
+    console.log(el); //중복된 id의 요소가 여러개일 경우 첫번째 요소만 선택
+    console.dir(el);
+
+    el.style.backgroundColor = 'royalblue';
+    // const noEl = document.getElementById('area3');
+    // console.log(noEl);
+    // console.log(noEl.innerHTML); //Uncaught TypeError: Cannot read properties
+  </script>
+
+  <hr>
+
+  <h2>tag를 이요한 요소노드 취ㄷㄱ</h2>
+  <ul id="food">
+    <li>김찌</li>
+    <li>된찌</li>
+    <li>고등어</li>
+  </ul>
+
+  <ul id="drink">
+    <li>커피</li>
+    <li>우유</li>
+    <li>모구모구</li>
+  </ul>
+
+  <script>
+    const lists = document.getElementsByTagName('li'); //배열
+    console.log(lists); //HTMLCollection객체 : 유사배열객체, Iterable
+    console.log(lists.length); //6
+
+    // lists.style.backgroundColor = 'blue'; //Uncaught TypeError: Cannot : 스타일이라는 프로퍼티가 존재하지않음 선택한 요소가 다수인 한번에 접근 불가
+
+    for(let li of lists){
+      li.style.color = 'blue';
+    }
+    // for(let index in lists) {   for...in문은 index 외에 length까지 가져와서 여기서 사용하기 적합하지 않음
+    //   lists[index].style.color = 'red';
+    // }
+  </script>
+
+  <hr>
+
+  <h2>class를 이용한 요소 노드 취득</h2>
+  <ul>
+    <li class="drink coffee">커피</li>
+    <li class="drink coke">콜라</li>
+    <li class="drink milk">우유</li>
+  </ul>
+
+  <ul>
+    <li class="drink soju">소주</li>
+    <li class="drink beer">맥주</li>
+  </ul>
+
+  <script>
+    const drinks= document.getElementsByClassName('drink'); //drink가 들어간 
+    
+    // drinks.forEach(drink => drink.style.color = 'red'); //foreach는 array객ㅊ에서만 가능하지만 HTEMLCollection은 아님, 그래서 변경해서 사용해야됨
+    Array.from(drinks).forEach(drinks => drinks.style.color = 'red');
 
 
+    const coffee = document.getElementsByClassName('coffee');//반환할요소가 1개라고 하더라고 HTMLCollection에 담아 반환됨
 
+    console.log(drinks);
+    console.log(coffee); 
+  </script>
 
+  <hr>
 
+  <h2>selector를 이용한 요소노드 취득</h2>
 
+  <div id="area3" class="area">
+    <span>first</span>
+  </div>
 
+  <div class="area">
+    <span class="second">second</span>
+  </div>
 
+  <script>
+    const area =document.querySelector('#area3');
+    console.log(area);
 
+    const firstSpan = document.querySelector('.area>span'); //해당 요소가 2개이지만 querySelector는 첫번재 요소만 반환
+    firstSpan.style.backgroundColor = 'green';
 
+    const second = document.querySelector('.area>.second');
+    second.style.backgroundColor = 'hotpink';
+</script>
 
+<ul id="list">
+  <li class="drink">커피</li>
+  <li class="drink">콜라</li>
+  <li class="food">된찌</li>
+  <li class="food">김찌</li>
+</ul>
 
+<script>
+  const list = document.querySelectorAll('#list>li'); //해당 요소들이 NodeList에 담김 NodeList(4) [li.drink, li.drink, li.food, li.food]
+
+  list.forEach(li => {
+    li.style.backgroundColor = 'yellow';
+    li.style.color = 'blue';
+  }); //NodeList는 배열을 Array로 변경하지않아도 forEach문을 제공하ㅁ
+</script>
+
+<hr>
 
 
   <!-- 
@@ -151,7 +258,53 @@
        2) NodeList       : 노드 객체의 상태 변화를 실시간으로 반영하지 않는(non-live) DOM 컬렉션 객체체
   -->
 
+  <h2>HTMLCollectino 과 NodeList</h2>
 
+  <style>
+    .white{color: aliceblue;}
+    .black{color: black;}
+    .blue{color:blue;}
+    .red{color: red;}
+  </style>
+
+  <ul>
+    <li class="white">첫번째글</li>
+    <li class="white">두번쨰글</li>
+    <li class="white">세번째글</li>
+  </ul>
+
+  <script>
+    const whithList = document.getElementsByClassName('white'); //HTMLCollection
+    console.log(whithList);
+
+    // for(let white of whithList){
+    //   white.className = 'red'; 
+    //   /**
+    //    * 문제 :2번째가 변되지 않음
+    //    * getElementsByClassName()을 쓰고 반복문 안에서 className을 바꾸면, 중간에 순회가 꼬일 수 있다
+    //    * HTMLCollection은 실시간(live) 컬렉션이라서, 요소의 클래스가 바뀌면 컬렉션 내용도 바로 바뀜
+    //    * 1. 첫번째 빨강으로 크래스명 변경
+    //    * 
+    //    해결 방법 -> 1.역순, 2.array 변경후 foreach
+    //    */
+    // }
+    Array.from(whithList).forEach(white => white.className='black'); //배열로 변경하면 새롭게 생성됨    
+  </script>
+
+<ul>
+  <li class="red">첫번째글</li>
+  <li class="red">두번쨰글</li>
+  <li class="red">세번째글</li>
+</ul>
+
+<script>
+  const redList = document.querySelectorAll('.red');
+  console.log(redList);
+
+  for(let red of redList) { //NodeList는 실시간 업데이트되지않아 for문 사용 가능
+    red.className = 'blue'
+  }
+</script>
   
 
 

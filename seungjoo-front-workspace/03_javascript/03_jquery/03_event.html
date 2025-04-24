@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <title>Document</title>
+</head>
+<body>
+
+  <h2>이벤트 메소드</h2>
+
+  <!-- 
+    ## 이벤트 메소드 ##
+    1. jQuery용 객체에 이벤트 핸들러를 부여하는 메소드 
+    2. 주로 이벤트명이 곧 메소드 명으로 되어있음 
+    3. 사용법
+       이벤트대상.이벤트메소드(이벤트핸들러);
+
+       1) 익명함수
+          이벤트대상.click(function(evt) {
+              실행내용;
+          })
+       2) 화살표함수
+          이벤트대상.click(evt => {
+              실행내용;
+          })
+  -->
+
+  <style>
+    .yellow {
+      background: yellow;
+    }
+  </style>
+  <h3>클릭해보세요1</h3>
+  <h3>클릭해보세요2</h3>
+
+  <script>
+
+
+
+  </script>
+
+
+  <h2>on 메소드</h2>
+
+  <!-- 
+    ## on 메소드 ##
+    1. 하나의 이벤트 타입에 여러개의 이벤트 핸들러 등록 가능 (표준 이벤트 모델의 특징)
+    2. 사용법
+       1) 정적요소 (페이지 로드시 존재하는 요소)
+          이벤트대상.on('이벤트타입', function() {
+          
+          )
+       2) 동적요소 (페이지 로드시에는 없다가 이벤트에 의해 만들어지는 요소)
+          이벤트대상의상위요소.on('이벤트타입', '이벤트대상', function() {
+ 
+          })
+
+    ## off 메소드 ##
+    1. 등록된 이벤트를 제거
+    2. 사용법
+       이벤트대상.off('이벤트타입');
+  -->
+
+  <h4 id="test1">마우스 클릭 및 올려보세요</h4>
+
+  <div id="wrap">
+    <h5>정적요소(페이지 로드시 존재하는 요소)</h5>
+  </div>
+
+  <script>
+    
+
+  </script>
+
+  <hr>
+
+  <h2>연습1</h2>
+
+  <ul id="jjigae">
+    <li class="menu">김치찌개</li>
+    <li class="menu">순두부찌개</li>
+    <li class="menu">된장찌개</li>
+  </ul>
+
+  <script>
+    /*
+      문제1.
+      .menu 요소 클릭시 현재 클릭된 요소의 textContent 값이 alert로 띄워지도록
+    */
+   
+
+  </script>
+
+  
+
+  <h2>연습2</h2>
+
+  <div id="hobby">
+    <input type="checkbox" name="hobby" value="reading" id="reading"> 
+    <label for="reading">독서</label>
+    <input type="checkbox" name="hobby" value="sports" id="sports">
+    <label for="sports">스포츠</label>
+    <input type="checkbox" name="hobby" value="movie" id="movie">
+    <label for="movie">영화보기</label>
+
+    <button id="hobby-btn">클릭</button>
+  </div>
+
+  <script>
+    /*
+      문제1.
+      #hobby 내의 checkbox 요소 클릭시 
+      현재 클릭된 checkbox 요소가 checked 상태일 경우 가로,세로 길이를 30px로 변경하고 그 뒤의 문구 크기를 32px로 변경
+                                  checked 상태가 아닐 경우 원상복구 하시오. 
+    */
+   
+
+
+    /*
+      문제2.
+      #hobby-btn 클릭시 현재 checked 상태의 checkbox 요소들의 value값을 alert로 출력하시오.
+      만일 checked 된 checkbox 가 없을 경우 '선택된 취미가 없습니다.' 출력
+    */
+   
+
+  </script>
+
+  <hr>
+
+  <h2>one 메소드</h2>
+
+  <!-- 
+    * one 메소드
+    1. 한번만 동작하는 이벤트 작성가능
+    2. 사용법
+       이벤트대상.one('이벤트타입', function() {
+         실행내용
+       })
+  -->
+
+  <button id="one-time">한번만실행됨</button>
+
+  <script>
+
+
+
+  </script>
+
+  <hr>
+
+  <h2>trigger 메소드</h2>
+
+  <!-- 
+    * trigger 메소드
+    1. 특정 요소의 이벤트를 강제로 실행
+    2. 사용법
+        이벤트대상.trigger('이벤트타입');
+        이벤트대상.이벤트메소드(); // 이렇게도 가능함
+  -->
+  <button id="trigger">#test1클릭</button>
+
+  <script>
+
+    
+  </script>
+
+
+  
+</body>
+</html>

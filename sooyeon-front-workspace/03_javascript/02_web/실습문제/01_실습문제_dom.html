@@ -21,19 +21,26 @@
   <br>
 
 	<input type="color" id="selectColor">
-	<button onclick="changeColor();">변경</button> <!--버튼 클릭시 하단의 함수가 실행된다.-->
+	<button id = 'btn1' onclick="changeColor();">변경</button> <!--버튼 클릭시 하단의 함수가 실행된다.-->
 
 	<script>
     // 버튼 클릭시 실행되는 함수
 		function changeColor() {
-			// #selectColor 요소에 선택된 색상값을 가져와서 #test1의 배경색상으로 부여하기
+      const selectColor = document.getElementById('selectColor').value;
+      const colorChangeTarget = document.getElementById('test1');
+      const button = document.getElementById('btn1');
 
+      colorChangeTarget.style.backgroundColor = selectColor;
+      button.style.backgroundColor = selectColor;
 		}
 	</script>
 
+
+
+
+
+
   <hr>
-
-
   <h3>문제 2. 버튼에 따른 크기 조절이 가능하게 만들어 보시오.</h3>
 
   <style>
@@ -53,15 +60,21 @@
 
   <script>
     // 각 버튼 클릭시 실행되는 함수
-    function sizeChange(num){
-      // 전달된 사이즈 값으로 #test2인 요소 가로 세로 길이 지정하기
+    const sizeChangeTarget = document.getElementById('test2'); //밖에서 한번만 선언해서 재사용
 
+    function sizeChange(num){ //버튼들에 크기를 매개변수로 담아서 하나의 메서드 + 여러개의 버튼 조작 가능
+      // 전달된 사이즈 값으로 #test2인 요소 가로 세로 길이 지정하기
+      sizeChangeTarget.style.width = `${num}px`;
+      sizeChangeTarget.style.height = `${num}px`;
     }
-      
   </script>
 
-  <hr>
 
+
+
+
+
+  <hr>
   <h3>문제3. 하단의 사용자 입력값을 가져와 #result3 영역에 출력하시오.</h3>
   <style>
     #result3 {
@@ -82,15 +95,32 @@
 
   <script>
     // 버튼 클릭시 실행되는 함수 
+    const printTarget = document.getElementById('result3');
+
     function printValue() {
       // 사용자 입력값을 가져와 #result3 영역에 출력
       // 형식은 자유롭게
+      const headlineColor = document.getElementById('selectColor').value;
 
+      const userName = document.getElementById('user').value;
+      const proudctName = document.getElementById('productName').value;
+      const productPrice = document.getElementById('productPrice').value;
+
+      const result = `<h2 style="color: ${headlineColor};">결과</h2>
+                      이름 : ${userName} <br>
+                      상품 이름 : ${proudctName} <br>
+                      상품 가격 : ${productPrice}`;
+
+      printTarget.innerHTML = result;
     }
   </script>
 
-  <hr>
 
+
+
+
+
+  <hr>
   <h3>문제4. 하단의 버튼 클릭시 목록 요소를 만들어 #result4 영역에 출력하시오.</h3>
 
   <button id="btn4" onclick="generateList();">클릭</button>
@@ -99,6 +129,8 @@
 
   <script>
     // 버튼 클릭시 실행되는 함수 
+    const printSeansonsTarget = document.getElementById('result4');
+
     function generateList(){
       const seasons = ['spring', 'summer', 'autumn', 'winter'];
       /*
@@ -110,12 +142,25 @@
           <li>winter</li>
         </ul>
       */
-
+     const reuslt = `
+                      <ul>
+                        ${
+                            seasons.map(season => `<li>${season}</li>`)
+                                   .join('')
+                          }
+                      </ul>
+                    `;
+  
+      printSeansonsTarget.innerHTML = reuslt;
     }
   </script>
 
-  <hr>
 
+
+
+
+
+  <hr>
   <h3>문제5. 하단의 버튼 클릭시 이미지 요소를 만들어서 #result5 영역에 출력하시오.</h3>
 
   <button id="btn5" onclick="generateImage();">클릭</button>
@@ -124,6 +169,8 @@
 
   <script>
     // 버튼 클릭시 실행되는 함수 
+    const imgPrintTarget = document.getElementById('result5');
+
     function generateImage(){
       const images = ['flower1.jpg', 'city1.jpg', 'river1.jpg'];
       /*
@@ -131,12 +178,20 @@
         #result5 영역에 출력하시오.
         단, 이미지의 가로길이는 128px, margin은 5px로 반영하시오.
       */
-      
+      const result = images.map(img => 
+        `<img src="../../../assets/image/${img}" style="width: 128px; margin: 5px;"/>`
+      ).join('');
+  
+      imgPrintTarget.innerHTML = result;
     }
   </script>
 
-  <hr>
 
+
+
+
+
+  <hr>
   <h3>문제6. 하단의 버튼 클릭시 링크 요소를 만들어서 #result6 영역에 출력하시오.</h3>
 
   <button id="btn6" onclick="generateLink();">클릭</button>
@@ -145,6 +200,8 @@
 
   <script>
     // 버튼 클릭시 실행되는 함수
+    const sitePrintTarget = document.getElementById('result6');
+
     function generateLink(){
       const sites = [
         {name: '네이버', url: 'https://www.naver.com'},
@@ -156,12 +213,20 @@
         단, 링크 클릭시 새탭에 열리도록 설정하시오.
         링크 이동 경로는 해당 객체의 url값으로, 링크 노출 이름은 해당 객체의 name값으로 설정
       */
+      const result = sites.map(site => 
+        `<a href="${site.url}" target="_blank">${site.name}</a>`
+      ).join('<br>');
 
+      sitePrintTarget.innerHTML = result;
     }
   </script>
 
-  <hr>
 
+
+
+
+
+  <hr>
   <h3>문제7. 간이계산기 만들기</h3>
 
   첫번째 값 : <input type="number" id="num1"><br>
@@ -179,19 +244,41 @@
 
   <script>
     // 각 버튼 클릭시마다 실행되는 함수
+    const caluRresultTarget = document.getElementById('result7');
+
     function calculator(operator){ // 클릭한 버튼의 문구가 넘어옴 => operator에 담김
       /*
         사용자가 입력한 두 숫자값을 가져와 연산기호에 맞는 산술연산을 진행하고
         해당 결과를 #result7에 출력하시오.
       */
-      
+      const num1 = Number(document.getElementById('num1').value);
+      const num2 = Number(document.getElementById('num2').value);
+      let caluResult;
 
+      // if(isNaN(num1) || isNaN(num2)) { //이거 왜 안되지 -> 입력 폼이 type="number"이기 때문에 숫자가 아닌 값 입력 자체를 막는다. ㄱ래서 필요 없음
+      //   alert("숫자만 입력해주세요.");
+      //   return;
+      // }
 
+      switch(operator) {
+        case '+': caluResult = num1+num2; break;
+        case '-': caluResult = num1-num2; break;
+        case 'x': caluResult = num1*num2; break;
+        case '/': caluResult = num1/num2; break;
+        case '%': caluResult = num1%num2; break;
+        default : caluResult = '알수없는오류'; break;
+      }
+
+      caluRresultTarget.innerHTML = caluResult;
     }
   </script>
 
-  <hr>
 
+
+
+
+
+  <hr>
   <h3>문제8. 사용자에게 반복적으로 문자열을 입력받아 배열에 기록한 뒤 모든 문자열이 출력되도록 하시오.</h3>
 
   <fieldset>
@@ -207,16 +294,24 @@
   <script>
 
     // 입력 버튼 클릭시 실행되는 함수
+    const inputResultTarget = document.getElementById('result8');
+    const inputList = [];
+
     function inputStr() {
       // 텍스트 상자에 쓰여진 값을 전역 배열에 추가시키고 
       // 사용자가 입력한 값은 초기화 하기 (즉, 텍스트 상자를 빈 문자열로 초기화)
+      let inputValue = document.getElementById('input8');
 
+      inputList.push(inputValue.value);
+      // inputValue = ""; 입력창을 작접 접근해서 초기화하는게 아니라 변수를 초기화함
+      inputValue.value = ''; //inputValue.value로 접근해서 변경해야됨
+      inputValue.focus();
     }
 
     // 출력 버튼 클릭시 실행되는 함수
     function outputStr(){
       // 전역 배열에 담긴 값을 #result8에 출력시키기
-
+      inputResultTarget.innerHTML = inputList.join('<br>');
     }
 
   </script>

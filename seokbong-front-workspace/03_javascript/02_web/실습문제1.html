@@ -118,8 +118,14 @@
           <li>autumn</li>
           <li>winter</li>
         </ul>
-      */
+        */
+      let ulList = '<ul>'; 
+      seasons.forEach(season => {
+          ulList += `<li>${season}</li>`
+      });
+      ulList += '</ul>';
 
+      document.getElementById('result4').innerHTML = ulList;
     }
   </script>
 
@@ -140,7 +146,12 @@
         #result5 영역에 출력하시오.
         단, 이미지의 가로길이는 128px, margin은 5px로 반영하시오.
       */
-      
+     let output = '';
+     images.forEach(image => {
+      output += `<image src = "../../assets/image/${image}" style = "width : 128px; margin : 5px;">`
+     });
+
+     document.getElementById('result5').innerHTML = output;
     }
   </script>
 
@@ -165,7 +176,12 @@
         단, 링크 클릭시 새탭에 열리도록 설정하시오.
         링크 이동 경로는 해당 객체의 url값으로, 링크 노출 이름은 해당 객체의 name값으로 설정
       */
+      let output = '';
+      sites.forEach(site => {
+        output += `<a href= "${site.url}" style = "margin : 5px">${site.name}</a>`;
+      });
 
+      document.getElementById('result6').innerHTML = output;
     }
   </script>
 

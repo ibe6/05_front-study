@@ -28,9 +28,9 @@
 
 */
 
-console.log(Number.NaN);
-console.log(Number.NEGATIVE_INFINITY);   
-console.log(Number.POSITIVE_INFINITY);   
+console.log(Number.NaN);      
+console.log(Number.NEGATIVE_INFINITY);         
+console.log(Number.POSITIVE_INFINITY);       
 console.log(Number.MAX_VALUE);
 console.log(Number.MIN_VALUE);
 
@@ -66,27 +66,48 @@ console.log(Number.MIN_VALUE);
      → 소수점 뒤에 나타날 자릿수, 0 ~ 20 사이 값을 가짐, 기본값은 0
 */
 
-console.log(Number.isFinite(10));           
-console.log(Number.isFinite(-10));          
-console.log(Number.isFinite(Infinity));     
-console.log(Number.isFinite(-Infinity));    
-console.log(Number.isFinite(NaN));          
-console.log(Number.isFinite(null));         
+console.log(Number.isFinite(10));          //true 
+console.log(Number.isFinite(-10));         //true  
+console.log(Number.isFinite(Infinity));    //false 
+console.log(Number.isFinite(-Infinity));   //false 
+console.log(Number.isFinite(NaN));         //false 
+console.log(Number.isFinite(null));        //false 
 
-console.log(Number.isInteger(10));          
-console.log(Number.isInteger(-10));         
-console.log(Number.isInteger(10.10));       
-console.log(Number.isInteger(-10.10));      
-console.log(Number.isInteger('10'));        
-console.log(Number.isInteger(false));       
-console.log(Number.isInteger(Infinity));    
-console.log(Number.isInteger(-Infinity));   
+console.log(Number.isInteger(10));         //true  
+console.log(Number.isInteger(-10));        //true  
+console.log(Number.isInteger(10.10));      //false 
+console.log(Number.isInteger(-10.10));     //false 
+console.log(Number.isInteger('10'));       //false 
+console.log(Number.isInteger(false));      //false 
+console.log(Number.isInteger(Infinity));   //false 
+console.log(Number.isInteger(-Infinity));  //false 
 
-console.log(Number.isNaN(10));                  
-console.log(Number.isNaN(-10));             
-console.log(Number.isNaN('10'));            
-console.log(Number.isNaN(true));            
-console.log(Number.isNaN(NaN));             
-console.log(Number.isNaN(undefined));       
+console.log(Number.isNaN(10));             //false     
+console.log(Number.isNaN(-10));            //false 
+console.log(Number.isNaN('10'));           //false 
+console.log(Number.isNaN(true));           //false 
+console.log(Number.isNaN(NaN));            //true 
+console.log(Number.isNaN(undefined));      //false 
+
+let str = '123.456';
+console.log(Nmber.parseFloat(str));
+
+let num = 1.2345;
+console.log(num.toFixed(3)); //1.234
 
 
+const getTotal = (arr) => {
+   
+   return Number.parseInt(
+      arr.filter(item => typeof(item) != 'boolean')
+         .map(item => Number(item))
+         .filter(item => typeof(item) == 'number' && !Number.isNaN(item)) //NaN도 **typeof NaN`이 "number"**로 반환
+         .reduce((result, num) => result + num, 0)
+      );    
+}
+
+
+const array = ['hello', 'world', 10, 20, 30.23, '40', { cpu: 'i7' }, true, false, () => {}];
+
+
+console.log(getTotal(array));

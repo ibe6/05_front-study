@@ -91,3 +91,34 @@
       → 한쪽 끝의 공백만 제거하려면 trimStart() 나 trimEnd() 를 사용
 */
 
+
+const yesCheck = (str) => {
+    const changeStr = str.toLowerCase().trim().replaceAll(' ', '');
+    return changeStr === 'yes' || changeStr === 'y';
+};
+
+const testArr = ['yes', 'Yes', 'y', 'Y', ' yes', 'yes ', 'No', 'no']
+testArr.forEach( item => console.log(yesChect(item)));
+
+
+const addCarMaker = (arr) => {
+    arr.map( car => {
+        if(car.model.startsWith('K')){
+            car.maker = 'Kia';
+        } else if (car.model.startsWith('G')){
+            car.maker = 'Genesis';
+        }
+        return car; 
+    }).forEach( car => console.log(car));
+};
+
+const cars = [
+    { model : 'K3',  },
+    { model : 'K5',  },
+    { model : 'K8',  },
+    { model : 'K9',  },
+    { model : 'GV79',  },
+    { model : 'G80',  },
+
+];
+addCarMaker(cars);

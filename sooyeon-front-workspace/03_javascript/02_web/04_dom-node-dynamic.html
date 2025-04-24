@@ -15,6 +15,48 @@
   -->
 
 
+  <h2>동적으로 노드 생성 및 추가</h2>
+
+  <div id="drink">
+    <h4>커피</h4>
+    <!-- 해당 위치에 요소 추가 -->
+  </div>
+  <button onclick="createNode1();">클릭</button>
+
+  <script>
+    function createNode1() {
+      const cokeH4 = document.createElement('h4'); // <h4></h4>
+      const cokeText = document.createTextNode('콜라'); // 콜라 cokeH4.textContent = '콜라';도 ㄱㄴ
+      cokeH4.appendChild(cokeText); // <h4>콜라</h4>
+
+      document.getElementById('drink').appendChild(cokeH4); //완성된 노드를 추가
+
+
+      const milkH4 = document.createElement('h4');
+      milkH4.textContent = '우유';
+
+      document.getElementById('drink').appendChild(milkH4);
+    }
+  </script>
+
+
+
+  <h2> 텍스츠 노드를 가지지 않는 요소 노드(input등등) 생성 및 추가</h2>
+
+  <div id="img_container"></div>
+  <button onclick="createNode2();">클릭</button>
+
+  <script>
+    function createNode2() {
+      const imgEl = document.createElement('img');
+      imgEl.src = '../../assets/image/flower1.jpg';
+      imgEl.width = 200;
+
+      document.getElementById('img_container').appendChild(imgEl);
+    }
+  </script>
+
+
 
   <!-- 
     ## 노드 복사, 교체, 삭제 ##
@@ -34,6 +76,92 @@
     4. Element.prototype.remove()
         → 호출한 노드를 DOM에서 제거
   -->
+
+  <h2>노드 복사</h2>
+
+  <ul id="copy">
+    <li>li 요소</li>
+  </ul>
+  <button onclick="copyNode();">클릭</button>
+  <script>
+    function copyNode() {
+      //얕은 복사
+      const shallowClone = document.getElementById('copy').cloneNode();
+      console.log(shallowClone);// ul요소노드만 복제되고 내부의 텍스트노드,요소노드는 복제되지 않음
+
+      //깊은 복사
+      const deepClone = document.getElementById('copy').className(true);
+      console.log(deepClone);
+    }
+  </script>
+
+
+  <h2>노드 교체</h2>
+
+  <div id="replace">
+    <img src="../../assets/image/flower2.jpg" width="200px">
+  </div>
+  <button onclick="replaceNode();">클릭</button>
+  <script>
+    function replaceNode(){
+      const imgClone = document.querySelector('#img_container > img').cloneNode();
+
+      const replaceDiv = document.getElementById('replace');
+      replaceDiv.replaceChild(imgClone, replaceDiv.firstElementChild);
+
+      /*
+       // 새 이미지 요소 만들기
+    const newImg = document.createElement('img');
+    newImg.src = "../../assets/image/flower3.jpg"; // 다른 이미지로 변경
+    newImg.width = 200;
+
+    // 교체 대상
+    const replaceDiv = document.getElementById('replace');
+    const oldImg = replaceDiv.firstElementChild;
+
+    // 노드 교체
+    replaceDiv.replaceChild(newImg, oldImg);*/
+    }
+  </script>
+
+
+  <h2>노드 삭제</h2>
+
+  <style>
+    #remove{
+      width: 200px;
+      height: 100px;
+      background: yellow;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    #item1{background: red;}
+    #item2{background: orange;}
+    #item3{background: green;}
+  </style>
+  <div id="remove">
+    <span id="item1">item1</span>
+    <span id="item2">item2</span>
+    <span id="item3">item3</span>
+  </div>
+  <button onclick="removeNode();">클릭</button>
+
+  <script>
+    function removeNode(){
+      // #item1 요소 제거하기
+      const removeDiv = document.getElementById('remove');
+
+      // 방법1. 
+      // removeDiv.removeChild(removeDiv.firstElementChild);
+
+      // 방법2.
+      // removeDiv.firstElementChild.remove();
+      document.getElementById('item1').remove();
+    }
+  </script>
+
+
 
 </body>
 </html>

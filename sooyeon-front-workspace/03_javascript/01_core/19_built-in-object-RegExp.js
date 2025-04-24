@@ -18,12 +18,22 @@
      1) RegExp.prototype.test(targetStr) : 검색대상 문자열 중 정규식 패턴과 일치하는 부분이 있으면 true / 아니면 false 반환
      2) String.prototype.search(regExp)  : 검색대상 문자열 중 정규식 패턴과 일치하는 부분의 시작 인덱스 반환 / 없으면 -1 반환
      3) String.prototype.replace(regExp, changeStr) : 검색대상 문자열에서 정규식과 일치하는 부분을 바꿀 값으로 치환해서 반환  
-
 */
 
+//검색대상의 문자열
+const targetStr = 'JavaScript';
 
 
+// 패턴 검사를 위한 정규식
+//1) 정규 표현식 리터럴
+let regExp = /j/i;   //패턴 : j(찾으려는 문자), 플래스 : i(대소문자 구문 안함)
 
+regExp = new RegExp('j','i');
+regExp = new RegExp(/j/,'i');
+
+console.log(regExp.test(targetStr));
+console.log(targetStr.search(regExp));
+console.log(targetStr.replace(regExp,"~~~!~!~!"))
 
 /*
   ## 정규식 메타 문자 ##
@@ -33,10 +43,10 @@
      1) . : 모든 단일 문자를 의미
             ex) b.at    → (O) baat, bbat, bcat, bdat / (X) bat, baaat
 
-     2) * : 0개 이상의 문자를 의미
+     2) * : 0개 이상의 문자를 의미, 별 앞에 문자
             ex) good*   → (O) goo, good, goodd, gooddd
 
-     3) + : 1개 이상의 문자를 의미
+     3) + : 1개 이상의 문자를 의미 (앞에 제시하건 문자가 아니라 정규식이여도 ㄱㄴ)
             ex) good+   → (O) good, gooddd / (X) goo
 
      4) ? : 0개 또는 1개 문자를 의미
@@ -66,9 +76,26 @@
     12) {,n} : n개 이하의 문자를 의미
               ex) a{,3} → (O) a, aa, aaa
 
-    13) {m,n} : m개 이상 n개 이하의 문자를 의미
+    13) {m,n} : m개 이상 n개 이하의 문자를 의미 
               ex) a{2,3} → (O) aa, aaa
 */
+
+//연습1. j로 시작하는 문자열인지 비교
+regExp = /^j/;
+console.log(regExp.test('javascript')); //true
+console.log(regExp.test('Javascript')); //false
+
+//연습2. j로 시작 t로 끝
+regExp = /^jt$/; // jt만 만족
+regExp = /^j.+t$/;          // .+ => 아무문자 1개 이상
+console.log(regExp.test('javascript'));
+
+
+//연습3. g로시작 d로끝나는데 그 사이에 o문자가 2글자 이상
+regExp = /^go{2,}d$/;
+console.log(regExp.test('gooooooooooooooooooooooood'));
+
+
 
 
 
@@ -85,7 +112,58 @@
      6) [가-힣] : 한글 한 글자를 의미 
 */
 
+//연습4 : 시작부터 끝까지 숫자로만 이루어진 문자열인지 
+regExp = /^[0-9]+$/;
+console.log(regExp.test('123123123'));
 
+
+//연습5 : 시작부터 끝까지영문자로만 이루어진 문자열인지
+regExp = /^[a-zA-Z]+$/;
+console.log(regExp.test('ewiuioEFWF'));
+
+
+//연습6 시작부터 끝까지 한글로만 이루어진 문자열인지 비교
+regExp = /^[ㄱ-ㅎㅏ-ㅣ가-힇]/;
+console.log(regExp.test('ㅁㄷㄹ'));
+
+
+/*
+  실습. verifyName() 함수 구현하기
+
+  1. 기능
+     전달된 인자값이 이름 형식이 맞는지를 검사하여
+     맞을 경우 '이름 형식이 맞습니다.' 그게 아닐 경우 '이름 형식에 맞지 않습니다' 출력
+     * 이름 형식 : 한글(자음모음결합)로 2글자이상 6글자이하
+  2. 인자
+     검사할 이름 문자열
+  3. 반환
+     없음
+*/
+
+
+const verifyName = (name) => {
+       const regExp = /^[가-힇]{2,5}$/;
+       return regExp.test(name);
+}
+
+const verifyZipcode = (postalCode) => {
+       // postalCode = Number(postalCode);
+       const regExp = /^[0-9]{5}/;
+       return regExp.test(postalCode);
+}
+
+if(verifyZipcode('14434')){
+       console.log('맞음');
+}else {
+       console.log('아님');
+}
+
+
+if(verifyName('김수연')){
+       console.log('맞음');
+}else {
+       console.log('아님');
+}
 
 
 /*
@@ -98,6 +176,9 @@
   6. \S : 단일 공백 문자가 아님을 의미
 */
 
+//연습. 첫글자는 반드시숫자 + 그 이루 숫자/영문자/밑줄
+regExp = /^\d\w+$/;
+console.log(regExp.test("1ewf_w"));
 
 
 
@@ -108,7 +189,38 @@
   3. m : 여러줄 탐색            (multiple-line)
 */
 
+//특정 문자열에 첫글다가 대소문자를 가리지 않고 j로 시작하는지 비교
+regExp = /^j/i;
+console.log(regExp.test('jewfjj'));
+console.log(regExp.test('Jewfjj'));
+
+//j로 시작하는 부분을 찾아서 **로 치환
+console.log('javascript'.replace(regExp,'(***)'));
+console.log('javascript\nJava'.replace(regExp,'(***)'));
+
+regExp = /^j/igm;
+console.log('javascript\nJava'.replace(regExp,'(***)'));
 
 
+const verityMobile = (userPhone) => {
+       // const regExp = /^010-\d{4}-\d{4}$/;
+       const regExp = /^010(-\d{4}){2}$/;
+       if(regExp.test(userPhone)) {
+              console.log("맞음");
+       }else {
+              console.log("안맞음");
+       }
+};
 
+verityMobile('011-3423-3423');
 
+const verityId = (userId) => {
+       const regExp = /^[a-z] [a-z\d-_]{4,19}$/;
+       if(regExp.test(userId)) {
+              console.log("맞음");
+       }else {
+              console.log("안맞음");
+       }
+}
+
+verityId('wfeef1_');

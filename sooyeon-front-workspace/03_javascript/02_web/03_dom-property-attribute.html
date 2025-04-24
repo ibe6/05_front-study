@@ -60,9 +60,19 @@
   </div>
 
   <script>
-    
+    //HTML Attribute
+    const imgEl = document.querySelector('#div1>img');
+    console.log(imgEl.getAttribute('src'));
+    console.log(imgEl.getAttribute('alt'));
+    imgEl.setAttribute('src','../../assets/image/city2.jpg');
+    imgEl.setAttribute('width','300px');
+    imgEl.removeAttribute('height');
 
-
+    //DOM Property
+    console.dir(imgEl);
+    console.log(imgEl.src);
+    imgEl.width = 500; //프로퍼티의 속성은 숫자로 제시해야됨 (X : '500px')
+    imgEl.height = 50;
   </script>
 
 
@@ -83,13 +93,32 @@
 
   <h2>DOM 객체 Content영역 - innerHTML / textContent property</h2>
 
-  <div id="div2"><b>안녕하세요</b></div>
-  <div id="div3"><b>안녕하세요</b></div>
+  <div id="div2">
+    <b>안녕하세요</b>
+    반갑습니다.
+  </div>
+  <div id="div3">
+    <b>안녕하세요</b>
+    반갑습니다.
+  </div>
+
+  <button onclick="changeElement();"> <!--클릭시 스크립트에 있는 function 동작-->
+    클릭
+  </button>
 
   <script>
-    
-    
+    function changeElement() {
+      const divEl2 = document.getElementById('div2');
+  
+      console.log(divEl2.textContent); //안녕하세요 반갑습니다. : HTML태그를 제외한 텍스트 값
+      divEl2.textContent = '내용수정하기 <br> wef'; //html 태그 넣어도 안먹힘    
 
+      const divEl3 = document.getElementById('div3');
+
+      console.log(divEl3.innerHTML); //<b>안녕하세요</b> 반갑습니다. : HTML태그 포함
+      divEl3.innerHTML += '기존 콘텐츠에 추가';
+      divEl3.innerHTML += '<h1>여기는태그반영됨</h1>'; //태그 반영
+    }
   </script>
 
 
@@ -102,9 +131,9 @@
   <div id="div4">XSS(Cross-Site Scripting Attacks) 테스트</div>
 
   <script>
-    
+    const imgElStr = `<img src="x" onerror="alert('메롱')">`; //삽입시킬 img요소 (사용자가 입력한 값)
 
-
+    // document.getElementById('div4').innerHTML = imgElStr;
   </script>
 
   <hr>
@@ -124,8 +153,13 @@
   </div>
 
   <script>
-    
+    //HTML조작
+    document.getElementById('reading').setAttribute('checked','checked');    
+    document.getElementById('study').removeAttribute('checked');
 
+    //DOM 조작
+    document.getElementById('sports').checked = true;
+    document.getElementById('sports').checked = false;
   </script>
 
   <hr>
@@ -149,10 +183,44 @@
   <button id="btn1" style="background-color:blue">버튼</button>
 
   <script>
+    const btnEl1 = document.getElementById('btn1');
 
+    //확인
+    console.log(btnEl1.getAttribute('style')); //style attribite =>inline 방식으로 작성되어있는문자열
+    console.log(btnEl1.style);                 //style property => CSSStyleDeclaration 객체
 
+    //style 정보 수정
+    btnEl1.style.width = '150px';
+    btnEl1.style.height = '150px';
+    btnEl1.style.backgroundColor = 'aqua';
+    btnEl1.style.border = '3px dashed pink';
+    btnEl1.style.fontSize = '50px';
 
+    btnEl1.textContent = '우왕';
   </script>
+
+  <h2>연습</h2>
+  <ul id="ul">
+    <li>목록1</li>
+    <li>목록2</li>
+    <li>목록3</li>
+    <li>목록4</li>
+    <li>목록5</li>
+  </ul>
+  <button onclick="changeLi()">변경버튼</button>
+
+  <script>
+    const changeLi = () => {
+      const ulElList = document.querySelectorAll('#ul > li'); //요소는 부모 요소를 제대로 표기하는 것이 좋음
+
+      let blueColor = 50;
+      ulElList.forEach((li, idx) => {
+        li.textContent = '안녕하세요' + (idx+1);
+        li.style.backgroundColor = 'rgb(130,220,'+ blueColor+')';
+        blueColor += 30;
+      });
+    }
+</script>
 
   <hr>
 
@@ -177,8 +245,30 @@
   <div class="area"></div>
 
   <script>
+    const area = document.querySelector('.area');
+    console.log(area.className);
 
+    //circle 클래스 추가
+    // area.className = 'circle'; 덮어씌워져서  .area가 제거됨
 
+    console.log(area.classList); //DOMTokenList ['area', value: 'area']
+
+    //DOMTokenList 객체에서 제공하는 메서드
+    // 1)add(..className): class 속성값을 추가
+    // area.classList.add('circle');
+    area.classList.add('circle','lightgrey');
+
+    console.log(area.classList.item(1)); //item(index) : class 속성값 접근
+
+    console.log(area.classList.contains('lightgrey'));
+    console.log(area.classList.contains('red'));
+
+    area.classList.remove('circle');
+
+    area.classList.replace('lightgrey','yellow'); //lightgrey-> yellow색상 변경
+
+    area.classList.toggle('yellow'); //있으니까 삭제
+    area.classList.toggle('yellow'); //없으니까 추가
 
   </script>
 
@@ -197,7 +287,7 @@
   이름 : <input type="text" id="username"> <br>
   거주지 :  
   <select id="addr">
-    <option>서울</option>
+    <option>서울</option> <!--옵션에 value값이 없다면 그냥 텍스트 값 반환-->
     <option>부산</option>
     <option>광주</option>
     <option>대구</option>
@@ -214,14 +304,35 @@
   <label for="Front">Front</label>
   <br>
 
-  <input type="button" id="btn2" value="등록">
+  <input type="button" id="btn2" value="등록" onclick="valueTest();">
   <br> <br>
 
   <div id="result" style="background:lightgray; width:500px;">결과출력되는영역</div>
 
   <script>
+    function valueTest() {
+      //시용자가 입력한 이름, 선택한 거주지, 체크한 관심분야의 value값 가져오기
+      const nameInput =document.getElementById('username');
+      const addrSelect = document.getElementById('addr');
+      const interestCheck = document.querySelectorAll('input[name=interest]');
 
 
+
+      let intersts = '';
+
+      const interList = [];
+      interestCheck.forEach(inter => {
+        if(inter.checked){
+          interList.push(inter.value);
+        }
+      });
+      intersts =  interList.join(", ") + '입니다.';
+
+      //result는 위에 선언하면 안됨 위에 선언하고 인용된 변수의 값이 변경되었다고 해서 업데이트되지 않음
+      let result = `${nameInput.value}님은 ${addrSelect.value}에 거주합니다.\n 관심분야는 ${intersts}입니다.`;
+
+      document.getElementById('result').innerHTML = result;
+    }
 
   </script>
 
@@ -247,7 +358,14 @@
   <div id="person2">JESSICA</div>
 
   <script>
+    const person1 = document.getElementById('person1');
+    console.log(`data-name: ${person1.dataset.name}`);
+    console.log(`data-aGe: ${person1.dataset.age}`);
+    console.log(`data-home-address: ${person1.dataset.homeAddress}`);
 
+    const person2 = document.getElementById('person2');
+    person2.dataset.mobile = '010-1111-2222';
+    person2.dataset.dayOfBirth = '1987-09-18';
     
   </script>
 

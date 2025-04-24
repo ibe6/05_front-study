@@ -22,6 +22,24 @@
 */
 
 
+// 검색대상의 문자열
+const targetStr = 'JavaScript';
+
+// 패턴 검사를 위한 정규식
+// 1) 정규표현식 리터럴로 생성
+let regExp = /j/i;
+// i : ignore, 대소문자 구분 없이 검색하겠다
+// j 패턴(메타문자) / i 플래그문자
+
+// 2) RegExp 생성자 함수로 생성
+regExp = new RegExp('j', 'i');
+regExp = new RegExp(/j/, 'i');
+regExp = new RegExp(/j/i);
+
+console.log(regExp.test(targetStr));
+console.log(targetStr.search(regExp));
+console.log(targetStr.replace(regExp, '*'));
+
 
 
 
@@ -31,9 +49,9 @@
   2. 검색 조건으로 삼을 특정 패턴을 제시할 수 있음
   3. 주요 메타 문자
      1) . : 모든 단일 문자를 의미
-            ex) b.at    → (O) baat, bbat, bcat, bdat / (X) bat, baaat
+            ex) b.at    → (O) baat, bbat, bcat, bdat / (X) bat, baaat 0개 또는 여러개
 
-     2) * : 0개 이상의 문자를 의미
+     2) * : 0개 이상의 문자를 의미 // d라는 문자가
             ex) good*   → (O) goo, good, goodd, gooddd
 
      3) + : 1개 이상의 문자를 의미
@@ -50,14 +68,14 @@
 
      7) () : 괄호 내의 문자를 하나의 그룹으로 간주
              ex) (app)+A → (O) appA, appappA, appappappA / (X) appapA
-
+                     // app이라는 단어가 1개 이상이어야 하고 A로 끝나야됨.
      8) | : 또는을 의미
             ex) a(b|c)  → (O) ab, ac / (X) ad
 
      9) \ : 이미 정규식에서 사용되고 있는 메타문자를 일반 문자로 간주하고자 할 때 사용
             ex) \*, \., \?, ..
 
-    10) {m} : m개의 문자를 의미  
+    10) {m} : m개의 문자를 의미  // 앞의 문자가 m개여야함. 
               ex) a{3}  → (O) aaa
     
     11) {m,} : m개 이상의 문자를 의미
@@ -70,7 +88,24 @@
               ex) a{2,3} → (O) aa, aaa
 */
 
+// 연습1. j로 시작하는 문자열인지 비교 
+regExp = /^j/;
+console.log(regExp.test('javascript'));
+console.log(regExp.test('jQuery'));
+console.log(regExp.test('html'));
 
+// 연습2. j로 시작하고 t 로 끝나는지 
+regExp = /^jt$/; 
+console.log(regExp.test('javascript'));
+
+regExp = /^j.+t$/; 
+console.log(regExp.test('javascript'));
+
+// 연습3. g로 시작하고 d로 끝나는데 그 사이에 o라는 문자가 2글자 이상인지 비교 
+regExp = /^go{2,}d$/;
+console.log(regExp.test('god'));
+console.log(regExp.test('good'));
+console.log(regExp.test('gooood'));
 
 
 /*
@@ -85,6 +120,78 @@
      6) [가-힣] : 한글 한 글자를 의미 
 */
 
+// 연습 4. 시작부터 끝까지 숫자로만 이루어진 문자열인지 비교 
+regExp = /^[0-9]+$/;
+console.log(regExp.test('123456789123'));
+console.log(regExp.test('123456789아123'));
+
+// 연습5. 시작부터 끝까지 영문자로만 이루어진 문자열인지 비교 
+regExp = /^[a-z]$/;
+console.log(regExp.test('HelloEveryOne'));
+
+// 연습6. 시작부터 끝까지 한글로만 이루어진 문자열인지 비교
+regExp = /^[ㄱ-ㅎㅏ-ㅣ가-힣]+$/;
+console.log(regExp.test('안녕하세요'));
+console.log(regExp.test('라쟈해키ㅣㅣㅈㄴㄴㅋㅋ'));
+
+/*
+  실습. verifyName() 함수 구현하기
+
+  1. 기능
+     전달된 인자값이 이름 형식이 맞는지를 검사하여
+     맞을 경우 '이름 형식이 맞습니다.' 그게 아닐 경우 '이름 형식에 맞지 않습니다' 출력
+     * 이름 형식 : 한글(자음모음결합)로 2글자이상 6글자이하
+  2. 인자
+     검사할 이름 문자열
+  3. 반환
+     없음
+*/
+
+
+
+const verifyName = (name) => {
+       let regExp = /^[가-힣]{2,5}$/;
+       if (regExp.test(name)){
+              console.log("이름형식이 맞습니다.");
+       } else {
+              console.log("이름형식에 맞지 않습니다.");
+       }
+}
+
+verifyName("이가영");
+verifyName("가영여섯글자");
+verifyName("이가영여섯글자넘었다");
+
+const nameArr = ['이가영', '가영여섯글자', '이가영여섯글자넘었다' ];
+nameArr.forEach( name => verifyName(name));
+
+
+
+
+/*
+  실습. verifyZipcode() 함수 구현하기
+
+  1. 기능
+     전달된 인자값이 우편번호 형식이 맞는지를 검사하여
+     맞을 경우 '우편번호 형식이 맞습니다.' 그게 아닐 경우 '우편번호 형식에 맞지 않습니다' 출력
+     * 우편번호 형식 : 숫자 5자리 
+  2. 인자
+     검사할 우편번호 문자열
+  3. 반환
+     없음
+*/
+
+const verifyZipcode = (postNumber) => {
+       let regExp = /^[0-9]{5}$/;
+       if (regExp.test(postNumber)){
+              console.log("우편번호 형식이 맞습니다.");
+       } else {
+              console.log("우편번호 형식에 맞지 않습니다.");
+       }
+}
+
+verifyZipcode("12345");
+verifyZipcode("123456789");
 
 
 
@@ -98,17 +205,81 @@
   6. \S : 단일 공백 문자가 아님을 의미
 */
 
+// 연습7. 첫글자는 반드시 숫자이고 그 이후에는 숫자/영문자/밑줄로 이루어져있는지 비교
+regExp = /^\d\w+$/;
+console.log(regExp.test('1as23_ASD'));
+console.log(regExp.test('QWER01'));
+console.log(regExp.test('29_ASDF'));
+
+
+
+//✅ 메타문자 (Metacharacters)
+// 정규표현식에서 특별한 의미를 가진 문자들이에요.
+// ex ) . ^ $ * ...
 
 
 
 /*
   ## 플래그 문자 ##
-  1. g : 전역 탐색              (global)
-  2. i : 대소문자 구분없이 탐색 (ignore)
-  3. m : 여러줄 탐색            (multiple-line)
+  //정규식 뒤에 붙는 옵션 같은 것.
+  1. g : 전역 탐색                (global)
+  2. i : 대소문자 구분없이 탐색   (ignore)
+  3. m : 여러줄 탐색              (multiple-line)
 */
 
+// 연습8. 첫글자가 대소문자를 가리지 않고 J로 시작하는지 비교  
+regExp = /^j/i;
+console.log(regExp.test('javascript'));
+console.log(regExp.test('JavaScript'));
+
+// 연습9. j로 시작하는 부분을 찾아서 (***)으로 치환
+console.log('javascript'.replace(regExp, '(***)'));
+console.log('javascript\nJavaScript'.replace(regExp, '(***)'));
+
+regExp = /^j/igm;
 
 
+/*
+  실습. verityMobile() 함수 구현하기
+  
+  1. 기능 
+     전달된 인자값이 휴대전화번호 형식이 맞는지를 검사하여
+     맞을 경우 '전화번호 형식이 맞습니다.' 그게 아닐 경우 '전화번호 형식에 맞지 않습니다' 출력
+     * 전화번호 형식 : 010-숫자4자리-숫자4자리
+  2. 인자
+     검사할 전화번호 문자열
+  3. 반환
+     없음
+*/
+const verityMobile = (mobile) => {
+       let regExp = /^010-\d{4}-\d{4}$/; // /^010-(\d{4}){2}$/
+       console.log(regExp.test(mobile) ? '전화번호 형식에 맞습니다.' : '전화번호 형식에 맞지 않습니다.');
+};
+
+mobileArr = ['010-6700-3580', '010-67000000-55555555', '000000000000'];
+mobileArr.forEach(num => verityMobile(num));
 
 
+/*
+  실습. verifyId() 함수 구현하기
+
+  1. 기능 
+     전달된 인자값이 아이디 형식이 맞는지를 검사하여
+     맞을 경우 '아이디 형식이 맞습니다.' 그게 아닐 경우 '아이디 형식에 맞지 않습니다' 출력
+     * 아이디 형식 : 소문자|숫자|특수문자(-_)로만 구성, 첫글자는 소문자, 총 5~20자
+  2. 인자
+     검사할 아이디 문자열
+  3. 반환
+     없음
+*/
+const verifyId = (identify) => {
+       let regExp = /^[a-z]\w{4,19}$/; // [a-z0-9-_]
+       if (regExp.test(identify)){
+              console.log('아이디 형식에 맞습니다.')
+       } else {
+              console.log('아이디 형식에 맞지 않습니다.')
+       }
+}
+
+idArr = ['rkdud_1717', 'a12_34', '123rkdud'];
+idArr.forEach(id => verifyId(id));

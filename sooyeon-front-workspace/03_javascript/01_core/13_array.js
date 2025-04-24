@@ -207,7 +207,6 @@ for(let entry of itr){
        즉, 오름차순 정렬시키고자 할 경우 => element1가 더 클 경우 양수 반환하도록 
            내림차순 정렬시키고자 할 경우 => element2가 더 클 경우 양수 반환하도록 
         
-
   2. Array.prototype.forEach(callbackFn(element[, index[, array]])[, thisArg])
      → 각 배열 요소에 대해 제공한 callbackFn 함수를 한 번씩 실행함
      → callbackFn
@@ -240,3 +239,44 @@ for(let entry of itr){
   
 */
 
+//sort
+const numbers = [30,20,-11,(6*100),4,5];
+console.log(`정렬 전 numbers = ${numbers}`);
+numbers.sort();
+console.log(`정렬 후 numbers = ${numbers}`); //문자열 변환 -> 유니코드 순서로 정렬 = 오름차순
+numbers.sort((left, right) => right - left); //오름차순 == 좌항 숫자가 더 크면 순서 변경해야됨, 내림차순은 그 반대
+console.log(`내림차순 정렬 후 ${numbers}`);
+
+const names = ['소','토','기','토'];
+names.sort();
+console.log(names);
+names.sort((left, right) => left < right ? 1 : -1);
+console.log(names);
+
+
+//foreach
+const lectures = ['java','mysql','html'];
+lectures.forEach((element, idx, arr) => {
+   console.log(element);
+   console.log(idx);
+   console.log(arr);
+});
+
+lectures.forEach(element => console.log(`과목${element}`));
+
+
+//map
+const newLectures = lectures.map(element => '과목:'+ element);
+
+const datas = [true, 1, 'text', {}, []];
+datas.map(item => typeof item)
+     .forEach(item => console.log(item));
+
+const objectDatas = datas.filter(item => typeof(item)  == 'object');
+
+
+const nums = [1,2,4,6,2,6345];
+nums.filter(item => item % 2 ==0)
+    .map(item => item * 2)
+    .sort((left, right) => right-left)
+    .forEach(item => console.log(item));

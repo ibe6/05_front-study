@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+
+  <!-- 
+    ## BOM ##
+    1. Browser Object Model (브라우저 객체 모델)
+    2. 브라우저의 구성 요소를 객체로 처리하는 방식
+    3. 브라우저 객체는 내장 객체로 이미 만들어져 있음 
+    4. 주요 브라우저 객체
+       1) screen   : 브라우저 화면 정보
+       2) history  : 방문했던 경로를 처리하는 객체
+       3) location : 주소(URL)를 처리하는 객체
+       4) navigator: 브라우저와 운영체제에 대한 정보를 제공하는 객체
+  -->
+
+  <h2>history</h2>
+
+  <button onclick="console.log(history);">history객체확인</button> <br><br>
+
+  <!-- 
+    ## history 객체 주요 메소드 ##
+    1) history.back()     : 이전페이지로 이동 
+    2) history.forward()  : 다음페이지로 이동
+    3) history.go(n)      : n단계 페이지로 이동
+  -->
+
+  <div>
+    <button type="button" id="back-btn"><i class="fa-solid fa-arrow-left"></i></button>
+    <button type="button" id="forward-btn"><i class="fa-solid fa-arrow-right"></i></button>
+  </div>
+
+  <script>
+
+
+  </script>
+
+  <hr>
+
+  <h2>location</h2>
+
+  <button onclick="console.log(location);">location객체확인</button>
+
+  <!-- 
+    ## location 객체 주요 속성 및 메소드 ##
+    1) location.href          : 현재 주소창의 url 주소를 가지는 속성
+    2) location.assign(url)   : 전달된 url로 페이지 이동 (뒤로가기 가능)
+    3) location.replace(url)  : 전달된 url로 페이지 이동 (뒤로가기 불가능)
+    4) location.reload()      : 새로고침 (현재자리에서)
+  -->
+
+  <h4>다른 페이지로 이동하기</h4>
+  <div>
+    <a>네이버로 이동</a> <br>
+    <button id="google-btn"><i class="fa-brands fa-google"></i></button> <!--구글로 이동-->
+    <button><i class="fa-brands fa-youtube"></i></button> <!--유튜브로 이동-->
+  </div>
+  
+  <h4>새로고침</h4>
+  <div>
+    <button id="refresh-btn"><i class="fa-solid fa-arrows-rotate"></i></button>
+  </div>
+
+  <script>
+
+
+  </script>
+
+  <hr>
+
+  <h2>screen</h2>
+
+  <button onclick="screenCheck()">screen객체확인</button>
+
+  <!-- 
+    ## screen 객체 주요 속성 ##
+    1) screen.width       : 스크린 전체 너비
+    2) screen.height      : 스크린 전체 높이
+    3) screen.availWidth  : 스크린 가용 너비
+    4) screen.availHeight : 스크린 가용 높이
+
+    > 모니터 해상도에 따라 다름 
+      따라서 환경의 사용자든 동일하게 화면이 보여지도록 작업해야될때 주로 사용
+  -->
+  <script>
+
+    function screenCheck(){
+      console.log(screen);
+      console.log('스크린 너비:', screen.width);
+      console.log('스크린 높이:', screen.height);
+      console.log('스크린 가용너비:', screen.availWidth);
+      console.log('스크린 가용높이:', screen.availHeight); 
+    }
+
+  </script>
+
+  <hr>
+
+  <h2>navigator</h2>
+
+  <button onclick="console.log(navigator)">navigator객체확인</button>
+
+
+
+</body>
+</html>

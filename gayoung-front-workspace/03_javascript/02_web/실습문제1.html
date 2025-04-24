@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+  <h3>문제 1. 색상 선택후 변경 버튼을 클릭하면 색상이 변경되도록 만들어 보시오.</h3>
+
+  <style>
+    #test1 {
+      width: 100px;
+      height: 100px;
+      background-color: black;
+    }
+  </style>
+
+	<div id="test1"></div>  <!--조작해야되는 요소-->
+  <br>
+
+	<input type="color" id="selectColor">
+	<button onclick="changeColor();">변경</button> <!--버튼 클릭시 하단의 함수가 실행된다.-->
+
+	<script>
+    // 버튼 클릭시 실행되는 함수
+		function changeColor() {
+			// #selectColor 요소에 선택된 색상값을 가져와서 #test1의 배경색상으로 부여하기
+      
+		}
+	</script>
+
+  <hr>
+
+
+  <h3>문제 2. 버튼에 따른 크기 조절이 가능하게 만들어 보시오.</h3>
+
+  <style>
+    #test2 {
+      width: 100px;
+      height: 100px;
+      background-color: black;
+    }
+  </style>
+
+  <div id="test2"></div> <!-- 조작해야되는 요소 -->
+  <br>
+
+  <button onclick="sizeChange(50);">50x50</button>
+  <button onclick="sizeChange(100);">원본(100x100)</button>
+  <button onclick="sizeChange(200);">200x200</button>
+
+  <script>
+    // 각 버튼 클릭시 실행되는 함수
+    function sizeChange(num){
+      // 전달된 사이즈 값으로 #test2인 요소 가로 세로 길이 지정하기
+
+    }
+      
+  </script>
+
+  <hr>
+
+  <h3>문제3. 하단의 사용자 입력값을 가져와 #result3 영역에 출력하시오.</h3>
+  <style>
+    #result3 {
+      width: 400px;
+      height: 150px;
+      background: #ffff99;
+      border: 1px solid yellow;
+    }
+  </style>
+    
+  구매자 : <input type="text" id="user" placeholder="구매자의 이름을 입력하세요."><br><br>
+  상품명 : <input type="text" id="productName" placeholder="구매 상품명을 입력하세요"><br><br>
+  가격 : <input type="text" id="productPrice" placeholder="구매 가격을 입력하세요."><br><br>
+
+  <button onclick="printValue();">입력값 출력하기</button><br><br>
+
+  <div id="result3"></div>
+
+  <script>
+    // 버튼 클릭시 실행되는 함수 
+    function printValue() {
+      // 사용자 입력값을 가져와 #result3 영역에 출력
+      // 형식은 자유롭게
+
+    }
+  </script>
+
+  <hr>
+
+  <h3>문제4. 하단의 버튼 클릭시 목록 요소를 만들어 #result4 영역에 출력하시오.</h3>
+
+  <button id="btn4" onclick="generateList();">클릭</button>
+
+  <div id="result4"></div>
+
+  <script>
+    // 버튼 클릭시 실행되는 함수 
+    function generateList(){
+      const seasons = ['spring', 'summer', 'autumn', 'winter'];
+      /*
+        위의 배열을 가지고 아래와 같은 요소를 만들어 #result4 영역에 출력하시오.
+        <ul>
+          <li>spring</li>
+          <li>summer</li>
+          <li>autumn</li>
+          <li>winter</li>
+        </ul>
+      */
+
+    }
+  </script>
+
+  <hr>
+
+  <h3>문제5. 하단의 버튼 클릭시 이미지 요소를 만들어서 #result5 영역에 출력하시오.</h3>
+
+  <button id="btn5" onclick="generateImage();">클릭</button>
+
+  <div id="result5"></div>
+
+  <script>
+    // 버튼 클릭시 실행되는 함수 
+    function generateImage(){
+      const images = ['flower1.jpg', 'city1.jpg', 'river1.jpg'];
+      /*
+        위의 배열을 가지고 assets내의 image 경로를 제시하여 이미지 요소를 만들어
+        #result5 영역에 출력하시오.
+        단, 이미지의 가로길이는 128px, margin은 5px로 반영하시오.
+      */
+      
+    }
+  </script>
+
+  <hr>
+
+  <h3>문제6. 하단의 버튼 클릭시 링크 요소를 만들어서 #result6 영역에 출력하시오.</h3>
+
+  <button id="btn6" onclick="generateLink();">클릭</button>
+
+  <div id="result6"></div>
+
+  <script>
+    // 버튼 클릭시 실행되는 함수
+    function generateLink(){
+      const sites = [
+        {name: '네이버', url: 'https://www.naver.com'},
+        {name: '구글'  , url: 'https://www.google.com'},
+        {name: '카카오', url: 'https://www.kakao.com'}
+      ];
+      /*
+        위의 객체배열을 3개의 링크요소(a) 를 만들어 #result6에 출력하시오.
+        단, 링크 클릭시 새탭에 열리도록 설정하시오.
+        링크 이동 경로는 해당 객체의 url값으로, 링크 노출 이름은 해당 객체의 name값으로 설정
+      */
+
+    }
+  </script>
+
+  <hr>
+
+  <h3>문제7. 간이계산기 만들기</h3>
+
+  첫번째 값 : <input type="number" id="num1"><br>
+  두번째 값 : <input type="number" id="num2"><br><br>
+
+  <button onclick="calculator(this.textContent);">+</button>
+  <button onclick="calculator(this.textContent);">-</button>
+  <button onclick="calculator(this.textContent);">x</button>
+  <button onclick="calculator(this.textContent);">/</button>
+  <button onclick="calculator(this.textContent);">%</button>
+  <!-- 각 버튼 클릭시 calculator 함수를 호출하는데 이때 현재 요소의 textContent 값(+|-|x|/|%)이 전달됨 -->
+  <br><br>
+
+  계산결과 : <span id="result7"></span>
+
+  <script>
+    // 각 버튼 클릭시마다 실행되는 함수
+    function calculator(operator){ // 클릭한 버튼의 문구가 넘어옴 => operator에 담김
+      /*
+        사용자가 입력한 두 숫자값을 가져와 연산기호에 맞는 산술연산을 진행하고
+        해당 결과를 #result7에 출력하시오.
+      */
+      
+
+
+    }
+  </script>
+
+  <hr>
+
+  <h3>문제8. 사용자에게 반복적으로 문자열을 입력받아 배열에 기록한 뒤 모든 문자열이 출력되도록 하시오.</h3>
+
+  <fieldset>
+    <legend>입력</legend>
+    <input type="text" id="input8">
+    <button onclick="inputStr();">입력</button>
+  </fieldset>
+  <br>
+
+  <button onclick="outputStr();">출력</button>
+  <p id="result8" style="border:1px solid lightgray; padding: 5px;">결과 출력하는 영역</p>
+
+  <script>
+
+    // 입력 버튼 클릭시 실행되는 함수
+    function inputStr() {
+      // 텍스트 상자에 쓰여진 값을 전역 배열에 추가시키고 
+      // 사용자가 입력한 값은 초기화 하기 (즉, 텍스트 상자를 빈 문자열로 초기화)
+
+    }
+
+    // 출력 버튼 클릭시 실행되는 함수
+    function outputStr(){
+      // 전역 배열에 담긴 값을 #result8에 출력시키기
+
+    }
+
+  </script>
+
+
+
+
+  <br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>

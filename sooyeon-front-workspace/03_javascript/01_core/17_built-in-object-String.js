@@ -91,3 +91,97 @@
       → 한쪽 끝의 공백만 제거하려면 trimStart() 나 trimEnd() 를 사용
 */
 
+const str = 'JavaScript';
+console.log(`첫글자 : ${str.at(0)}`);
+console.log(`첫글자 : ${str.charAt(0).toLocaleLowerCase()}`);
+console.log(`마지막 글자 : ${str.at(-1)}`);
+console.log(`마지막 글자: ${str.charAt(str.length -1)}`);
+
+console.log(`a의 위치 : ${str.indexOf('a')}`);
+
+console.log(`java로 시작하는지 : ${str.startsWith('Java')}`); //true
+
+console.log(str.padStart(15,"*")); //str의 길이가 15가 되도록 *를 왼쪽에 채우겟다
+
+console.log(str.replace('a','A'));
+
+console.log(str.slice(4)); //Script
+console.log(str.slice(0,4)); //Java
+
+const month ='1,2,3,4,5,6';
+const monthTkoen = month.split(",");
+
+const str2 = ' 120938 123 ';
+str2.trim();
+str2.trimEnd();
+str2.trimStart();
+
+
+//실습1
+const yesCheck = (string) => {
+    string = string.toLocaleLowerCase().replaceAll(' ','');
+
+    return string == 'yes' || string == 'y';
+}
+
+console.log(yesCheck('ye S'));
+
+
+//실습2
+function Model(maker, modelName) {
+    this.maker = maker;
+    this.modelName = modelName;
+}
+
+function Car(model) {
+    this.model = model;
+}
+
+Model.prototype = Car;
+
+const addCarMaker = (cars) => {
+    let result = [];
+
+    for(let car of cars){
+        const carModel = car.model;
+        const start = carModel.at(0);
+        let model;
+
+
+        if(start == 'K'){
+            model = new Model("Kia",carModel);
+            car.maker= "Kia";
+        }else if(start == 'G'){
+            model = new Model("Genesis",carModel);
+            car.maker= "Genesis";
+        }
+        result.push(new Car(model));
+    }
+    return result;
+}
+
+//람다로
+const addCarMaker2 = (cars) => {
+    cars.map(car => {
+        const carModelStart = car.model;
+
+        if(carModelStart.startsWith('K')){
+            car.maker= "Kia";
+        }else if (carModelStart.startsWith('G')){
+            car.maker= "Genesis";
+        }
+        return car;        
+    }).forEach(car => console.log(car));
+}
+const cars = [    
+    { model: 'K3',  },
+    { model: 'K5',  },
+    { model: 'K8',  },
+    { model: 'K9',  },
+    { model: 'GV70',  },
+    { model: 'G80',  },
+    { model: 'GV80',  },
+];
+
+addCarMaker2(cars);
+console.log(cars);
