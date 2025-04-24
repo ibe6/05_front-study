@@ -348,20 +348,16 @@
 
       //console.log(result);
       document.getElementById('result').innerHTML = result;
-      
-
     }
 
   </script>
 
   <hr>
 
-
-
   <!-- 
     ## data 속성 ##
     1. 이미 정의되어있는 속성이 아닌 사용자 정의 속성을 지정할 때 사용
-    2. 주로 자바스크립트 간의 데이터 교환을 위해 특정 데이터를 저장하기 위해 사용용
+    2. 주로 자바스크립트 간의 데이터 교환을 위해 특정 데이터를 저장하기 위해 사용
     3. data- 접두사 다음에 임의의 이름을 붙여 사용함 (data-*)
     
       HTML Attribute       DOM Property
@@ -376,7 +372,14 @@
   <div id="person2">JESSICA</div>
 
   <script>
+    const person1 = document.getElementById('person1');
+    console.log(`data-name: ${person1.dataset.name}`);
+    console.log(`data-aGe: ${person1.dataset.age}`);
+    console.log(`data-home-address: ${person1.dataset.homeAddress}`);
 
+    const person2 = document.getElementById('person2');
+    person2.dataset.mobile = '010-1111-2222';
+    person2.dataset.dayOfBirth = '1987-09-18';
     
   </script>
 
