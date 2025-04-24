@@ -159,3 +159,56 @@ const fiveDigitNumbers = [
 ];
 
 verifyZipCode(fiveDigitNumbers);
+
+function verifyMobile(mobileArr) {
+       regex = /^010(-\d{4}){2}$/;
+       for( idx in mobileArr) {
+              if (regex.test(mobileArr[idx])) {
+                     console.log('전화번호 형식이 맞습니다.');
+                     } else {
+                     console.log('전화번호 형식에 맞지 않습니다');       
+              }
+       }
+}
+
+const testPhoneNumbers = [
+       "010-1234-5678",    // 올바른 형식
+       "010-0000-0000",    // 올바른 형식
+       "010-9999-9999",    // 올바른 형식
+       "010-123-4567",     // 틀림 (중간 숫자 3자리)
+       "011-1234-5678",    // 틀림 (처음 3자리가 010이 아님)
+       "01012345678",      // 틀림 (하이픈 없음)
+       "010-12345-6789",   // 틀림 (중간 숫자 5자리)
+       "010-1234-567",     // 틀림 (끝 숫자 3자리)
+       "010-12a4-5678",    // 틀림 (숫자 아닌 문자 포함)
+       "010-1234-56789",   // 틀림 (끝 숫자 5자리)
+       " 010-1234-5678 ",  // 틀림 (공백 포함)
+     ];
+     
+verifyMobile(testPhoneNumbers)
+function verifyId(idArr) {
+       regex = /^[a-z][a-z0-9-_]{4,19}$/;
+       for( idx in idArr) {
+              if (regex.test(idArr[idx])) {
+                     console.log('아이디 형식이 맞습니다.');
+                     } else {
+                     console.log('아이디 형식에 맞지 않습니다');       
+              }
+       }
+}
+
+const testIds = [
+       "abcde",           // 올바른 형식 (5자, 소문자만)
+       "a1b2c3",          // 올바른 형식 (소문자+숫자)
+       "a_b-c1",          // 올바른 형식 (특수문자 포함)
+       "z123456789012345", // 올바른 형식 (15자)
+       "a_bc-12345_6789", // 올바른 형식 (특수문자 포함)
+       "Aabcde",          // 틀림 (첫글자 대문자)
+       "1abcde",          // 틀림 (첫글자 숫자)
+       "abc",             // 틀림 (길이 3자, 5자 미만)
+       "abcdeabcdeabcdeabcdea", // 틀림 (길이 21자, 20자 초과)
+       "abc$def",         // 틀림 (허용하지 않는 특수문자 $ 포함)
+       "abc def",         // 틀림 (공백 포함)
+     ];     
+
+verifyId(testIds)

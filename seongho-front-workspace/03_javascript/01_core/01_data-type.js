@@ -30,8 +30,15 @@
      2) -Infinity : 음의 무한대
      3) NaN       : 산술 연산 불가(not-a-number)
 */
+var integer = 10;
+var double = 5.5;
+var negative = -10;
 
+console.log(integer, typeof(integer));
+console.log(double, typeof(double));
+console.log(negative, typeof negative);
 
+console.log(10 / 4);
 
 
 /*
@@ -41,10 +48,16 @@
   3. 작은 따옴표(''), 큰 따옴표(""), 또는 백틱(``)으로 텍스트 데이터를 감싸서 표현
   4. 자바는 문자열을 객체로 표현하지만 자바스크립트의 문자열은 원시(primitive) 타입이다
 */
+var string;
+string = 'JavaScript';
+string = "JavaScript";
+string = `JavaScript`;
 
+string = '작은 따옴표로 감싼 문자열 내의 ""는 문자열로 취급';
+string = "큰 따옴표로 감싼 문자열 내의 ''는 문자열로 취급";
+string = `백틱으로 감싼 문자열 내의 ""과 ''는 문자열로 취급`;
 
-
-
+console.log(string, typeof string);
 
 /*
   ## 템플릿 리터럴 ##
@@ -53,9 +66,29 @@
   3. 백틱(``)으로 표현
 */
 
+// 오류. 일반 문자열 내에는 줄바꿈 허용x
+//var str = '안녕하세요.
+//반갑습니다';
+
+// 해결1. 이스케이프 시퀀스 사용
+var str = '안녕하세요\n반갑습니다';
+
+// 해결2. 템플릿 리터럴(백틱``) 사용
+var multiline = `안녕하세요
+반갑습니다`;
+
+console.log(multiline);
 
 
+var lastName = '홍';
+var firstName = '길동';
 
+// 불편. 여러 문자열 데이터를 +를 사용해 연결
+console.log('제 이름은 ' + lastName + firstName + '입니다.');
+
+// 해결. 템플릿 리터럴 + 표현식 삽입 구문 사용
+//       백틱 내에서 ${변수} 하게 되면 해당 변수의 값이 문자열내에 표현됨 
+console.log(`제 이름은 ${lastName}${firstName}입니다.`); // 유의사항: 반드시 백틱과 함께 사용
 
 
 /*
@@ -63,11 +96,10 @@
   1. boolean
   2. 논리적 참, 거짓을 나타내는 true, false 값 취급
 */
+var flag = true;
+flag = false;
 
-
-
-
-
+console.log(flag, typeof flag);
 
 /*
   ## undefined ##
@@ -76,10 +108,8 @@
   2. 따라서 직접 초기화 하지 않은 변수를 참조하면 undefined가 반환됨 
   3. undefined는 자바스크립트 엔진이 변수를 초기화 할 때 사용하는 값 
 */
-
-
-
-
+var undef;
+console.log(undef, typeof undef);
 
 
 /*
@@ -87,9 +117,9 @@
   1. 변수에 값이 없다는 것을 의도적으로 명시할 때 사용
   2. 이전에 할당 되어 있던 값에 대한 참조를 제거하는 것을 의미함
 */
-
-
-
+var nullVal = 'something';
+nullVal = null;
+console.log(nullVal, typeof nullVal); // null이 기록된 변수의 타입 == object
 
 
 /*
@@ -98,7 +128,14 @@
   2. 자바스크립트의 거의 모든 것이 객체 (배열, 함수 등등..)
      number, string, boolean, undefined, null, symbol 외의 모든 값을 객체로 취급 
 */
+var user = {
+  name: '홍길동',
+  age: 17
+};
 
+console.log(user, typeof user);
+console.log(user.name);
+console.log(user.age);
 
 
 
@@ -123,3 +160,10 @@
        - 장점 : 유연성이 높음 
        - 단점 : 신뢰성이 떨어짐 
 */
+
+var test;
+console.log(typeof test);
+test = 1;
+console.log(typeof test);
+test = 'JavaScript';
+console.log(typeof test);

@@ -44,9 +44,20 @@
     6. Element.prototype.lastElementChild  : 마지막 자식 요소 노드 반환 
   -->
 
+  <h2>자식 노드 탐색</h2>
+  <ol id="test1">
+    <li>coffe</li>
+    <li>coke</li>
+    <li>milk</li>
+  </ol>
 
+  <script>
+    const test1 = document.getElementById('test1');
 
-
+    console.log(test1.childNodes);
+    console.log(test1.firstChild);
+    console.log(test1.firstElementChild);
+  </script>
   <!-- 
     ## 자식 노드 확인 ##
     Node.prototype.hasChildNodes() : 자식 노드 존재 여부 확인 
@@ -61,8 +72,25 @@
     Node.prototype.parentNode | parentElement : 부모 요소 노드 반환 
   -->
 
+  <h2>parent node seeking</h2>
+
+  <ul id="test2">
+    <li class="orange">orange</li>
+    <li class="banana">banana</li>
+    <li class="strawberry">strawberry</li>
+  </ul>
+
+  <script>
+    const banana1 = document.getElementsByClassName('banana');
+    const banana2 = document.querySelector('.banana');
+    console.log(banana1)
+    console.log(banana1.parentElement);
+    console.log(banana2)
+    console.log(banana2.parentElement);
+  </script>
 
 
+ 
 
   <!-- 
     ## 형제 노드 탐색 ##
@@ -72,8 +100,20 @@
     3. Element.prototype.previousElementSibling : 형제 요소 노드 중 자신의 이전 형제 요소 노드를 탐색하여 반환
     4. Element.prototype.nextElementSibling: 형제 요소 노드 중 자신의 다음 형제 요소 노드를 탐색하여 반환
   -->
-
+<ul id="test3">
+  <li>spring</li>
+  <li class="summer">summer</li>
+  <li>autumn</li>
+  <li>winter</li>
+</ul>
   
+<script>
+  const summer = document.querySelector('.summer');
+
+  console.log(summer.previousSibling);
+
+  console.log(summer.previousElementSibling);
+</script>
 
 </body>
 </html>

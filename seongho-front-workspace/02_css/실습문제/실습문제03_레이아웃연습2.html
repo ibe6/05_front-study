@@ -5,11 +5,122 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
+* {box-sizing: border-box;}
+
         /* 
             하단의 html 요소들을 가지고 
             "실습문제03_레이아웃연습2.PNG" 이미지에 보여지는 형식과 최대한 유사하게 스타일을 부여하시오.  
             사용할 이미지들은 practice_image 폴더 안에 있습니다.
         */
+        .wrap{
+            width: 100%;
+            max-width: 1300px;
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+
+        }
+        .header{
+            border: 1px solid rgb(197, 191, 191);
+            height: 150px;
+            display: flex;
+            flex-direction: row;
+        }
+        .header_logo{
+            width:25%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .header_logo img{
+            width: 150px;
+        }
+        .search_form img{
+            width: 30px;
+        }
+        .header_search{
+            width:50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .search_form{
+            border: 1px solid rgb(197, 191, 191);
+            height: 55px;
+            width: 450px;
+            display: flex;
+        }
+        .search_form>input{flex-basis: 600px;}
+        .search_form>button{
+            flex-basis: 200px;
+            background-color: white;
+        }
+        .header_etc{
+            width: 25%;
+        }
+        .nav{
+            height: 35px;
+            line-height: 35px;
+            border: 1px solid rgb(197, 191, 191);
+            list-style: none;
+            display: flex;
+            justify-content:space-around;
+            
+        }
+        .nav a{
+            text-decoration: none;
+            color: gray;
+            font-weight: 900;
+        }
+        .content{
+            min-height: 500px;
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+        }
+        .content_left{
+            width: 70%;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .content_right{
+            width: 30%;
+            display: flex;
+            flex-direction: column;    
+            gap: 10px;
+        }
+        .content_banner{
+            height: 30%;
+            border: 1px solid rgb(197, 191, 191);
+        }
+        .content_banner img{width: 100%; height: 100%;}
+        .content_notice{
+            border: 1px solid rgb(197, 191, 191);
+            height: 10%;
+            display: flex;
+            flex-direction: row;
+            line-height: 40px;
+            
+        }
+        .content_notice_left{width: 70%; border: 1px solid white;}
+        .content_notice_right{
+            border: 1px solid white;
+            width: 30%;
+            text-align: right;
+            
+        }
+        .content_notice_left a,.content_notice_right a{
+            text-decoration: none;
+            color: black;
+            font-weight: 900;
+        }
+        .content_trend{
+            height: 60%;
+            border: 1px solid rgb(197, 191, 191);
+        }
+        .content_trend img{height: 100%; width: 100%;}
+
     </style>
 </head>
 <body>
@@ -19,13 +130,13 @@
         <!-- header -->
         <div class="header">
             <div class="header_logo">
-                <a href="#"><!--img 사용--></a>
+                <a href="#"><img src="../실습문제/practice_image/naver_logo.png" alt=""></a>
             </div>
             <div class="header_search">
                 <form class="search_form">
                     <input type="search" name="keyword">
                     <button type="submit">
-                        <!--img 사용-->
+                        <img src="../실습문제/practice_image/search.png" alt="">
                     </button>
                 </form>
             </div>
@@ -45,7 +156,7 @@
         <div class="content">
             <div class="content_left">
                 <div class="content_banner">
-                    <!--img 사용-->
+                    <img src="../실습문제/practice_image/banner.PNG" alt="">
                 </div>
                 <div class="content_notice">
                     <div class="content_notice_left">
@@ -58,9 +169,11 @@
                     </div>
                 </div>
                 <div class="content_trend">
-                    <!--img 사용-->
+                    <img src="../실습문제/practice_image/car.PNG" alt="">
                 </div>
             </div>
+            <style>
+            </style>
             <div class="content_right">
 
                 <div class="content_login">

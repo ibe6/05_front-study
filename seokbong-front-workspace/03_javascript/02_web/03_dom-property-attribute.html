@@ -60,9 +60,21 @@
   </div>
 
   <script>
-    
+    const imgEl = document.querySelector('#div1 > img');
 
+    // HTML Attrbute
+    console.log(imgEl.getAttribute('src'));
+    console.log(imgEl.getAttribute('alt'));
+    imgEl.setAttribute('src', '../../assets/image/city2.jpg');
+    imgEl.setAttribute('width', '300px');
+    imgEl.removeAttribute('height');
 
+    // DOM Property
+    console.dir(imgEl);
+    console.log(imgEl.src);
+    // imgEl.width = '500px'; // width,height,property 속성값은 number
+    imgEl.width = 500;
+    imgEl.height = 100;
   </script>
 
 
@@ -83,13 +95,35 @@
 
   <h2>DOM 객체 Content영역 - innerHTML / textContent property</h2>
 
-  <div id="div2"><b>안녕하세요</b></div>
-  <div id="div3"><b>안녕하세요</b></div>
+  <div id="div2">
+    <b>안녕하세요</b>
+    반갑습니다
+  </div>
+
+  <div id="div3">
+    <b>안녕하세요</b>
+    반갑습니다
+  </div>
+
+<button onclick="changeElement();">클릭</button>
+
 
   <script>
-    
-    
+    function changeElement() {
+      const divEl2 = document.getElementById('div2');
 
+      // textContent property
+      console.log(divEl2.textContent);
+      divEl2.textContent = '수정되나?';
+      divEl2.textContent += '<h3>태그반영되나?</h3>'; // 태그 반영 안됨
+
+      // innerHTML property : 선택된 요소의 내부 요소
+      const divEl3 = document.getElementById('div3');
+
+      console.log(divEl3.innerHTML);
+      divEl3.innerHTML += '수정되나?';
+      divEl3.innerHTML += '<h3>태그반영되나?</h3>'; // 태그 반영 됨
+    }
   </script>
 
 
@@ -103,12 +137,13 @@
 
   <script>
     
-
+    const imgElStr = `<img src="x" onerror="alert('메롱메롱~~')">`; // 삽입시킬 img 요소 (사용자가 입력한 값으로 가정)
+    
+    // document.getElementById('div4').innerHTML = imgElStr;
 
   </script>
 
   <hr>
-
 
 
   <h2>체크박스, 라디오 - checked property</h2>
@@ -125,12 +160,17 @@
 
   <script>
     
+    // HTML Attribute로 조작
+    document.getElementById('reading').setAttribute('checked', 'checked');
+    document.getElementById('study').removeAttribute('checked');
+
+    // DOM Property로 조작
+    document.getElementById('sports').checked = true;
+    document.getElementById('sports').checked = false;
 
   </script>
 
   <hr>
-
-
 
   <!--
       ## CSS 조작 ## 
@@ -150,9 +190,50 @@
 
   <script>
 
+    const btnEl1 = document.getElementById('btn1');
 
+    // style 정보 확인
+    console.log(btnEl1.getAttribute('style')); // style attribute => inline 방식으로 작성되어있는 문자열
+    console.log(btnEl1.style);      // style property => CSSStyleDeclaration 객체
 
+    // style 정보 수정
+    btnEl1.style.width = '150px';
+    btnEl1.style.height = '150px';
+    // btnEl1.style.['background-color'] = 'red';
+    btnEl1.style.backgroundColor = 'red';
+    btnEl1.style.border = '3px dashed pink';
+    btnEl1.style.fontSize = '18px';
+
+    btnEl1.textContent = '왕버튼';
   </script>
+
+  <h2>연습</h2>
+  
+  <ul id="ul1">
+    <li>목록1</li>
+    <li>목록2</li>
+    <li>목록3</li>
+    <li>목록4</li>
+    <li>목록5</li>
+  </ul>
+
+  <button onclick="changeLi();">클릭</button>
+
+  <script>
+    // li 요소들의 문구를 모두 '안녕하세요' 로 변경
+    // 배경색을 'red' 로 변경
+    function changeLi(){
+      const list = document.querySelectorAll('#ul1 > li'); // NodeList[li, li, li, .., li]
+
+      let blueColor = 50;
+      list.forEach( (li, idx) => {
+        li.textContent = '안녕하세요' + (idx+1) ;
+        li.style.backgroundColor = 'rgb(130,220,' + blueColor + ')';
+        blueColor += 30;
+      } )
+    }
+  </script>
+
 
   <hr>
 
@@ -177,14 +258,41 @@
   <div class="area"></div>
 
   <script>
+    const area = document.querySelector('.area');
+    console.log(area.className);
 
+    // circle 클래스 추가
+    // area.className = 'circle'; // 덮어씌워지기 때문에 .area가 제거됨
+    
+    console.log(area.classList);  // DOMTokenList 객체
 
+    // DOMTokenList 객체에서 제공하는 메소드
+
+    // 1) add(...className) : class 속성값을 추가
+    // area.classList.add('circle');
+    // area.classList.add('lightgray');
+    area.classList.add('circle', 'lightgray');
+
+    // 2) item(index) : class 속성값 접근
+    console.log(area.classList.item(1));
+
+    // 3) contains(className) : 해당 class 속성값이 존재하는 여부 확인
+    console.log(area.classList.contains('lightgray'));
+    console.log(area.classList.contains('yellow'));
+
+    // 4) remove(className) : class 속성값을 제거
+    area.classList.remove('circle');
+
+    // 5) replace(oldClassName, newClassName) : class 속성값을 대체
+    area.classList.replace('lightgray' , 'yellow');
+
+    // 6) toggle(className) : class 속성값 추가 및 제거 (없으면 추가, 있으면 제거)
+    area.classList.toggle('yellow');  // 제거
+    area.classList.toggle('yellow');  // 추가
 
   </script>
 
   <hr>
-
-
 
   <!-- 
     ## value property ##
@@ -214,14 +322,35 @@
   <label for="Front">Front</label>
   <br>
 
-  <input type="button" id="btn2" value="등록">
+  <input type="button" id="btn2" value="등록" onclick="valueTest();">
   <br> <br>
 
   <div id="result" style="background:lightgray; width:500px;">결과출력되는영역</div>
 
   <script>
 
+    function valueTest(){
+      // 사용자가 입력한 이름, 선택한 거주지, 체크한 관심분야의 value 값 가져오기
+      const nameInput = document.getElementById('username'); // input요소객체
+      const addrSelect = document.getElementById('addr');    // select요소객체
+      const interestCheck = document.querySelectorAll('input[name=interest]'); //NodeList객체 [checkbox, checkbox, checkbox]
 
+      let result = `<b>${nameInput.value}님은 ${addrSelect.value}에 거주합니다.</b><br><br>`;
+      result += '관심분야는 ';
+
+      interestCheck.forEach( checkbox => {
+        if(checkbox.checked){
+          result += checkbox.value + " ";
+        }
+      } );
+
+      result += '입니다.';
+
+      // console.log(result);
+      document.getElementById('result').innerHTML = result;
+
+
+    }
 
   </script>
 

@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!--
+    ## 이벤트 (Event) ##
+    1. DOM 객체에서 발생하는 어떤 시그널을 의미함 
+    2. 시스템에 일어나는 사건(Action) 또는 발생(Occurrence)을 의미함 
+    3. 주요 이벤트 발생 방식
+      1) 사용자의 액션에 의해서 발생(클릭, 키보드 입력, 마우스 움직임 등)
+      2) API의 이벤트 생성
+  -->
+    
+  <!--
+    ## 이벤트 핸들러 (Event Handler) ##
+    1. 이벤트가 발생했을 때 동작하는 함수(Function)를 이벤트 핸들러(Event Handler) 또는 이벤트 리스너(Event Listener) 라고 함 
+       1) 이벤트 핸들러 : 이벤트가 발생하면 실행되는 코드
+       2) 이벤트 리스너 : 이벤트가 발생했는지 체크
+    3. 이벤트 핸들러가 동작할 때는 발생한 이벤트에 대한 각종 정보가 담긴 "이벤트 객체(Event Object)"가 인자로 자동 전달됨
+    4. 이벤트가 발생했을 때 이벤트 핸들러를 할당하는 방법을 "이벤트 모델(Event Model)"이라고 함
+       1) 고전 이벤트 모델
+       2) 표준 이벤트 모델
+       3) 인라인 이벤트 모델
+  -->
+
+  <h2>이벤트 모델(Event Model) - 이벤트 핸들러 지정 방식</h2>
+
+  <!--
+    ## 고전 이벤트 모델 ## 
+    1. 이벤트 할당을 위해서 이벤트 핸들러 프로퍼티(Event Handler Property)를 활용하는 방법
+    2. 이벤트 종류 앞에 "on" 키워드를 붙이면 이벤트 핸들러 프로퍼티가 완성됨 
+       ex) onclick, onkeydown, onsubmit, onfocus 등
+    3. 하나의 이벤트에 하나의 이벤트 핸들러를 할당할 수 있음 (마지막에 등록한 이벤트 핸들러만 동작함)
+    4. 이벤트 할당 방식 예시
+       1) 익명 함수
+          const button = document.getElementById('button');
+          button.onclick = function(){
+ 
+          }
+       2) 화살표 함수
+          const button = document.getElementById('button');
+          button.onclick = () => {
+  
+          }
+       3) 기명 함수
+          const button = document.getElementById('button');
+          function eventHandler(){
+  
+          }
+          button.onclick = eventHandler;
+  -->
+
+  <h3>고전 이벤트 모델 방식</h3>
+
+  <button id="btn1">고전이벤트모델1</button>
+  <button id="btn2">고전이벤트모델2</button>
+  <button id="btn3">고전이벤트모델3</button>
+
+  <script>
+
+
+  </script>
+
+
+  <!-- 
+    ## 인라인 이벤트 모델 ## 
+    1. HTML 요소에 직접 이벤트 핸들러 속성(Event Handler Attribute) 등록하고 이벤트 핸들러를 호출하는 방식
+    2. 이벤트 핸들러 작성시 주로 기명 함수를 사용함 
+    3. 이벤트 할당 방식 예시
+       <button type="button" onclick="inline()">
+       function inline(){
+
+       }
+  -->
+
+  <h3>인라인 이벤트 모델 방식</h3>
+
+  <button>인라인이벤트모델</button>
+
+  <script>
+
+
+  </script>
+
+
+  <!-- 
+    ## 표준 이벤트 모델 ##
+    1. EventTarget 인터페이스의 addEventListener() 메소드를 호출하는 방식
+    2. addEventListener 구문
+       1) addEventListener('eventType', eventHandler)
+       2) addEventListener('eventType', eventHandler, useCapture)
+    3. 하나의 이벤트에 여러 개의 이벤트 리스너를 할당할 수 있음 
+    4. 이벤트 할당 방식 예시
+      1) 익명 함수
+        const button = document.getElementById('button');
+        button.addEventListener('click', function(){
+
+        })
+      2) 화살표 함수
+        const button = document.getElementById('button');
+        button.addEventListener('click', () => {
+
+        })
+      3) 기명 함수
+        const button = document.getElementById('button');
+        function eventHandler(){
+
+        }
+        button.addEventListener('click', eventHandler);
+  -->
+
+  <h3>표준 이벤트 모델 방식</h3>
+
+  <button id="btn4">표준이벤트모델1</button>
+  <button id="btn5">표준이벤트모델2</button>
+  <button id="btn6">표준이벤트모델3</button>
+
+  <script>
+
+
+  </script>
+
+
+  <hr>
+
+
+  <h2>이벤트 객체(Event Object) - 발생된 이벤트 정보 확인 및 이벤트 발생 대상 조작</h2>
+
+  <!--
+    ## 이벤트 객체 (Event Object) ##
+    1. 이벤트가 발생했을 때 브라우저에 의해서 만들어짐 
+    2. 발생한 이벤트에 관한 상세 정보(이벤트 종류, 이벤트 대상 등)가 저장되어 있음 
+    3. 이벤트 핸들러의 매개변수로 이벤트 객체를 전달받고 사용함 
+    4. 관례적으로 이벤트 객체의 이름은 "event" 또는 "evt" 를 사용함 
+    5. 주요 인스턴스 속성
+       1) type
+          (1) 이벤트의 종류를 의미함 
+          (2) 마우스 이벤트  : click, mouseover, mouseout, mousemove, mousedown, mouseup
+          (3) 폼 요소 이벤트 : submit, focus
+          (4) 키보드 이벤트  : keydown, keypress, keyup
+          (5) 포커스 이벤트  : focus, blur
+       2) target
+          (1) 이벤트가 발생한 가장 안쪽의 요소를 저장하고 있음 
+          (2) 실제 이벤트가 시작된 지점을 의미함 
+          (3) 이벤트 전파(이벤트 버블링, Event Bubbling)가 진행되어도 target은 변하지 않음 
+       3) currentTarget
+          (1) 이벤트가 발생한 지점이 아닌 실제 이벤트를 처리하는 요소를 의미함 
+          (2) 이벤트 전파(이벤트 버블링, Event Bubbling)가 진행되는 경우 실제 이벤트가 시작된 지점과 다른 요소일 수 있음 
+  -->
+
+  <button id="origin">고전이벤트모델 방식</button>
+  <button id="inline">인라인이벤트모델 방식</button>
+  <button id="listener">표준이벤트모델 방식</button>
+
+  <script>
+
+
+
+
+
+
+
+
+    /*
+      * this
+        1. Java의 this는 객체(인스턴스) 자신을 나타내는 참조변수이다.
+        2. JavaScript의 this는 함수 호출 방식에 따라 연결되는 객체가 달라진다.
+           1) 전역함수, 내부함수, 콜백함수    : this === window 전역 객체(Global Object)
+           2) 객체의 프로퍼티에 저장되는 함수 : this === 현재 참조하는 객체
+        3. JavaScript의 함수는 매개변수로 전달되는 인자값 이외에 암묵적으로 this 를 전달받는다.
+        4. 화살표 함수의 경우 자체 바인딩이 this 에 포함되지 않는다.
+        5. this 는 이벤트 핸들러가 화살표 함수인 경우에는 사용할 수 없으므로 주의가 필요하다.
+    */
+  </script>
+
+
+  <h3>적용 예시1</h3>
+
+  <button id="red">red</button>
+  <button id="green">green</button>
+  <button id="blue">blue</button>
+
+  <script>
+    
+
+  </script>
+
+  <hr>
+
+  <h2>이벤트 전파 (Event Bubbling)</h2>
+
+  <!-- 
+    ## 이벤트 전파 (Event Bubbling) ##
+    1. 요소들이 중첩되어 있을 경우 내부 요소에 이벤트 핸들러가 동작된 뒤 
+       상위 요소들의 이벤트 핸들러도 같이 동작되는걸 의미함
+    2. 최상위 조상에 도달할 때까지 이 과정은 계속해서 반복됨
+    3. 거의 모든 이벤트는 전파되지만, 모두 되는건 아님 (ex. focus 이벤트는 전파되지 않음)
+    4. 이벤트 객체의 stopPropagation() 메소드를 통해 이벤트 전파를 중지시킬수 있음 
+  -->
+
+  <style>
+    #ancestor { width: 240px; }
+    #parent   { width: 200px; }
+    #child    { width: 160px; }
+    .bubbling { margin: 10px; border: 1px solid gray; }
+  </style>
+  <div id="ancestor" class="bubbling">
+    조상div
+    <div id="parent" class="bubbling">
+      부모div
+      <div id="child" class="bubbling">
+        자식div
+      </div>
+    </div>
+  </div>
+
+  <script>
+
+
+  </script>
+
+  <h3>적용 예시</h3>
+
+  <style>
+    #notice{
+      border-collapse: collapse;
+    }
+    #notice th, #notice td {
+      border: 1px solid lightgray;
+      text-align: center
+    }
+    #notice>tbody>tr:hover{
+      background: lightgray;
+      cursor: pointer;
+    }
+  </style>
+
+  <table id="notice">
+    <thead>
+      <tr>
+        <th></th>
+        <th>글번호</th>
+        <th width="200">글제목</th>
+        <th>작성자</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><input type="checkbox"></td>
+        <td>1</td>
+        <td>글제목입니다1.</td>
+        <td>user01</td>
+      </tr>
+      <tr>
+        <td><input type="checkbox"></td>
+        <td>2</td>
+        <td>글제목입니다2.</td>
+        <td>user02</td>
+      </tr>
+      <tr>
+        <td><input type="checkbox"></td>
+        <td>3</td>
+        <td>글제목입니다3.</td>
+        <td>user03</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <script>
+
+
+  </script>
+
+  <hr>
+
+  <h2>디폴트 이벤트</h2>
+
+  <!-- 
+    ## 디폴트 이벤트 ## 
+    1. 특정 DOM 객체는 기본 이벤트를 이미 가지고 있음 
+    2. 주요 디폴트 이벤트
+       1) <a> 태그는 click 하면 href 속성으로 이동함 
+       2) <form> 태그는 submit 하면 action 속성으로 입력 폼 요소의 데이터를 전송함 
+    3. 이벤트 객체의 preventDefault() 메소드를 호출하면 디폴트 이벤트 동작을 막을 수 있음
+  -->
+
+  <a id="naver-link" href="http://www.naver.com" target="_blank" >네이버로 이동</a>
+  <br><br>
+
+  <form id="form" action="/server/test.do" method="get">
+    아이디: <input type="text" name="userId" id="userId"> <br>
+    비밀번호: <input type="password" name="userPwd" id="userPwd"> <br>
+    비밀번호 확인: <input type="password" id="checkPwd"> <br><br>
+
+    <input type="submit" id="submit">
+  </form>
+
+  <script>
+
+
+  </script>
+
+  <hr>
+
+  <h2>키보드 관련 이벤트</h2>
+
+  <!-- 
+    ## 키보드 관련 이벤트 ##
+    1. 키보드의 키가 눌려질때 또는 떼어질때 발생되는 이벤트
+    2. 이벤트 종류
+       1) keypress : 키가 눌려질때 발생되는 이벤트 (펑션키, 기능키, 한글키를 제외한 키를 감지함)
+       2) keydown  : 키가 눌려질때 발생되는 이벤트 (모든 키를 감지함)
+       3) keyup    : 키가 떼어질때 발생되는 이벤트 (모든 키를 감지함)
+    3. 이벤트 객체 주요 속성
+       1) key     : 눌려진 문자
+       2) keyCode : 물리적인 키 코드 
+  -->
+
+  <input id="content" type="text" placeholder="아무 키나 입력하세요">
+
+  <div id="result" style="background:lightgray; width: 300px;">&nbsp;</div>
+
+
+</body>
+</html>

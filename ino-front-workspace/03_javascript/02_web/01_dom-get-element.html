@@ -150,11 +150,118 @@
        1) HTMLCollection : 노드 객체의 상태 변화를 실시간으로 반영하는 살아있는(live) DOM 컬렉션 객체
        2) NodeList       : 노드 객체의 상태 변화를 실시간으로 반영하지 않는(non-live) DOM 컬렉션 객체체
   -->
-
-
+<h2>id 이용 요소 노드 취득</h2>
+<div id="area1" class="area">
+  div area
+  <p id="area2">p area</p>
+</div>
   
+<div id="area1" class="area">
+  div area
+</div>
 
+<script>
+  const el = document.getElementById('area1');
+  console.dir(el)
+  el.style.backgroundColor = 'red';
+</script>
+  <h2>tag 이용 요소 노드 취득</h2>
+  <ul id="food">
+    <li>김찌</li>
+    <li>된찌</li>
+    <li>고구</li>
+  </ul>
+  <ul id="drink">
+    <li>커피</li>
+    <li>ㅇㅇ</li>
+    <li>ㅋㄹ</li>
+  </ul>
 
-  
+  <script>
+    const lists = document.getElementsByTagName('li');
+    console.log(lists);
+    for (i=0;i<lists.length;i++) {
+      lists[i].style.color = 'blue';
+    }
+    for( ele of lists) {
+      ele.style.backgroundColor = 'purple';
+    }
+    console.log('---------------------------------')
+  </script>
+
+<h2>class 이용 요소 노드 취득</h2>
+  <ul>
+    <li class="drink coffee"> coffee</li>
+    <li class="drink coke"> coke</li>
+    <li class="drink milk"> milk</li>
+  </ul>
+  <ul>
+    <li class="drink soju">soju</li>
+    <li class="drink beer">beer</li>
+  </ul>
+
+  <script>
+    const drinks = document.getElementsByClassName('drink');
+    console.log(drinks);
+    Array.from(drinks).forEach( d => d.style.backgroundColor = 'yellow');
+  </script>
+
+  <h2>selector 이용 요소 노드 취득</h2>
+
+  <div id="area3" class="area">
+    <span>first</span>
+  </div>
+  <div class="area">
+    <span class="second">second</span>
+  </div>
+
+  <script>
+    const area = document.querySelector('#area3');
+    console.log(area);
+    console.dir(area);
+
+    const span = document.querySelector('.area > span');
+    span.style.backgroundColor = 'gray'
+
+    const second = document.querySelector('.area > .second');
+    second.style.backgroundColor = 'yellow';
+  </script>
+
+  <ul id="list">
+    <li class="drink">coffee</li>
+    <li class="drink">coke</li>
+    <li class="food">dj</li>
+    <li class="food">kimchi</li>
+  </ul>
+  <script>
+    const list = document.querySelectorAll('#list > li');
+    console.log(list); // NodeList - 유사배열 객체, Iterable
+
+    list.forEach( li => {
+      li.style.backgroundColor = 'lightgray';
+      li.style.color = 'white';
+    })
+  </script>
+
+  <h2>HTMLCollection vs NodeList</h2>
+
+  <style>
+    .white{color: white;}
+    .black{color: black;}
+    .blue{color: blue;}
+    .red{color: red;}
+  </style>
+  <ul>
+    <li class="white">first</li>
+    <li class="white">second</li>
+    <li class="white">third</li>
+  </ul>
+
+  <script>
+    const white = document.getElementsByClassName('white');
+    Array.from(white).forEach( w => {
+      w.className = 'black';
+    })
+  </script>
 </body>
 </html>

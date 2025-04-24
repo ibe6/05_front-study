@@ -60,8 +60,18 @@
   </div>
 
   <script>
-    
+    const imgEl = document.querySelector('#div1 > img')
+    console.log(imgEl.getAttribute('src'));
+    console.log(imgEl.getAttribute('alt'));
+    imgEl.setAttribute('src','../../assets/image/city2.jpg');
+    imgEl.setAttribute('width', '300px');
+    imgEl.removeAttribute('height');
 
+    //DOM Property
+    console.log(imgEl);
+    console.log(imgEl.src);
+    imgEl.width = 500;//'500px 안 먹힘'
+    imgEl.height = 100;
 
   </script>
 
@@ -83,13 +93,32 @@
 
   <h2>DOM 객체 Content영역 - innerHTML / textContent property</h2>
 
-  <div id="div2"><b>안녕하세요</b></div>
-  <div id="div3"><b>안녕하세요</b></div>
+  <div id="div2">
+    <b>안녕하세요</b>
+    반갑다
+  </div>
+  <div id="div3">
+    <b>안녕하세요</b>
+    반갑다
+  </div>
+  <button onclick="changeElement();">클릭</button>
 
   <script>
-    
-    
+    function changeElement(){
+    const divEl2 = document.getElementById('div2');
 
+    //textContent property : 선택된 요소의 내부 테ㅔㅔㅔㅔㅔㅔㄱ스트
+    console.log(divEl2.textContent);
+    divEl2.textContent = '수정되노?';
+    divEl2.textContent = '<h3>수정되노?</h3>';//태그 반영 안 됨
+    divEl2.textContent += ' 안되네';
+    
+    //innerHTML property : 선택된 요소의 내부 요소
+    const divEl3 = document.getElementById('div3');
+    console.log(divEl3.innerHTML);
+    divEl3.innerHTML = '<h1>추가되나 </h1>'
+    divEl3.innerHTML += '<h6>추가되노 </h6>'
+    }
   </script>
 
 
@@ -102,8 +131,8 @@
   <div id="div4">XSS(Cross-Site Scripting Attacks) 테스트</div>
 
   <script>
-    
-
+    const imgElstr = `<img src="x" onerror="alert('ㅎㅇ')">`; //삽입시킬 img요소(사용자가 입력한 값)
+    //document.getElementById('div4').innerHTML = imgElstr;
 
   </script>
 
@@ -124,7 +153,13 @@
   </div>
 
   <script>
-    
+    document.getElementById('reading').setAttribute('checked','checked');
+    document.getElementById('study').removeAttribute('checked');
+
+    //DOM Property로 조작스
+    document.getElementById('sports').checked = true;
+    document.getElementById('sports').checked = false;
+
 
   </script>
 
@@ -149,11 +184,43 @@
   <button id="btn1" style="background-color:blue">버튼</button>
 
   <script>
+    const btnEl1 = document.getElementById('btn1');
+    //style정보 화긴
+    console.log(btnEl1.getAttribute('style')); //style attribute
+    console.log(btnEl1.style); //style property
 
+    btnEl1.style.width='100px';
+    btnEl1.style.height='150px';
+    btnEl1.style.backgroundColor= 'red';
+    btnEl1.style['background-color'] = 'blue';
 
-
+    btnEl1.style.fontSize = '30px';
+    btnEl1.style.border = '5px dashed pink';
+    btnEl1.textContent = '왕버트은';
   </script>
 
+  <h2>연습</h2>
+  <ul id="ul1">
+    <li>목록1</li>
+    <li>목록2</li>
+    <li>목록3</li>
+    <li>목록4</li>
+    <li>목록5</li>
+  </ul>
+
+  <button onclick="changeLi();">ㅎㅇ</button>
+  <script>
+    //li 요소 문구 모두 안녕하세요로 배경 레드
+    function changeLi(){
+      const list =document.querySelectorAll('#ul1>li');
+      let blueColor = 50;
+      list.forEach( (li, idx) => {
+        li.textContent='hi';
+        li.style.backgroundColor = 'rgb(130,200,'+ blueColor +')';
+        blueColor += 30;
+      } )
+    }
+  </script>
   <hr>
 
   <!-- 
@@ -177,8 +244,34 @@
   <div class="area"></div>
 
   <script>
+    const area = document.querySelector('.area');
+    console.log(area.className);
+    //circle 클래스 추가
+    //area.className = 'circle';//덮어씌워지기 때문에 .area가 지워짐
 
+    console.log(area.classList);//DOMTokenList 객체
+    //DOMTokenList
+    //1) add(...className) :클래스 속성값 추가
+    // area.classList.add('circle');
+    // area.classList.add('lightgray');
+    area.classList.add('circle','lightgray');
 
+    //2) item(index) :클래스 속성값 접근
+    console.log(area.classList.item(2));
+
+    //3)contains(className) : 해당 클래스속성값이 존재하는 여부 화긴
+    console.log(area.classList.contains('lightgray'));
+    console.log(area.classList.contains('yellow'));
+
+    //4) remove(className) : 클래스 속성값 제거
+    console.log(area.classList.remove('circle'));
+
+    //5) replace(oldclassName, newclassName) : 클래스 변경
+    console.log(area.classList.replace('lightgray', 'yellow'));
+
+    //6) toggle(className) : 없으면 추가 있으면 삭제
+    console.log(area.classList.toggle('yellow'));
+    console.log(area.classList.toggle('yellow'));
 
   </script>
 
@@ -214,13 +307,29 @@
   <label for="Front">Front</label>
   <br>
 
-  <input type="button" id="btn2" value="등록">
+  <input type="button" id="btn2" value="등록" onclick="valueTest();">
   <br> <br>
 
   <div id="result" style="background:lightgray; width:500px;">결과출력되는영역</div>
 
   <script>
+    function valueTest(){
+      const nameInput = document.getElementById('username');//input요소객체
+      const addrSelect = document.getElementById('addr'); //select요소 객체
+      const interestCheck = document.querySelectorAll('input[name=interest]');//노드리스트객체
 
+      let result = `${nameInput.value} 당신은 ${addrSelect.value}에 살고있다.`
+      result+='관심분야는';
+
+      interestCheck.forEach( checkbox => {
+        if(checkbox.checked){
+         result += checkbox.value + " ";
+        }
+      });
+      result += '다';
+      // console.log(result);
+      document.getElementById('result').innerHTML = result;
+  }
 
 
   </script>

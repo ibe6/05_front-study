@@ -17,12 +17,70 @@
               2) transition-duration        : 이행 시간을 지정 (3s==3초)
               3) transition-timing-function : 이행 과정이 동작하는 방식을 지정
         */
-        
+        .box1{
+            width: 100px;
+            height: 100px;
+            border: 1px solid red;
+            transition-property: width, background-color;
+            transition-duration: 3s;
+            transition-timing-function: ease-in;
+        }
+        .box1:hover{
+            width: 300px;
+            background-color: blue;
+        }
     </style>    
+    <div class="box1">box1</div>
+    <hr>
+    <style>
+        .box2{
+            width: 200px;
+            height: 200px;
+            border: 1px solid gray;
+            text-align: center;
+            line-height: 200px;
+            border-radius: 100px;
+            margin: 100px auto;
+            font-size: 32px;
+            cursor: pointer;
 
-
-
-
+            transition-property: transform;
+            transition-duration: 3s;
+        }
+        .box2:active{
+                transform: rotate(3600deg);
+            }
+    </style>
+    <div class="box2">회전판</div>
+<hr>
+    <style>
+        .img-container{
+            width: 192px;
+            height: 128px;
+            background-image: url(../assets/image/city2.jpg);
+            background-size: 192px;
+        }
+        .screen{
+            width: 192px;
+            height: 128px;
+            background: rgba(255,0,0,0.5);
+            font-size: 32px;
+            font-weight: 900;
+            color: white;
+            text-align: center;
+            line-height: 128px;
+            opacity: 0;
+            
+            transition-property: opacity, transform;
+            transition-duration: 1s;
+        }
+        .img-container:hover+.screen{
+            opacity: 1;
+            transform: translateY(-128px);
+        }
+    </style>
+    <div class="img-container"></div>
+    <div class="screen">도쿄타웡</div>
     <!-- 
         * transform 종류
           1) translateX(이동시킬값)      : 가로축 이동

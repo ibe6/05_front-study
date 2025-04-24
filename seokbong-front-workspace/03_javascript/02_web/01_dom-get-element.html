@@ -128,19 +128,147 @@
     ----------------------------------------------------------------------------------
   -->
 
+<h2>id를 이용한 요소 노드 취득</h2>
+
+<div id="area1" class="area">
+  div영역
+  <p id ="area2">p 영역</p>
+</div>
+
+<div id="area1" class="area">
+  div영역
+</div>
+
+<script>
+  const el = document.getElementById('area1');
+  console.log(el); // 중복된 id의 요소가 여러개일 경우 첫번째 요소만 
+  console.dir(el);
+
+  el.style.backgroundColor = 'red';
+
+  const noEl = document.getElementById('area3');
+  console.log(noEl);
+  // console.log(noEl.innerHTML);
+  console.log('---------------------');
+</script>
+
+<hr>
+
+<h2>tag를 이용한 요소 노드 취득</h2>
+<ul id="food">
+  <li>김치찌개</li>
+  <li>된장찌개</li>
+  <li>고등어구이</li>
+</ul>
+
+<ul id="drink">
+  <li>커피</li>
+  <li>우유</li>
+  <li>콜라</li>
+</ul>
+
+<script>
+  const lists = document.getElementsByTagName('li');
+  console.log(lists); // HTMLCollection - 유사배열객체, Iterable
+  console.log(lists.length); // length 프로퍼티
+
+  // 반복문 사용 가능
+  /*
+  for(let i = 0; i<lists.length ; i++){
+    lists[i].style.color = 'blue';
+  }
+  */
+ /*
+ for(let index in lists){ // for-in문은 GTMLCollection의 length 프로퍼티까지 가져온다
+ console.log(index)
+  lists[index].style.color = 'blue';
+ }
+*/
+for(let dom of lists){
+  dom.style.color = 'blue';
+}
+</script>
 
 
 
+<hr>
 
+<h2>class를 이용한 요소 노드 취득</h2>
+<ul>
+  <li class="drink coffee">커피</li>
+  <li class="drink coke">콜라</li>
+  <li class="drink milk">우유</li>
+</ul>
 
+<ul>
+  <li class="drink soju">소주</li>
+  <li class="drink beer">맥주</li>
+</ul>
 
+<script>
+  const drinks = document.getElementsByClassName('drink');
+  console.log(drinks); // HTMLCollection
 
+  // HTMLCollection 에서는 foreach 메소드 제공하지 않음
+  // drinks.forEach( drink => drink.style.color = 'red' );
 
+  // HTMLCollection => Array로 변환 후 Array.prototype.forEach 메소드 사용
+  Array.from(drinks).forEach( drink => drink.style.color = 'red' );
 
+  // .drink.coffe
+  const coffee = document.getElementsByClassName('drink coffee');
+  console.log(coffee);
 
+  console.log('----------------------------');
+</script>
 
+<hr>
 
+<h2>selector를 이용한 요소 노드 취득</h2>
 
+<div id="area3" class="area">
+  <span>first</span>
+</div>
+
+<div class="area">
+  <span class="second">second</span>
+</div>
+
+<script>
+  const area = document.querySelector('#area3');
+  console.log(area);
+  console.dir(area);
+
+  const span = document.querySelector('.area > span');
+  span.style.backgroundColor = 'gray';
+
+  const second = document.querySelector('.area > .second');
+  second.style.backgroundColor = 'yellow';
+</script>
+
+<ul id="list">
+  <li class="drink">커피</li>
+  <li class="drink">콜라</li>
+  <li class="food">된장찌개</li>
+  <li class="food">김치찌개</li>
+</ul>
+
+<script>
+  const list = document.querySelectorAll('#list > li');
+  console.log(list); // NodeList - 유사배열객체, Iterable
+
+  // for문 사용가능, for-of문 사용가능
+
+  // NodeList에 기본적으로 forEach 메소드 제공
+list.forEach( li => {
+  li.style.backgroundColor = 'lightgray';
+  li.style.color = 'white';
+});
+
+console.log('---------------------------------------------');
+</script>
+
+<hr>
 
   <!-- 
     ## HTMLCollection과 NodeList ##
@@ -151,6 +279,61 @@
        2) NodeList       : 노드 객체의 상태 변화를 실시간으로 반영하지 않는(non-live) DOM 컬렉션 객체체
   -->
 
+  <h2>HTMLCollection과 NodeList</h2>
+
+  <style>
+    .white{color : white;}
+    .black{color : black;}
+    .blue{color: blue;}
+    .red{color: red;}
+  </style>
+
+  <ul>
+    <li class="white">첫번째 글</li>
+    <li class="white">두번째 글</li>
+    <li class="white">세번째 글</li>
+  </ul>
+
+  <script>
+    const whiteList = document.getElementsByClassName('white'); // HTMLCollection
+    console.log(whiteList);
+    /*
+    for(let i=0; i<whiteList.length; i++){
+      whiteList[i].className = 'black';
+    }
+    */
+    /*
+      문제점.
+      반복문 1회차(i=0) => '첫번째 글' 노드의 class가 black으로 변경 
+                        => whiteList에는 '두번째글', '세번째글' 노드만 담겨있는 상태 (length도 2로 변경)
+      반목문 2회차(i=0) => whiteList[i] == '세번째글'
+    */
+
+    // 해결방법1. 역순으로 반복
+    /*
+    for(let i=whiteList.length-1; i>=0; i--){
+      whiteList[i].className = 'black';
+    }
+    */
+
+
+    // 해결방법2. HTMLCollection 사용하지 않기 => 배열로 변환해서 사용
+    Array.from(whiteList).forEach( li => li.className =' black');
+  </script>
+
+  <ul>
+    <li class="red">첫 번째 글</li>
+    <li class="red">두 번째 글</li>
+    <li class="red">세 번째 글</li>
+  </ul>
+
+  <script>
+    const redList = document.querySelectorAll('.red');
+    console.log(redList);
+    for(let i=0; i<redList.length; i++){
+      redList[i].className = 'blue';
+    }
+  </script>
 
   
 
