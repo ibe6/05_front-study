@@ -7,39 +7,63 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 <body>
-  
-  <h2>기본 선택자 이용해서 요소 선택</h2>
 
-  <div id="box" class="wrap">box</div>
+  <h2>innerHTML 및 textContent 속성 제어</h2>
+
+  <!-- 
+    * textContent 속성 관련 메소드
+      1) 요소.text()        : 해당 요소의 textContent 속성값 반환 
+      2) 요소.text('문구')  : 해당 요소의 textContent 속성값 변경
+
+    * innerHTML 속성 관련 메소드
+      1) 요소.html()        : 해당 요소의 innerHTML 속성값 반환 
+      2) 요소.html('문구')  : 해당 요소의 innerHTML 속성값 변경
+  -->
+
+  <div id="content"><b>box</b></div>
+
+  <div class="content">테스트1</div>
+  <div class="content">테스트2</div>
+  <div class="content">테스트3</div>
+
+  <button onclick="contentProp();">확인</button>
 
   <script>
+    function contentProp() {
 
+      // * innerHTML 값 가져오기
+      // 1) JavaScript 방식
+      console.log( document.getElementById('content').innerHTML );
+      // 2) jQuery 방식
+      console.log( $('#content').html() );
+
+      // * innerHTML 값 변경
+      // 1) JavaScript 방식
+      const divList = document.getElementsByClassName('content'); // HTMLCollection [div, div, div]
+      for(let divEl of divList){
+        divEl.innerHTML = '<b>javascript 방식으로 변경</b>';
+      }
+
+      // 2) jQuery 방식
+      $('.content').html('<b>jQuery 방식으로 변경</b>');
+      // html 메소드 내에서 선택된 요소에 알아서 순차적으로 접근해서 변경함
+
+    }
   </script>
 
   <hr>
 
-  <h2>input의 type을 이용해 요소 선택</h2>
-  <input type="text"> <br>
-  <input type="password"> <br>
-  <input type="radio" id="radio1" checked> ra1<br>
-  <input type="radio" id="radio2"> ra2<br>
-  <input type="checkbox" id="check1"> chk1<br>
-  <input type="checkbox" id="check2" checked> chk2<br>
-  <input type="submit">
-  <input type="submit" disabled> <br>
-  <select>
-    <option>A</option>
-    <option>B</option>
-  </select>
+  <h2>style 속성 제어</h2>
 
-  <script>
+  <!-- 
+    * style 속성 관련 메소드
+    1) 요소.css('css속성')               : 해당 css속성값을 반환
+    2) 요소.css('css속성', 'css속성값')  : 해당 요소에 전달된 css 반영
+    3) 요소.css({css속성: 'css속성값', 
+                  css속성: 'css속성값'}) : 해당 요소에 다수의 css 한꺼번에 반영 가능 
+  -->
 
-  </script>
-
-  <hr>
-  
-  <h2>탐색메소드(Traversing) 이용해서 요소 선택</h2>
-  <ul class="ott">
+  <ul class="ott" style="background-color: lightblue;">
     <li id="netflex"><a href="#">넷플릭스</a></li>
     <li id="disneyplus"><a href="#">디즈니플러스</a></li>
     <li id="tving"><a id="tving-link" href="#">티빙</a></li>
@@ -47,46 +71,197 @@
     <li id="coupangplay"><span>쿠팡플레이</span></li>
   </ul>
 
-  <script>
-      
+  <button onclick="styleProp();">확인</button>
 
-    
+  <script>
+    function styleProp(){
+      // * css 값 가져오기 
+      // 1) JavaScript 방식
+      console.log(document.querySelector('.ott').style.backgroundColor);
+      // 2) jQuery 방식
+      console.log($('.ott').css('backgroundColor'));
+
+      // * css 변경
+      // 1) JavaScript 방식
+      const aList = document.querySelectorAll('.ott a'); // NodeList [a, a, a, a]
+      aList.forEach(aEl => {
+        aEl.style.textDecoration = 'none';
+      });
+
+      // 2) jQuery 방식
+      $('.ott a').css('textDecoration', 'none');
+      $('.ott a').css('font-size', '32px'); // fontSize (o), font-size (o)
+
+      $('.ott a').css('fontWeight', '900').css('color', 'red'); // 메소드 체이닝 가능
+
+      $('#coupangplay > span').css({
+        backgroundColor: 'pink',
+        color: 'green',
+        fontSize: '32px'
+      });
+    }
   </script>
 
   <hr>
 
-  <h2>필터링메소드 이용해서 요소 선택</h2>
+  <h2>value 속성 제어</h2>
 
-  <table border="1" id="user-info">
-    <tr>
-      <th>이름</th>
-      <th>혈액형</th>
-      <th>거주지</th>
-    </tr>
-    <tr class="main">
-      <td>홍길동</td>
-      <td>A형</td>
-      <td>서울</td>
-    </tr>
-    <tr class="main">
-      <td>김영희</td>
-      <td>B형</td>
-      <td>경기도</td>
-    </tr>
-    <tr>
-      <td>김삼순</td>
-      <td>O형</td>
-      <td>부산</td>
-    </tr>
-    <tr>
-      <th colspan="2">총인원</th>
-      <td>3명</td>
-    </tr>
-  </table>
+  <!-- 
+    * value 속성 관련 메소드
+    1) 요소.val()       : 해당 요소의 value 속성값 반환
+    2) 요소.val('문구') : 해당 요소의 value 속성값 변경
+  -->
+
+  아이디 : <input type="text" id="userId">
+  <button onclick="valueProp();">확인</button>
 
   <script>
 
+    function valueProp() {
+      // * value 값 가져오기
+      // 1) JavaScript 방식
+      console.log(document.getElementById('userId').value);
+      // 2) jQuery 방식
+      console.log( $('#userId').val() );
+
+      // * value 값 변경
+      // 1) JavaScript
+      document.getElementById('userId').value = 'javascript';
+      // 2) jQuery
+      $('#userId').val('jQuery').css('color', 'red');
+
+    }
   </script>
+
+  <hr>
+
+  <h2>class 속성 제어</h2>
+
+  <!-- 
+    * className 속성 관련 메소드 
+    1) 요소.addClass('클래스명')    : 해당 요소에 클래스 추가
+    2) 요소.removeClass('클래스명') : 해당 요소에 클래스 제거
+    3) 요소.toggleClass('클래스명') : 해당 요소의 클래스 반전
+    4) 요소.hasClass('클래스명')    : 해당 요소에 클래스가 있으면 true/아니면 false 반환
+  -->
+
+  <style>
+    .blind {
+      display: none;
+    }
+  </style>
+
+  <div id="hello">hello world</div>
+  <button onclick="hide();">숨기기</button>
+  <button onclick="show();">보이기</button>
+  <button onclick="toggle();">토글</button>
+
+  <script>
+    function hide() {
+      // document.querySelect('#hello').classList.add('blind');
+      $('#hello').addClass('blind');
+    }
+
+    function show() {
+      $('#hello').removeClass('blind');
+    }
+
+    function toggle() {
+      $('#hello').toggleClass('blind');
+    }
+  </script>
+
+  <hr>
+
+  <h2>HTML Attribute 제어</h2>
+
+  <!-- 
+    * HTML 요소의 Attribute 속성 관련 메소드
+    1) 요소.attr('attr명')            : 해당 attribute 속성값 반환
+    2) 요소.attr('attr명', 'attr값')  : 해당 attribute 속성값 수정
+    3) 요소.removeAttr('attr명')      : 해당 attribute 삭제
+  -->
+
+  <img id="img-forest" src="../../assets/image/forest1.jpg" width="192px"> <br>
+  <button onclick="attribute();">확인</button>
+
+  <script>
+    function attribute() {
+      // * attribute 가져오기
+      console.log( $('#img-forest').attr('src') ); // document.getElementById('img-forest').getAttribute('src')
+      // * attribute 수정
+      $('#img-forest').attr('width', '120px').css('border', '2px dashed pink');
+      // * attribute 삭제
+      $('#img-forest').removeAttr('width'); 
+    }
+  </script>
+
+  <hr>
+
+  <h2>DOM Property 제어</h2>
+
+  <!-- 
+    * DOM 객체의 Property 속성 관련 메소드
+    1) 요소.prop('prop명')            : 해당 property 속성값 반환
+    2) 요소.prop('prop명', 'prop값')  : 해당 property 속성값 수정
+  -->
+
+  <img id="img-city" src="../../assets/image/city1.jpg" width="192px" class="city">
+
+  <div id="yesorno">
+    <input type="radio" name="flag" value="yes" checked> 예
+    <input type="radio" name="flag" value="no"> 아니오
+  </div>
+  <button onclick="property();">확인</button>
+
+  <script>
+    function property() {
+      
+      // * property 값 가져오기
+      console.log( $('#img-city').prop('src') );
+      console.log( $('#yesorno :radio').eq(0).prop('checked') );
+
+      if($('#yesorno :radio').eq(0).prop('checked')){
+        console.log('그림에 만족한다.');
+      }else{
+        console.log('그림에 만족하지 않는다.');
+      }
+
+      // * property 값 수정
+      $('#img-city').prop('width', 250);
+      $('#yesorno :radio').eq(1).prop('checked', true);
+
+    }
+  </script>
+
+  <hr>
+
+  <h2>data-* 속성 제어</h2>
+
+  <!-- 
+    * data 속성 관련 메소드 
+    1) 요소.data('data속성')       : 해당 data 속성값 반환
+    2) 요소.data('data속성', 'data속성값') : 해당 data 속성 추가 및 수정
+  -->
+
+  <div id="user" data-name="Go GilDong" data-home-address="Seoul" data-zipCode="12345">고길동</div>
+
+  <script>
+    // * data 속성 가져오기
+    console.log($('#user').data('name')); // document.getElementById('user').dataset.name
+    console.log($('#user').data('homeAddress')); // home-address(o), homeAddress(o)
+    console.log($('#user').data('zipcode')); // zipCode(x), zipconde(o)
+
+    // * data 속성 변경
+    $('#user').data('name', 'GilDong');
+
+    console.log($('#user').data('name'));
+
+    
+  </script>
+
   
+
+
 </body>
 </html>

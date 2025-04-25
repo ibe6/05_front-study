@@ -21,15 +21,29 @@
   -->
 
   <script>
-    
+    $(document).ready(function() { // dom 요소들이 다 로드되고 나서 실행되는 함수
+                                   // 따라서 dom 요소를 선택하는 구문이 요소 위치보다 위에 있어도 
+                                   // dom 요소가 만들어지고 나서 해당 코드가 실행됨 
 
+      $('#show').on('click', function(){
+        $('#img-city').show(3000);
+      });
+      $('#hide').on('click', function(){
+        $('#img-city').hide(3000);
+      });
+      $('#toggle').on('click', function(){
+        $('#box1').toggle(2000);
+      });
+
+    })
   </script>
-
   <button id="show">show</button>
   <button id="hide">hide</button>
-  <button id="toggle">toggle</button><br><br>
+  <button id="toggle">toggle</button>
+  <br><br>
 
-  <img src="../../assets/image/city1.jpg" width="300px" id="img-city"><br><br>
+  <img src="../../assets/image/city1.jpg" width="300px" id="img-city">
+  <br><br>
   <div id="box1" style="width:100px; height:100px; background:red">box1</div>
 
   <hr>
@@ -48,6 +62,27 @@
        → fadeTo     : 전달된 투명도로 처리 
   -->
 
+  <script>
+    $(document).ready(function(){
+
+      $('#fadeIn').on('click', function(){
+        $('#img-flower').fadeIn(2000);
+      });
+      $('#fadeOut').on('click', function(){
+        $('#img-flower').fadeOut(2000);
+      });
+      $('#fadeToggle').on('click', function(){
+        $('#img-flower').fadeToggle(2000);
+      });
+      $('#fadeTo').on('click', function(){
+        $('#img-flower').fadeTo(2000, 0.5);
+      });
+
+    });
+
+  </script>
+
+  
   <img id="img-flower" src="../../assets/image/flower1.jpg" width="100px">
   <br>
   <button id="fadeIn">fadeIn</button>
@@ -55,12 +90,7 @@
   <button id="fadeToggle">fadeToggle</button>
   <button id="fadeTo">fadeTo</button>
 
-  <script>
-
-  </script>
-
   <hr>
-
 
   <h2>slideUp, slideDown, slideToggle 메소드</h2>
 
@@ -73,28 +103,56 @@
         → slideDown   : 높이가 늘어나면서 display를 기존 상태로 처리
         → slideToggle : slideUp() <==> slideDown()
   -->
-  <style>
-    div{
-      background:beige;
-      border:1px solid yellow;
-      width:300px;
-      height:30px;
-      line-height:30px;
-      text-align:center;
-      border-radius:10px;
-      cursor:pointer;
-    }
-    p{
-      border:1px solid lightgray;
-      width:300px;
-      height:100px;
-      border-radius:10px;
-      margin-top:5px;
-      padding:10px;
-      box-sizing:border-box;
-      display:none;
-    }
-  </style>
+
+  <script>
+    $(function(){
+
+      $("#qna div").click(function(){
+
+        
+        $(this).next().slideToggle();
+        $(this).next().siblings("p").slideUp();
+        
+
+        /*
+        const $p = $(this).next(); // jQuery 방식으로 선택된 요소들 담아둘때 변수명앞에 $
+        
+        if($p.css("display") == "none"){
+          $(this).siblings("p").slideUp();
+          // 보여지게끔
+          $p.slideDown();
+        }else{
+          // 사라지게끔
+          $p.slideUp();
+        }
+        */
+
+      })
+    })
+  </script>
+
+<style>
+  div{
+    background:beige;
+    border:1px solid yellow;
+    width:300px;
+    height:30px;
+    line-height:30px;
+    text-align:center;
+    border-radius:10px;
+    cursor:pointer;
+  }
+  p{
+    border:1px solid lightgray;
+    width:300px;
+    height:100px;
+    border-radius:10px;
+    margin-top:5px;
+    padding:10px;
+    box-sizing:border-box;
+    display:none;
+  }
+</style>
 
   <div id="qna">
     <div>Q. 반품 언제되나요?</div>
@@ -113,12 +171,6 @@
     <p>A. 플러스친구 카카오톡을 활용하면 24시간내에 답변드리겠습니다.</p>
   </div>
 
-  <script>
-
-
-  </script>
   
-
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 </body>
 </html>

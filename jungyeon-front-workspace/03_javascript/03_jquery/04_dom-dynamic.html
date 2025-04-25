@@ -54,8 +54,17 @@
   </h1>
 
   <script>
-    
+      /*
+      $('<span class="added">B</span>').appendTo('#test1');
+      $('<span class="added">B</span>').prependTo('#test2');
+      $('<span class="added">B</span>').insertBefore('#test3');
+      $('<span class="added">B</span>').insertAfter('#test4');
+      */
 
+      $('#test1').append($('<span class="added">B</span>'));
+      $('#test2').prepend($('<span class="added">B</span>'));
+      $('#test3').before($('<span class="added">B</span>'));
+      $('#test4').after($('<span class="added">B</span>'));
   </script>
 
   <hr>
@@ -98,8 +107,20 @@
   <div id="clone-result"></div>
 
   <script>
-    
+    $('.item').hover(function(){
+      $(this).addClass('purple');
+    }, function(){
+      $(this).removeClass('purple');
+    });
 
+    $('#clone').on('click', function() {
+      // #item1인 요소를 복제해서 #clone-result 자손으로 추가 
+
+      // $('#clone-result').append($('#item1')); // 복제하지 않고 추가하면 이동되버림
+
+      // $('#clone-result').append($('#item1').clone());  // 이벤트는 복사안됨
+      $('#clone-result').append($('#item1').clone(true)); // 이벤트까지 복사됨
+    })
   </script>
 
   <hr>
@@ -130,8 +151,20 @@
   <div id="remove-result"></div>
 
   <script>
-    
+    $('#empty').on('click', function() {
+      //$("#item2").empty();
+      $("#remove-test").empty(); 
+    })
 
+    $("#remove").click(function(){
+      const el = $("#item2").remove(); // 이벤트는 안가져옴
+      $("#remove-result").append(el);
+    })
+
+    $("#detach").click(function(){
+      const el = $("#item2").detach(); // 이벤트까지도 가져옴
+      $("#remove-result").append(el);
+    })
   </script>
 
 
@@ -168,18 +201,44 @@
       두번째 열에는 상품가격
       세번째 열에는 해당상품에대한정보를 볼 수 있는 버튼 두기
     */
-   
+    $('#create-btn').on('click', function() {
+      
+      /*
+      let tableEl = '<table border="1">';
+      for(let product of productList){
+        tableEl += `<tr>
+           <td>${product.name}</td>
+           <td>${product.price}</td>
+           <td><button>확인</button></td>
+        </tr>`;
+      }
+      tableEl += '</table>';
+      $('#result').html(tableEl);
+      */
 
+      let tableEl = $('<table border="1"></table>')
+      for(let product of productList){
+        let trEl = $('<tr></tr>');
+        trEl.append($('<td></td>').text(product.name));
+        trEl.append($('<td></td>').text(product.price));
+        trEl.append($('<td><button>확인</button></td>'));
+        tableEl.append(trEl);
+      }
+      $('#result').append(tableEl);
 
+    })
 
     /*
       문제2.
       동적으로 만들어진 테이블 요소 내의 각 행의 마지막 셀에 있는 버튼 클릭시
       해당 행의 상품 정보(상품명, 상품가격)를 alert로 띄워주기 
     */
-   
-
+    $('#result').on('click', 'button', function() {
+      let productName = $(this).parent().prev().prev().text();
+      let productPrice = $(this).parent().prev().text();
+      alert(`상품명: ${productName}, 상품가격: ${productPrice}`);
+    })
   </script>
-  
+
 </body>
 </html>

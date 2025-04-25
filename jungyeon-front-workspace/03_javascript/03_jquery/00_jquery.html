@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 <body>
 
@@ -30,6 +31,17 @@
 
   <script>
 
+    // 순수 JavaScript 방식 (바닐라 자바스크립트)
+    const jsEl = document.getElementById('javascript-test');
+    // DOM 조작 - property에 접근해서 대입하는 방식
+    jsEl.textContent = 'javascript방식으로 문구변경';
+    jsEl.style.backgroundColor = 'red';
+
+    // jQuery 라이브러리 방식 
+    const jqEl = $('#jQuery-test');
+    // DOM 조작 - jQuery용 메소드 사용
+    jqEl.text('jQuery방식으로 문구변경');
+    jqEl.css('backgroundColor', 'green');
     
   </script>
 

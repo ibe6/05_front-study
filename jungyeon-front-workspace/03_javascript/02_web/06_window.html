@@ -43,8 +43,14 @@
   <button id="prompt">prompt챵출력</button>
 
   <script>
+    document.getElementById('alert').addEventListener('click', function(evt){
+      /*window.*/alert('alert 창입니다!');
+    });
 
-
+    document.getElementById('confirm').addEventListener('click',(evt) => {
+      const answer = confirm('계속하시겠습니까?')
+      console.log(answer);
+    });
   </script>
   
 
@@ -74,52 +80,79 @@
            * 유의사항 : resizable ~ toolbar는 브라우저별로 적용 가능 여부가 다름!
   -->
 
-  <button id="naver_popup">네이버 창</button> 
+  <button id="naver_popup">네이버 창</button>
   <button id="my_popup">내가 만든 창</button> <br>
-
+  <input type = "text" id="parent_msg">
+  <button id="parent_btn">팝업창 자식에게 전송</button>
+  <div id="child_msg_result"></div>
   <script>
-
+    document.getElementById('naver_popup').addEventListener('click', (evt) => {
+      //새로운 창으로 네이이버 / 이미 열린 창이 있다면 기존의 창에서 새로고침
+      open('https://www.naver.com/','네이버~~~~~~~~~안보임~','width=500, height=500');
+    });
+    let popupWindow;
+    document.getElementById('my_popup').addEventListener('click', (evt) => {
+      popupWindow = open('./popup.html', 'mypopup', 'width=360, height=530');
+    });
+    document.getElementById('parent_btn').addEventListener('click', (evt) => {
+      if(popupWindow) {//팝업창이 떠있을 경우
+        popupWindow.document.getElementById('parent_msg_result').textContent //자식창의 윈도우 객체에 접근하여
+          = document.getElementById('parent_msg').value;  //부모창에 입력된 데이터 띄움
+      }else {
+        alert('팝업창이 열려있지 않습니다.');
+      }
+    });
   </script>
-
   <hr>
-
-
-  <!-- 
-    ## 타이머 관련 함수 ## 
+  <!--
+    ## 타이머 관련 함수 ##
     1. [window.]setTimeout(callbackFn, millisecond);
         → 해당 millisecond 후에 전달된 callbackFn이 단 한 번 동작됨
-
     2. [window.]setInterval(callbackFn, millisecond);
-        → 해당 millisecond 마다 전달된 callbackFn이 반복적으로 동작됨 
+        → 해당 millisecond 마다 전달된 callbackFn이 반복적으로 동작됨
   -->
-
   <h2>setTimeout</h2>
-
   <button id="timeout1">3초 뒤에 알람 출력</button>
   <button id="timeout2">팝업창</button>
-
   <script>
-
-
+    document.getElementById('timeout1').addEventListener('click', (evt) => {
+      setTimeout(() => alert('3초뒤'), 3000);
+    });
+    document.getElementById('timeout2').addEventListener('click', (evt) => {
+      const popupWindow = open('./popuo.html', 'mypopup', 'width=500, height=500');
+      popupWindow.alert('알람창이 꺼지면 2초후에 팝업창꺼진다'); //자식창 띄우고 자식창에 alert띄움
+      setTimeout(() => popupWindow.close(), 2000); //alert를 일단 꺼야 동작함
+    });
   </script>
-
   <hr>
 
   <h2>setInterval</h2>
 
   <div id="time" style="font-size: 32px; color: red;"></div>
 
+  <button id="start_time">시계 시작</button>
+
   <script>
-    
+    function changeTime(){
+      const now = new Date();
+      let hour = now.getHours(); // 24시간형식
+      let minute = now.getMinutes();
+      let second = now.getSeconds();
 
-    
+      // 12시간 형식으로, 시/분/초가 한자리 수일 경우 앞에 0 덧붙이기
+      hour = hour > 12 ? hour - 12 : hour;
+      hour = hour < 10 ? "0" + hour : hour;
+      minute = minute < 10 ? "0" + minute : minute;
+      second = second < 10 ? "0" + second : second;
+
+      document.getElementById('time').textContent = `${hour}:${minute}:${second}`;
+    }
+
+    document.getElementById('start_time').addEventListener('click', (evt) => {
+      changeTime();
+      setInterval(changeTime, 1000);
+    });
   </script>
-
-
-
-
-
-
 
 </body>
 </html>

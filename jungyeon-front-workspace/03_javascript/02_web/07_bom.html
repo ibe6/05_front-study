@@ -38,6 +38,15 @@
 
   <script>
 
+    document.getElementById('back-btn').onclick = (evt) => {
+      history.back();
+      // history.go(-1);
+    };
+
+    document.getElementById('forward-btn').addEventListener('click', (evt) => {
+      history.forward();
+      // history.go(1);
+    });
 
   </script>
 
@@ -57,9 +66,12 @@
 
   <h4>다른 페이지로 이동하기</h4>
   <div>
-    <a>네이버로 이동</a> <br>
+    <!-- a요소는 기본적으로 href 속성 지원, 클릭시 href 속성값으로 이동되는 디폴트 이벤트 내장 -->
+    <a href="http://www.naver.com">네이버로 이동</a> <br>
+
+    <!-- 단, 타 요소같은 경우 해당 기능을 제공하지 않음 -->
     <button id="google-btn"><i class="fa-brands fa-google"></i></button> <!--구글로 이동-->
-    <button><i class="fa-brands fa-youtube"></i></button> <!--유튜브로 이동-->
+    <button onclick="location.href = 'http://www.youtube.com';"><i class="fa-brands fa-youtube"></i></button> <!--유튜브로 이동-->
   </div>
   
   <h4>새로고침</h4>
@@ -69,6 +81,16 @@
 
   <script>
 
+    document.getElementById('google-btn').addEventListener('click', function(){
+      // location.href = 'http://www.google.com';  // 뒤로가기 가능
+      // location.assign('http://www.google.com'); // 뒤로가기 가능
+      location.replace('http://www.google.com');   // 뒤로가기 불가능
+    });
+
+    document.getElementById('refresh-btn').addEventListener('click', function(evt){
+      // location.href = location.href;
+      location.reload(); // 현재 위치에서 새로고침
+    });
 
   </script>
 

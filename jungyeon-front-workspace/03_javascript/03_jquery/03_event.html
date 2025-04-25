@@ -37,10 +37,49 @@
 
   <script>
 
+    // 1) JavaScript 방식
+    /*
+    const h3List = document.getElementsByTagName('h3');
+    Array.from(h3List).forEach(h3 => {
+      h3.addEventListener('click', function(){
+        console.log('클릭됨');
+      });
+    });
+    */
 
+    // 2) jQuery 방식
+    $('h3').click(function(evt){
+      console.log('클릭됨');
+      console.log(window.event.target);
+      console.log(evt.target);
+      console.log(this); // 화살표 함수일 때는 안됨 
+    });
+
+    $('h3').dblclick((evt) => {
+      // evt.target == 순수 JavaScript용 객체 
+      // evt.target.textContent = '더블클릭됨';
+
+      // $(evt.target) == JavaScript객체를 jQuery 객체로 변경
+      $(evt.target).text('더블클릭됨');
+    });
+
+    /*
+    $('h3').mouseenter(function(){
+      $(this).addClass('yellow');
+    });
+
+    $('h3').mouseout(function(){
+      $(this).removeClass('yellow');
+    })
+    */
+
+    $('h3').hover(function(){
+      $(this).addClass('yellow');
+    }, function(){
+      $(this).removeClass('yellow');
+    })
 
   </script>
-
 
   <h2>on 메소드</h2>
 
@@ -51,7 +90,7 @@
        1) 정적요소 (페이지 로드시 존재하는 요소)
           이벤트대상.on('이벤트타입', function() {
           
-          )
+          })
        2) 동적요소 (페이지 로드시에는 없다가 이벤트에 의해 만들어지는 요소)
           이벤트대상의상위요소.on('이벤트타입', '이벤트대상', function() {
  
@@ -70,8 +109,48 @@
   </div>
 
   <script>
-    
+    /*
+    $('#test1').on('mouseenter', function(){
 
+    });
+
+    $('#test1').on('mouseout', function(){
+
+    });
+    */
+
+    $('#test1').on({
+      mouseenter: function(){
+        $(this).css('backgroundColor', 'yellow')
+               .text('마우스 올라감');
+      },
+      mouseout: function(){
+        $(this).css('backgroundColor', 'yellowgreen')
+               .text('마우스 빠져나감');
+      }
+    });
+
+    $('#test1').on('click', function(){
+      $(this).css('backgroundColor', 'orangered')
+             .text('mouseenter, mouseout 이벤트 제거할꺼임!')
+             .off('mouseenter')
+             .off('mouseout');
+
+      $('#wrap').append( $('<h5>동적요소(페이지 로드시 없던 요소)</h5>') );
+    });
+
+    // 동적요소에는 반영 안됨
+    /*
+    $('h5').on('click', function(){
+      alert('h5요소 클릭됨');
+    });
+    */
+
+    // 동적요소에도 이벤트 핸들러 할당하고자 할 경우 
+    $('#wrap').on('click', 'h5', function(){
+      alert('h5요소 클릭됨');
+    });
+    // 상위요소.on('이벤트타입', '하위요소', 이벤트핸들러)
   </script>
 
   <hr>
@@ -89,8 +168,9 @@
       문제1.
       .menu 요소 클릭시 현재 클릭된 요소의 textContent 값이 alert로 띄워지도록
     */
-   
-
+    $('#jjigae .menu').on('click', function() {
+      alert($(this).text());
+    })
   </script>
 
   
@@ -115,55 +195,81 @@
       현재 클릭된 checkbox 요소가 checked 상태일 경우 가로,세로 길이를 30px로 변경하고 그 뒤의 문구 크기를 32px로 변경
                                   checked 상태가 아닐 경우 원상복구 하시오. 
     */
-   
-
+    $('#hobby :checkbox').on('click', function() {
+      if($(this).is(':checked')){
+        $(this).css({width: '30px', height: '30px'});
+        $(this).next().css('fontSize', '32px');
+      }else{
+        $(this).css({width: '', height: ''});
+        $(this).next().css('fontSize', '');
+      }
+    });
 
     /*
       문제2.
       #hobby-btn 클릭시 현재 checked 상태의 checkbox 요소들의 value값을 alert로 출력하시오.
       만일 checked 된 checkbox 가 없을 경우 '선택된 취미가 없습니다.' 출력
     */
-   
+    $('#hobby-btn').on('click', function() {
 
+      console.log($('#hobby :checkbox:checked').length); // length로 선택된 요소의 갯수 확인 가능
+      const count = $('#hobby :checkbox:checked').length;
+
+      let result = '';
+      if(count == 0){
+        result = '선택된 취미가 없습니다.';
+      }else{
+        for(let i=0; i<count; i++){
+          result += $('#hobby :checkbox:checked').eq(i).val() + " ";
+        }
+      }
+      alert(result);
+
+    })
   </script>
 
   <hr>
 
   <h2>one 메소드</h2>
 
-  <!-- 
-    * one 메소드
-    1. 한번만 동작하는 이벤트 작성가능
-    2. 사용법
-       이벤트대상.one('이벤트타입', function() {
-         실행내용
-       })
-  -->
-
   <button id="one-time">한번만실행됨</button>
 
   <script>
-
-
-
+    /*
+      * one 메소드
+        1. 한번만 동작하는 이벤트 작성가능
+        2. 사용법
+           이벤트대상.one('이벤트타입', function() {
+              실행내용
+           })
+    */
+    $(document).ready(function(){
+      $('#one-time').one('click', function() {
+        alert('처음이자 마지막 이벤트 실행');
+      })
+    })
   </script>
 
   <hr>
 
   <h2>trigger 메소드</h2>
-
-  <!-- 
-    * trigger 메소드
-    1. 특정 요소의 이벤트를 강제로 실행
-    2. 사용법
-        이벤트대상.trigger('이벤트타입');
-        이벤트대상.이벤트메소드(); // 이렇게도 가능함
-  -->
   <button id="trigger">#test1클릭</button>
 
   <script>
+    /*
+      * trigger 메소드
+        1. 특정 요소의 이벤트를 강제로 실행
+        2. 사용법
+           이벤트대상.trigger('이벤트타입');
+           이벤트대상.이벤트메소드(); // 이렇게도 가능함
+    */
+    $(document).ready(function(){
+      $('#trigger').on('click', function(){
+        // $('#test1').click();
+        $('#test1').trigger('click');
+      })
 
-    
+    })
   </script>
 
 
