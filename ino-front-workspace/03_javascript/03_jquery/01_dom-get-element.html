@@ -13,7 +13,12 @@
   <div id="box" class="wrap">box</div>
 
   <script>
-
+    // tag 이용 선택
+    console.log( $('div') ); // document.getElementByTagName('div')
+    // id 이용 선택
+    console.log($('#box')); // document.getElementById('#box')
+    // class "
+    console.log( $('.wrap')) // document.getElementsByClassName('wrap')
   </script>
 
   <hr>
@@ -33,7 +38,20 @@
   </select>
 
   <script>
-
+    console.log( $(':text')); // type = text 요소 선택
+    console.log( $(':password'));
+    console.log( $(':radio')); // 여러 요소가 순차적으로 담겨 있음.
+    console.log( $(':checkbox')); // 마찬가지
+    console.log( $(':submit'));
+    console.log('=========================');
+    console.log($(':radio:checked'));
+    console.log($(':checkbox:checked'));
+    console.log($(':submit:enabled'));
+    console.log( $(':selected'));
+    console.log('-- is method 이용 상태 확인 --');
+    console.log( $(':text').is(':focus'));
+    console.log($('#radio1').is(':checked'));
+    
   </script>
 
   <hr>
@@ -48,10 +66,32 @@
   </ul>
 
   <script>
-      
+    // 자손, 후손 :  Descendants Traversing
+    // 자손
+    console.log('-- 자손 요소 선택 --');
+    console.log($('.ott > li')); 
+    console.log($('.ott').children()); // li 요소들
+    console.log($('.ott').children().children()); // li 요소의 자손 a 요소 4 + span
+    // 후손
+    console.log('== 후손 요소 선택 ==');
+    console.log( $('.ott a'));
+    console.log( $('.ott').find('a'));
+    // 동위 관계 : Sideways Traversing
+    // 일반 형제
+    console.log( $('#tving').nextAll() );
+    console.log( $('#tving').prevAll() );
+    console.log( $('#tving').siblings('li') );
+    // 인접 형제
+    console.log( $('#tving').next() );
+    console.log( $('#tving').prev() );
 
-    
-  </script>
+    // 부모 및 형제
+    console.log('====부모====');
+    console.log( $('#tving-link').parent() ); //  부모요소 1개 가져옴
+    console.log( $('#tving-link').parents() ); //  부모요소 전부 가져옴
+    console.log( $('#tving-link').closest('ul') ); // 가장 가까운 요소 찾기, 선택자 제시 필수
+    console.log('------------------------------')
+</script>
 
   <hr>
 
@@ -85,6 +125,13 @@
   </table>
 
   <script>
+    console.log($('#user-info tr').first()); // 첫번째 선택
+    console.log($('#user-info tr').last()); // 마지막 선택
+    console.log($('#user-info tr').even()); // 짝수
+    console.log($('#user-info tr').odd()); // 홀수
+    console.log($('#user-info tr').eq(3)); // custom, 3의 배수
+    console.log($('#user-info tr').filter('.main') );
+    console.log($('#user-info tr').not('.main') );
 
   </script>
   

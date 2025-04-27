@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 <body>
 
@@ -12,14 +13,14 @@
     1. JavaScript의 복잡한 구문을 보다 간소화해서 사용할 수 있도록 만들어진 JavaScript 기반의 라이브러리
     2. 존 레식이 개발 
     3. 장점
-       1) DOM요소와 관련된 스크립트를 보다 쉽게 구현할 수 있음
-       2) AJAX(비동기통신), 이벤트 처리 등 폭넓게 지원
-       3) jQuery와 관련된 확장형 플러그인, 오픈 API등이 제공
+      1) DOM요소와 관련된 스크립트를 보다 쉽게 구현할 수 있음
+      2) AJAX(비동기통신), 이벤트 처리 등 폭넓게 지원
+      3) jQuery와 관련된 확장형 플러그인, 오픈 API등이 제공
           (차트, 슬라이드, 애니메이션 등등)
     4. jQuery 라이브러리(.js)를 html 문서에 포함해야 사용 가능 
         * 제공 사이트 : http://jquery.com
-           → compressed 파일   : xxx.min.js, 주석/공백 등이 다 제거된 압축버전 
-           → uncompressed 파일 : xxx.js, 가독성이 그대로 유지되어있는 버전
+          → compressed 파일   : xxx.min.js, 주석/공백 등이 다 제거된 압축버전 
+          → uncompressed 파일 : xxx.js, 가독성이 그대로 유지되어있는 버전
 
         1) jQuery 라이브러리 다운받아 포함시키기
         2) 별도의 다운없이 CDN을 이용하여 포함시키기 
@@ -29,7 +30,15 @@
   <div id="jQuery-test">jQuery방식으로 선택</div>
 
   <script>
+    // javascript 방식
+    const vanilla = document.getElementById('javascript-test');
+    vanilla.textContent = '자바스크립트방식으로 문구변경';
+    vanilla.style.background = 'red';
 
+    // jQuery 방식
+    const jq = $('#jQuery-test');
+    jq.text('jQuery 방식으로 문구 변경');
+    jq.css('background', 'green');
     
   </script>
 

@@ -15,16 +15,16 @@
     1. jQuery용 객체에 이벤트 핸들러를 부여하는 메소드 
     2. 주로 이벤트명이 곧 메소드 명으로 되어있음 
     3. 사용법
-      이벤트대상.이벤트메소드(이벤트핸들러);
+       이벤트대상.이벤트메소드(이벤트핸들러);
 
-      1) 익명함수
-        이벤트대상.click(function(evt) {
-            실행내용;
-        })
-      2) 화살표함수
-        이벤트대상.click(evt => {
-            실행내용;
-        })
+       1) 익명함수
+          이벤트대상.click(function(evt) {
+              실행내용;
+          })
+       2) 화살표함수
+          이벤트대상.click(evt => {
+              실행내용;
+          })
   -->
 
   <style>
@@ -36,35 +36,37 @@
   <h3>클릭해보세요2</h3>
 
   <script>
-    // js 방식
     const h3List = document.getElementsByTagName('h3');
     Array.from(h3List).forEach(h3 => {
-      h3.addEventListener('click', (evt) => {
-        console.log('클릭');
-      })
+      h3.addEventListener('click',function() {
+        console.log('킬릭됨');
+      });
     });
 
-    // jQuery 방식
-    $('h3').click((evt) => {
-      console.log('jq클릭');
+    $('h3').click(function(evt) {
+      console.log('클릭됨');
+      console.log(window.event.target);
       console.log(evt.target);
+      console.log(this);
     });
 
     $('h3').dblclick((evt) => {
-      // evt.target == 순수 JS용 객체 이므로 jQuery 조작불가
-      evt.target.textContent = '더블클릭됨';
-      // $(evt.target) == $()로 묶으면 jQuery용 객체로 바뀜
-      $(evt.target).text('asd');
+      evt.target.textContent = '더블클릭';
+      $(evt.target).text('더블클릭됨');
     });
-    /* 
-    $('h3').mouseenter(function(){
+
+    // $('h3').mouseenter(function() {
+    //   $(this).addClass('yellow');
+    // });
+
+    // $('h3').mouseout(function() {
+    //   $(this).removeClass('yellow');
+    // });
+    $('h3').hover(function() {
       $(this).addClass('yellow');
-    });
-    $('h3').mouseout(function(){
+    }, function() {
       $(this).removeClass('yellow');
     });
-     */
-    $('h3').hover(function(){$(this).addClass('yellow')}, function(){$(this).removeClass('yellow')});
   </script>
 
 
@@ -74,19 +76,19 @@
     ## on 메소드 ##
     1. 하나의 이벤트 타입에 여러개의 이벤트 핸들러 등록 가능 (표준 이벤트 모델의 특징)
     2. 사용법
-      1) 정적요소 (페이지 로드시 존재하는 요소)
-        이벤트대상.on('이벤트타입', function() {
-        
-        )
-      2) 동적요소 (페이지 로드시에는 없다가 이벤트에 의해 만들어지는 요소)
-        이벤트대상의상위요소.on('이벤트타입', '이벤트대상', function() {
-
-        })
+       1) 정적요소 (페이지 로드시 존재하는 요소)
+          이벤트대상.on('이벤트타입', function() {
+          
+          })
+       2) 동적요소 (페이지 로드시에는 없다가 이벤트에 의해 만들어지는 요소)
+          이벤트대상의상위요소.on('이벤트타입', '이벤트대상', function() {
+ 
+          })
 
     ## off 메소드 ##
     1. 등록된 이벤트를 제거
     2. 사용법
-      이벤트대상.off('이벤트타입');
+       이벤트대상.off('이벤트타입');
   -->
 
   <h4 id="test1">마우스 클릭 및 올려보세요</h4>
@@ -96,43 +98,35 @@
   </div>
 
   <script>
-    $('#test1').on('mouseenter', function(){
-
-    });
-    $('#test1').on('mouseout', function(){
-
-    });
+    // $('#test1').on('mouseenter', function() {
+    // });
+    // $('#test1').on('mouseout', function() {
+    // });
 
     $('#test1').on({
-      mouseenter: function(){
-        $(this).css('backgroundColor', 'yellow')
-                .text('진짜 하지마세요')
+      mouseenter: function() {
+        $(this).css('background', 'yellow').text('마우스 올라감');
       },
-      mouseout: function(){
-        $(this).css('backgroundColor', 'red')
-                .text('클릭하지 마세요')
+      mouseout: function() {
+        $(this).css('backgroundColor', 'yellowgreen')
+               .text('마우스 빠져나감');
       }
     });
 
-    $('#test1').on('click', function(){
-      $(this).css('backgroundColor', 'white')
-              .text('die')
-              .off('mouseenter')
-              .off('mouseout');
-
-      $('#wrap').append( $('<h5>동적요소(페이지 로드시 없던 요소)</h5>'))
+    $('test1').on('click',() => {
+      $(this).css('backgroundColor', 'orangered')
+             .text('mouseenter, mouseout 이벤트 제거')
+             .off('mouseenter')
+             .off('mouseout');
+      $('#wrap').append($('<h5>동적 요소(페이지 로드시 없던 요소)</h5>'));       
     });
-    
-    // $('h5').on('click', function(){ // 동적 요소에는 반영이되지 않음 => 서순
+
+    // $('h5').on('click', function() { 동적 요소에는 방영 안됨
     //   alert('h5요소 클릭됨');
     // });
-
-    // 동적 요소에도 이벤트핸들러를 할당하고자 할 경우
-    $('#wrap').on('click', 'h5', function(){
-      alert('h5클릭');
+    $('#wrap').on('click', 'h5', () => {
+      alert('h5요소 클릭됨');
     });
-    // 상위요소.on('이벤트타입', '하위요소', '이벤트핸들러')
-
   </script>
 
   <hr>
@@ -150,21 +144,11 @@
       문제1.
       .menu 요소 클릭시 현재 클릭된 요소의 textContent 값이 alert로 띄워지도록
     */
-    $('#jjigae .menu').on('click', function(evt){
-      alert(`${$(evt.target).text()}`);
-    });
+   
 
   </script>
 
-  <style>
-    .big{
-      width: 30px;
-      height: 30px;
-    }
-    .big+label{
-      font-size: 32px;
-    }
-  </style>
+  
 
   <h2>연습2</h2>
 
@@ -186,15 +170,7 @@
       현재 클릭된 checkbox 요소가 checked 상태일 경우 가로,세로 길이를 30px로 변경하고 그 뒤의 문구 크기를 32px로 변경
                                   checked 상태가 아닐 경우 원상복구 하시오. 
     */
-    
-    $('#hobby :checkbox').on('click', function(evt){
-      if($(this).prop('checked')){
-        $(this).addClass('big');
-      }else{
-        $(this).removeClass('big');
-
-      }
-    });
+   
 
 
     /*
@@ -202,9 +178,7 @@
       #hobby-btn 클릭시 현재 checked 상태의 checkbox 요소들의 value값을 alert로 출력하시오.
       만일 checked 된 checkbox 가 없을 경우 '선택된 취미가 없습니다.' 출력
     */
-  $('#hobby-btn').on('click', function(evt){
-    console.log($('#hobby').prop('checked'));
-  });
+   
 
   </script>
 
@@ -216,9 +190,9 @@
     * one 메소드
     1. 한번만 동작하는 이벤트 작성가능
     2. 사용법
-      이벤트대상.one('이벤트타입', function() {
-        실행내용
-      })
+       이벤트대상.one('이벤트타입', function() {
+         실행내용
+       })
   -->
 
   <button id="one-time">한번만실행됨</button>

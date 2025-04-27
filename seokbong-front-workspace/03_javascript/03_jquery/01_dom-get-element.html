@@ -13,7 +13,13 @@
   <div id="box" class="wrap">box</div>
 
   <script>
-
+    // 태그이용해서 선택 
+    console.log( $('div') );      // document.getElementsByTagName('div')
+    // 아이디이용해서 선택
+    console.log( $('#box') );     // document.getElementById('box')
+    // 클래스이용해서 선택
+    console.log( $('.wrap') );    // document.getElementsByClassName('wrap')
+    console.log('---------------------');
   </script>
 
   <hr>
@@ -33,7 +39,24 @@
   </select>
 
   <script>
+    console.log('-- type 선택자 이용 --');
+    console.log( $(':text') );
+    console.log( $(':password') );
+    console.log( $(':radio') );
+    console.log( $(':checkbox') );
+    console.log( $(':submit') );
 
+    console.log('-- 상태 선택자 이용 --');
+    console.log( $(':radio:checked') );
+    console.log( $(':checkbox:checked') );
+    console.log( $(':submit:enabled') );
+    console.log( $(':submit:disabled') );
+    console.log( $(':selected') );
+
+    console.log('-- is메소드 이용해서 상태 확인 --');
+    console.log( $(':text').is(':focus') );
+    console.log( $('#radio1').is(':checked') );
+    console.log( $('#radio2').is(':checked') );
   </script>
 
   <hr>
@@ -49,8 +72,36 @@
 
   <script>
       
+    // * 자손 및 후손 : Descendants Traversing
+    // 1) 자손
+    console.log('-- 자손 요소 선택 --');
+    console.log( $('.ott > li') );
+    console.log( $('.ott').children() );  // li요소들 5개
+    console.log( $('.ott').children().children() ); // li요소의 자손들 a요소 4개 + span요소 1개
+    console.log( $('.ott').children().children('a') ); // li요소의 자손들 중에서 a요소 4개
 
-    
+
+
+
+
+
+
+    // * 동위 관계 : Sideways Traversing
+    // 1) 일반형제
+    console.log( $('#tving').nextAll() );
+    console.log( $('#tving').prevAll() );
+    console.log( $('#tving').siblings() );
+
+    // 2) 인접형제 (+)
+    console.log( $('#tving').next() );
+    console.log( $('#tving').prev() );
+
+    // * 부모 및 조상 : Ancestors Traversing
+    console.log( $('#tving-link').parent() );
+    console.log( $('#tving-link').parents() );
+    console.log( $('#tving-link').closest('ul') );
+
+    console.log('--------------------------------');
   </script>
 
   <hr>
@@ -85,7 +136,13 @@
   </table>
 
   <script>
-
+    console.log( $('#user-info tr').first() );
+    console.log( $('#user-info tr').last() );
+    console.log( $('#user-info tr').even() ); // 짝수번째
+    console.log( $('#user-info tr').odd() );  // 홀수번째
+    console.log( $('#user-info tr').eq(3) ); 
+    console.log( $('#user-info tr').filter('.main') ); 
+    console.log( $('#user-info tr').not('.main') ); 
   </script>
   
 </body>

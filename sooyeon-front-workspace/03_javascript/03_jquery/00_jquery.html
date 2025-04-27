@@ -4,12 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 <body>
 
   <!-- 
     ## jQuery ##
+    바닐라자바스크립트 : 순수 자바스크립트로 개발하는 것 지향
+
+
+
     1. JavaScript의 복잡한 구문을 보다 간소화해서 사용할 수 있도록 만들어진 JavaScript 기반의 라이브러리
     2. 존 레식이 개발 
     3. 장점
@@ -30,16 +34,21 @@
   <div id="jQuery-test">jQuery방식으로 선택</div>
 
   <script>
-    // vanilla JS
-    const jsEL = document.getElementById('javascript-test');
-    // control DOM - property 접근 -> 대입
-    jsEL.textContent = 'helloworld';
+    //바닐라 js
+    const jsEl = document.getElementById('javascript-test');
+    jsEl.textContent = 'javascript방식으로 문구 변경';
+    jsEl.style.backgroundColor = 'red';
+
+    //jQuery 라이브러리
+    const jqEl = $('#jQuery-test');
+    jqEl.text('jQuery방식으로문구변ㅅ경');
+    jqEl.css('backgroundColor','green');
+
     
-    // jQuery library 방식
-    const jqEL = $('#jQuery-test');
-    jqEL.text('jQuery hello world');
-    jqEL.css('backgroundColor', 'green');
   </script>
+
   
+
+
 </body>
 </html>

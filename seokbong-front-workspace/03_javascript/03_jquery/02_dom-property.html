@@ -31,6 +31,23 @@
   <script>
     function contentProp() {
 
+      // * innerHTML 값 가져오기
+      // 1) JavaScript 방식
+      console.log( document.getElementById('content').innerHTML );
+      // 2) jQuery 방식
+      console.log( $('#content').html() );
+
+      // * innerHTML 값 변경
+      // 1) JavaScript 방식
+      const divList = document.getElementsByClassName('content');  // HTMLCollection[div, div, div]
+      for(let divEl of divList) {
+        divEl.innerHTML = '<b>javascript 방식으로 변경</b>';
+      }
+
+      // jQuery 방식
+      $('.content').html('<b>jQuery 방식으로 변경</b>');
+      // html 메소드 내에서 선택된 요소에 알아서 순차적으로 접근해서 변경함
+
     }
   </script>
 
@@ -58,8 +75,30 @@
 
   <script>
     function styleProp(){
-      
+      // * css 값 가져오기
+      // 1) JavaScript 방식
+      console.log(document.querySelector('.ott').style.backgroundColor);
+      // 2) jQuery 방식
+      console.log($('.ott').css('backgroundColor'));
 
+      // * css 변경
+      // 1) JavaScript 방식
+      const aList = document.querySelectorAll('.ott a'); // NodeLost[a,a,a,a]
+      aList.forEach(aEl => {
+        aEl.style.textDecoration = 'none';
+      });
+
+      // 2) jQuery 방식
+      $('.ott a').css('textDecoration', 'none');
+      $('.ott a').css('font-size', '32px'); // fontSize(o), font-size(o)
+      
+      $('.ott a').css('fontWeight', '900').css('color', 'red'); // 메소드 체이닝 가능
+
+      $('#coupangplay > span').css({
+        backgroundColor: 'pink',
+        color: 'green',
+        fontSize: '32px'
+      });
     }
   </script>
 
@@ -79,7 +118,17 @@
   <script>
 
     function valueProp() {
-      
+      // * value 값 가져오기
+      // 1) JavaScript 방식
+      console.log(document.getElementById('userId').value);
+      // 2) jQuery 방식
+      console.log( $('#userId').val() );
+
+      // * valie 값 변경
+      // 1) JavaScript
+      document.getElementById('userId').value = 'javascript';
+      // 2) jQuery
+      $('#userId').val('jQuery').css('color', 'red');
 
     }
   </script>
@@ -109,15 +158,16 @@
 
   <script>
     function hide() {
-      
+      // document.querySelector('#hello').classList.add('blind');
+      $('#hello').addClass('blind');
     }
 
     function show() {
-      
+      $('#hello').removeClass('blind');
     }
 
     function toggle() {
-      
+      $('#hello').toggleClass('blind');
     }
   </script>
 
@@ -137,8 +187,12 @@
 
   <script>
     function attribute() {
-      
-
+      // * attribute 가져오기
+      console.log( $('#img-forest').attr('src') ); // document/getElementById('img-forset').getAttribute
+      // * attribute 수정
+      $('#img-forest').attr('width', '120px').css('border', '2px dashed pink');
+      // * attribute 삭제
+      $('#img-forest').removeAttr('width');
     }
   </script>
 
@@ -162,8 +216,21 @@
 
   <script>
     function property() {
-      
 
+      // * property 값 가져오기
+      console.log( $('#img-city').prop('src') );
+      console.log( $('#yesorno :radio').eq(0).prop('checked') );
+
+      if($('#yesorno :radio').eq(0).prop('checked')) {
+        console.log('그림에 만족한다.');
+      }else{
+        console.log('그림에 만족하지 않는다.');
+      }
+
+      // * property 값 수정
+      $('#img-city'). prop('width', 250);
+      $('#yesorno :radio').eq(1).prop('checked', true);
+      
     }
   </script>
 
@@ -180,8 +247,16 @@
   <div id="user" data-name="Go GilDong" data-home-address="Seoul" data-zipCode="12345">고길동</div>
 
   <script>
-    
-    
+    // * data 속성 가져오기
+    console.log($('#user').data('name')); // document.getElementById('user').dataset.name
+    console.log($('#user').data('home-address')); // home-address(o), homeAddress(o)
+    console.log($('#user').data('zipcode')); // zipCode(x), zipcode(o)
+
+    // * data 속성 변경
+    $('#user').data('name', 'Gildong');
+
+    console.log($('#user').data('name'));
+
   </script>
 
   

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,17 +14,17 @@
 
     * 주요 노드 종류
     1. 텍스트 노드 (Text Node)  : 태그 사이에 정의되어 있는 텍스트 데이터 
-    2. 요소 노드 (Element Node) : 태그로 이루어진 요소 
+    2. 요소 노드 (Element Node) : 태그로 이루어진 요소나
 
     ex) <h1>안녕하세요</h1> 
-         → 텍스트 노드 : 안녕하세요
-         → 요소 노드   : <h1>안녕하세요</h1>
+        → 텍스트 노드 : 안녕하세요
+        → 요소 노드   : <h1>안녕하세요</h1>
 
     * 유의사항
       요소 사이의 스페이스, 탭, 줄바꿈(개행) 등의 공백 문자는 텍스트 노드를 생성함 
 
       ex) <div>
-             <h1>안녕</h1>
+            <h1>안녕</h1>
           </div>
 
           div 내의 노드 
@@ -44,13 +44,33 @@
     6. Element.prototype.lastElementChild  : 마지막 자식 요소 노드 반환 
   -->
 
+  <h2>자식 노드 탐색</h2>
+  <ol id="test1">
+    <li>커피</li>
+    <li>콜라</li>
+    <li>우유</li>
+  </ol>
 
+  <script>
+    const test1 = document.getElementById('test1');
 
+    // NodeList 반환 : 요소 노드 뿐만 아니라 텍스트 노드도 포함
+    console.log(test1.childNodes);
+    console.log(test1.firstChild);
+    console.log(test1.lastChild);
 
+    // HTMLCollection 반환 : 요소 노드만 반환
+    console.log(test1.children);
+    console.log(test1.firstElementChild);
+    console.log(test1.lastElementChild);
+
+    console.log(test1.hasChildNodes());
+  </script>
+  <hr>
   <!-- 
     ## 자식 노드 확인 ##
     Node.prototype.hasChildNodes() : 자식 노드 존재 여부 확인 
-                                     텍스트 노드를 포함하여 자식 노드가 있을 경우 true, 없으면 false 반환 
+                                    텍스트 노드를 포함하여 자식 노드가 있을 경우 true, 없으면 false 반환 
   -->
 
 
@@ -61,8 +81,20 @@
     Node.prototype.parentNode | parentElement : 부모 요소 노드 반환 
   -->
 
+  <h2>부모 노드 탐색</h2>
 
+  <ul id="test2">
+    <li class="orange">오렌지</li>
+    <li class="banana">바나나</li>
+    <li class="strawberry">딸기</li>
+  </ul>
 
+  <script>
+    const banana = document.querySelector('.banana');
+    console.log(banana.parentNode);
+    console.log(banana.parentElement);
+  </script>
+  <hr>
 
   <!-- 
     ## 형제 노드 탐색 ##
@@ -73,7 +105,24 @@
     4. Element.prototype.nextElementSibling: 형제 요소 노드 중 자신의 다음 형제 요소 노드를 탐색하여 반환
   -->
 
-  
+  <h2>형제 노드 탐색</h2>
+
+  <ul id="test3">
+    <li>봄</li>
+    <li class="summer">여름</li>
+    <li>가을</li>
+    <li>겨울</li>
+  </ul>
+
+  <script>
+    const summer = document.querySelector('.summer');
+    console.log(summer.previousSibling);
+    console.log(summer.previousElementSibling);
+    console.log(summer.nextElementSibling);
+    console.log(summer.nextElementSibling.nextElementSibling);
+
+    summer.nextElementSibling.style.color = 'red';
+  </script>
 
 </body>
 </html>

@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  
 </head>
 <body>
 
@@ -14,15 +15,53 @@
     3. Node.prototype.appendChild(childNode)     : 인자로 전달받은 노드를 appendChild를 호출한 노드의 마지막 자식 노드로 추가
   -->
 
+  <h2>동적으로 노드 생성 및 추가</h2>
 
+  <div id="drink">
+    <h4>커피</h4>
+  </div>
 
+  <button onclick="createNode1()">클릭</button>
+
+  <script>
+    createNode1 = () => {
+      // 요소노드 생성 -> 텍스트노드 생성 -> 텍스트노드를 요소노드의 자식으로 추가
+      const tag = document.createElement('h4');
+      const text = document.createTextNode('콜라');
+      tag.appendChild(text);
+      // console.log(tag); // <hr>콜라</h4>
+      document.getElementById('drink').appendChild(tag);
+
+      // 요소노드 생성 -> 요소노드의 textContent 프로퍼티에 값 할당
+      const tag2 = document.createElement('h4');
+      tag2.textContent = "우유"
+      document.getElementById('drink').appendChild(tag2);
+    };
+  </script>
+  <hr>
+  <h2>텍스트 노드를 가지지 않는 요소 노드 생성 및 추가</h2>
+
+  <div id="img_container"></div>
+
+  <button onclick="createNode2()">클릭</button>
+
+  <script>
+    function createNode2(){
+      const imgEl = document.createElement('img');
+      imgEl.src = '../../assets/image/flower1.jpg';
+      imgEl.width = 200;
+
+      document.getElementById('img_container').appendChild(imgEl);
+    };
+  </script>
+  <hr>
   <!-- 
     ## 노드 복사, 교체, 삭제 ##
     1. Node.prototype.cloneNode([deep: true|false]) 
         → 노드의 사본을 생성해서 반환 
-        → deep(Optional) : 깊은 복사 여부 (기본값: false)
-                         : true로 설정시 깊은 복사하여 모든 자손 노드가 포함된 사본을 생성
-                         : false일 경우 얖은 복사를 진행하여 노드 자신만의 사본을 생성 
+        → deep(Optional)  : 깊은 복사 여부 (기본값: false)
+                          : true로 설정시 깊은 복사하여 모든 자손 노드가 포함된 사본을 생성
+                          : false일 경우 얕은 복사를 진행하여 노드 자신만의 사본을 생성 
 
     2. Node.prototype.replaceChild(newChild, oldChild) 
         → 호출한 노드의 자식 노드 중 oldChild 노드를 newChild 노드로 교체
@@ -34,6 +73,73 @@
     4. Element.prototype.remove()
         → 호출한 노드를 DOM에서 제거
   -->
+  <h2>노드 복사</h2>
 
+  <ul id="copy">
+    <li>li 요소</li>
+  </ul>
+
+  <button onclick="copyNode()">복사 클릭</button>
+
+  <script>
+    copyNode = () => {
+      const shallowClone = document.getElementById('copy').cloneNode(/* false */);
+      console.log(shallowClone); // 얕은복사 : ul 노드만 복사
+
+      const deepClone = document.getElementById('copy').cloneNode(true);
+      console.log(deepClone); // 깊은복사 : ul 및 자식(li)노드까지 함께 복사
+    };
+  </script>
+
+  <div id="replace">
+    <img src="../../assets/image/flower2.jpg" width="200px">
+  </div>
+
+  <button onclick="replaceNode()">바꾸기</button>
+
+  <script>
+    function replaceNode(){
+      const imgClone = document.querySelector('#img_container>img').cloneNode();
+
+      const replaceDiv = document.getElementById('replace');
+      replaceDiv.replaceChild(imgClone, replaceDiv.firstElementChild);
+    }
+  </script>
+
+  <hr>
+
+  <h2>노드 삭제</h2>
+
+  <style>
+    #remove {
+      width: 200px;
+      height: 100px;
+      background-color: #cac836ab;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    #item1{background: rgb(16, 201, 139);}
+    #item2{background: rgba(50, 88, 192, 0.658);}
+    #item3{background: rgb(37, 199, 77);}
+  </style>
+
+  <div id="remove">
+    <span id="item1">item1</span>
+    <span id="item2">item2</span>
+    <span id="item3">item3</span>
+  </div>
+
+  <button onclick="removeNode();">클릭</button>
+
+  <script>
+    function removeNode(){
+      const removeDiv = document.getElementById('remove');
+
+      // removeDiv.removeChild(removeDiv.firstElementChild);
+
+      document.getElementById('item1').remove();
+    }
+  </script>
 </body>
 </html>

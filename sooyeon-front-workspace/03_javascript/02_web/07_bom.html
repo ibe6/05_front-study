@@ -37,6 +37,15 @@
   </div>
 
   <script>
+    document.getElementById('back-btn').addEventListener('click', (evt) => {
+      history.back();
+      // history.go(-1);
+    });
+
+    document.getElementById('forward-btn').addEventListener('click', (evt) => {
+      history.forward();
+      // history.go(1);
+    });
 
 
   </script>
@@ -57,9 +66,11 @@
 
   <h4>다른 페이지로 이동하기</h4>
   <div>
-    <a>네이버로 이동</a> <br>
+    <a>네이버로 이동</a> <br> <!--a 요소는 기본적으로 href속성지원.클릭시 이동되는 디폴트 이벤트 내장-->
+
+    <!--타 요소의 경우 지원 안함-->
     <button id="google-btn"><i class="fa-brands fa-google"></i></button> <!--구글로 이동-->
-    <button><i class="fa-brands fa-youtube"></i></button> <!--유튜브로 이동-->
+    <button onclick="location.href='http://www.youtube.com'";><i class="fa-brands fa-youtube"></i></button> <!--유튜브로 이동-->
   </div>
   
   <h4>새로고침</h4>
@@ -68,7 +79,16 @@
   </div>
 
   <script>
+    document.getElementById('google-btn').addEventListener('click', () => {
+      // location.href = 'http://www.google.com'; //기존의 창에 구글 창이 덮어싀워짐
+      location.assign('http://www.google.com');
+      location.replace('http://www.google.com'); //뒤로가기 불가능
+    });
 
+    document.getElementById('refresh-btn').addEventListener('click', (evt) => {
+      // location.href = location.href; //현재 위치를 현채 링크로 = 새로고침, 최상단으로 올라감
+      location.reload(); //현재 위치에서 새로고침
+    });
 
   </script>
 

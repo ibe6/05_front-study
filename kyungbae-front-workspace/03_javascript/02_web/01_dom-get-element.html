@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -38,68 +38,68 @@
 
 
 
-                    ■■■  DOM 객체 계층 구조 ■■■ 
-
-                            EventTarget
-                                 ↑
-                                Node
-                  ┌--------------┼------------┐
-                Text          Element       Comment
-                                 ↑
-                            HTMLElement
-        ┌------------------------┼------------------------┐
-    HTMLInputElement       HTMLBodyElement        HTMLAnchorElement ...
+  |                  ■■■  DOM 객체 계층 구조 ■■■ 
+  |
+  |                          EventTarget
+  |                               ↑
+  |                              Node
+  |                ┌--------------┼------------┐
+  |              Text          Element       Comment
+  |                               ↑
+  |                          HTMLElement
+  |      ┌------------------------┼------------------------┐
+  |  HTMLInputElement       HTMLBodyElement        HTMLAnchorElement ...
 
 
     ## Element / Node ##
     1. DOM 계층 구조를 구성하는 가장 기본적인 객체
     2. 주요 인스턴스 속성 (property)
-       1) Element
-          (1) className    : class 속성(attribute)
-          (2) id           : id 속성(attribute)
-          (3) innerHTML    : 요소(element) 내에 포함된 HTML 또는 XML 마크업을 가져오거나 설정함
-          (4) scrollHeight : 요소(element) 콘텐츠의 총 높이
-          (5) scrollTop    : 수직 스크롤 바의 위치
-       2) Node
-          (1) firstChild      : 현재 Node의 첫 번째 자식 Node 반환, 없으면 null 반환
-          (2) lastChild       : 현재 Node의 마지막 자식 Node 반환, 없으면 null 반환
-          (3) previousSibling : 현재 Node의 이전 형제 Node 반환, 없으면 null 반환
-          (4) nextSibling     : 현재 Node의 다음 형제 Node 반환, 없으면 null 반환
-          (5) parentElement   : 현재 Node의 부모 Element 반환, 없으면 null 반환
-          (6) parentNode      : 현재 Node의 부모 Node 반환, 없으면 null 반환
-          (7) textContent     : 현재 Node와 그 자손의 텍스트 콘텐츠를 가져오거나 설정함
+      1) Element
+        (1) className    : class 속성(attribute)
+        (2) id           : id 속성(attribute)
+        (3) innerHTML    : 요소(element) 내에 포함된 HTML 또는 XML 마크업을 가져오거나 설정함
+        (4) scrollHeight : 요소(element) 콘텐츠의 총 높이
+        (5) scrollTop    : 수직 스크롤 바의 위치
+      2) Node
+        (1) firstChild      : 현재 Node의 첫 번째 자식 Node 반환, 없으면 null 반환
+        (2) lastChild       : 현재 Node의 마지막 자식 Node 반환, 없으면 null 반환
+        (3) previousSibling : 현재 Node의 이전 형제 Node 반환, 없으면 null 반환
+        (4) nextSibling     : 현재 Node의 다음 형제 Node 반환, 없으면 null 반환
+        (5) parentElement   : 현재 Node의 부모 Element 반환, 없으면 null 반환
+        (6) parentNode      : 현재 Node의 부모 Node 반환, 없으면 null 반환
+        (7) textContent     : 현재 Node와 그 자손의 텍스트 콘텐츠를 가져오거나 설정함
 
 
     ## 주요 Document 객체 반환 메소드 ##
     1. Document.getElementById(id)
-       → 주어진 문자열과 일치하는 id 속성을 가진 요소를 Element 객체로 반환
-       → 없으면 null 을 반환
+      → 주어진 문자열과 일치하는 id 속성을 가진 요소를 Element 객체로 반환
+      → 없으면 null 을 반환
       
     2. Document.getElementsByClassName(class)
-       → 주어진 문자열과 일치하는 class 속성을 가진 모든 요소를 HTMLCollection 객체로 반환
-       → 없으면 null 을 반환
-       → 반환된 HTMLCollection 객체는 변경 사항이 실시간으로 반영되는 Live HTMLCollection 객체
-       → HTMLCollection 객체는 유사 배열(array-like object)이지만 엄밀히 배열과는 다름름
-          1) HTMLCollection.length          : 컬렉션 항목의 갯수를 반환
-          2) HTMLCollection.item(index)     : 주어진 인덱스의 Node를 반환
-          3) HTMLCollection.namedItem(name) : 주어진 id 속성 또는 name 속성을 가진 Node를 반환
-          4) Array.prototype.forEach() 와 같은 Array 객체의 메소드는 사용할 수 없음
+      → 주어진 문자열과 일치하는 class 속성을 가진 모든 요소를 HTMLCollection 객체로 반환
+      → 없으면 null 을 반환
+      → 반환된 HTMLCollection 객체는 변경 사항이 실시간으로 반영되는 Live HTMLCollection 객체
+      → HTMLCollection 객체는 유사 배열(array-like object)이지만 엄밀히 배열과는 다름
+        1) HTMLCollection.length          : 컬렉션 항목의 갯수를 반환
+        2) HTMLCollection.item(index)     : 주어진 인덱스의 Node를 반환
+        3) HTMLCollection.namedItem(name) : 주어진 id 속성 또는 name 속성을 가진 Node를 반환
+        4) Array.prototype.forEach() 와 같은 Array 객체의 메소드는 사용할 수 없음
     
     3. Document.getElementsByTagName(tag)
-       → 주어진 문자열과 일치하는 모든 태그를 가진 HTMLCollection 객체를 반환
-       → 없으면 null 을 반환
+      → 주어진 문자열과 일치하는 모든 태그를 가진 HTMLCollection 객체를 반환
+      → 없으면 null 을 반환
 
     4. Document.querySelector(selectors)
-       → 제공한 선택자와 일치하는 문서 내 첫 번째 Element 객체를 반환
-       → 없으면 null 을 반환
+      → 제공한 선택자와 일치하는 문서 내 첫 번째 Element 객체를 반환
+      → 없으면 null 을 반환
 
     5. Document.querySelectorAll(selectors)
-       → 제공한 선택자와 일치하는 문서 내 모든 요소를 가진 NodeList 객체를 반환
-       → 반환된 NodeList 객체는 변경 사항이 실시간으로 반영되지 않는 Static NodeList 객체
-       → 없으면 null 을 반환
+      → 제공한 선택자와 일치하는 문서 내 모든 요소를 가진 NodeList 객체를 반환
+      → 반환된 NodeList 객체는 변경 사항이 실시간으로 반영되지 않는 Static NodeList 객체
+      → 없으면 null 을 반환
 
     * 사용 시 주의 사항
-      작성된 DOM 객체의 Line 위치로 비교했을 때 JavaScript 코드보다 나중에 나타난 DOM 객체는 인식하지 못함함
+      작성된 DOM 객체의 Line 위치로 비교했을 때 JavaScript 코드보다 나중에 나타난 DOM 객체는 인식하지 못함
       반드시 DOM 객체를 상단에 배치하고 JavaScript 코드를 하단에 배치해야 함
 
     ----------------------------------------------------------------------------------
@@ -128,33 +128,208 @@
     ----------------------------------------------------------------------------------
   -->
 
+  <h2>id를 이용한 요소 노드 취득</h2>
 
+  <div id="area1" class="area">
+    div 영역
+    <p id="area2">p 영역</p>
+  </div>
 
+  <div id="area1" class="area">
+    div영역
+  </div>
 
+  <script>
+    const el = document.getElementById('area1');
+    console.log(el); // 중복된 id의 요소가 여러개일 경우 첫번째 요소만 선택됨
+    console.dir(el);
 
+    el.style.backgroundColor = '#039244';
 
+    const noEl = document.getElementById('area3');
+    console.log(noEl);
+    // console.log(noEl.innerHtml); // 오류발생
+    
+    console.log('------------------------------------');
 
+  </script>
 
+  <hr>
 
+  <h2>tag를 이용한 요소 노드 취득</h2>
+  <ul id="food">
+    <li>콩나물</li>
+    <li>두부</li>
+    <li>김치</li>
+  </ul>
 
+  <ul id="drink">
+    <li>커피</li>
+    <li>우유</li>
+    <li>물</li>
+  </ul>
 
+  <script>
+    const lists = document.getElementsByTagName('li');
+    console.log(lists); // HTMLCollection 객체, Iterable
+    console.log(lists.length); // length 프로퍼티
 
+    // 반복문 사용 가능
+    /*
+    for (let i = 0; i < lists.length; i++) {
+      const element = lists[i];
+      element.style.color = '#038801'
+    }; 
+    */
+    /*   
+    for (const index in lists) {
+      if (Object.prototype.hasOwnProperty.call(lists, index)) {
+        const element = lists[index];
+        element.style.color = '#0000DD';
+      }
+    } 
+    */
+    
+    for (const dom of lists) {
+      dom.style.color = '#0000FF';
+    }
 
+  console.log('-------------------------------------');
+  </script>
 
+  <hr>
+
+  <h2>class를 이용한 요소 노드 취득</h2>
+  <ul>
+    <li class="drink coffee">커피</li>
+    <li class="drink milk">우유</li>
+    <li class="drink water">물</li>
+  </ul>
+
+  <ul>
+    <li class="drink soju">소주</li>
+    <li class="drink beer">맥주</li>
+  </ul>
+
+  <script>
+    const drinks = document.getElementsByClassName('drink');
+    console.log(drinks); // HTMLCollection
+
+    // drinks.array.forEach(element => {element.style.color = '#ff0000'}); // HTMLCollection은 forEach메소드를 제공하지 않음
+    Array.from(drinks).forEach(a => a.style.color = '#ff0000');
+
+    // .drink.coffee
+    const coffee = document.getElementsByClassName('drink coffee');
+    console.log(coffee); // 1개의 요소여도 HTMLCollection으로 반환
+
+    console.log('-------------------------------------');
+  </script>
+
+  <hr>
+
+  <h2>selector를 이용한 요소 노드 취득</h2>
+
+  <div id="area3" class="area">
+    <span>first</span>
+  </div>
+
+  <div class="area">
+    <span class="second">second</span>
+  </div>
+
+  <script>
+    const area = document.querySelector('#area3');
+    console.log(area);
+
+    const span = document.querySelector('.area>span');
+    span.style.backgroundColor = '#cfcfcf';
+
+    const second = document.querySelector('.area>.second');
+    second.style.backgroundColor = '#d09dff'
+  </script>
+
+  <ul id="list">
+    <li class="drink">커피</li>
+    <li class="drink">콜라</li>
+    <li class="food">된장찌개</li>
+    <li class="food">김치찌개</li>
+  </ul>
+
+  <script>
+    const list = document.querySelectorAll('#list>li');
+    console.log(list); // NodeList - 유사배열객체, Iterable
+
+    // NodeList에 forEach문 제공
+    list.forEach(a => a.style.color = '#01f2D2')
+    console.log('-------------------------------------');
+  </script>
+
+  <hr>
 
   <!-- 
     ## HTMLCollection과 NodeList ##
     1. 여러개의 DOM객체를 반환하기 위한 DOM 컬렉션 객체임
     2. 유사 배열 객체이면서 Iterable이기 때문에 for문으로 순회할 수 있음 
     3. 차이점 
-       1) HTMLCollection : 노드 객체의 상태 변화를 실시간으로 반영하는 살아있는(live) DOM 컬렉션 객체
-       2) NodeList       : 노드 객체의 상태 변화를 실시간으로 반영하지 않는(non-live) DOM 컬렉션 객체체
+      1) HTMLCollection : 노드 객체의 상태 변화를 실시간으로 반영하는 살아있는(live) DOM 컬렉션 객체
+      2) NodeList       : 노드 객체의 상태 변화를 실시간으로 반영하지 않는(non-live) DOM 컬렉션 객체체
   -->
 
+  <h2>HTMLCollection과 NodeList</h2>
 
+  <style>
+    .white{color: #FFFFFF}
+    .black{color: #000000}
+    .blue{color: #0000FF}
+    .red{color: #FF0000}
+  </style>
+
+  <ul>
+    <li class="white">첫번째글</li>
+    <li class="white">두번째글</li>
+    <li class="white">세번째글</li>
+  </ul>
+
+  <script>
+    const whiteList = document.getElementsByClassName('white'); // HTMLCollection
+    console.log(whiteList);
+    /* 
+    for (let i = 0; i < whiteList.length; i++) {
+      const element = whiteList[i];
+      element.className = 'black';
+    }
+     */
+    /* 
+      HTMLCollection은 실시간으로 값이 반영되기 때문에 1회 순회 후 class가 'black' 으로 바뀌어 정상적으로 반영되지 않음
+    */
+    // 해결1. 역순으로 반복
+    /*
+    for (let i = whiteList.length-1; i >= 0; i--) {
+      const element = whiteList[i];
+      element.className = 'black';
+    }
+    */
   
+    // 해결2. 배열로 변환
+    Array.from(whiteList).forEach(a => a.classList = 'black');
 
+  </script>
+  
+  <ul>
+    <li class="red">첫번째글</li>
+    <li class="red">두번째글</li>
+    <li class="red">세번째글</li>
+  </ul>
 
+  <script>
+    const redList = document.querySelectorAll('.red');
+    console.log(redList);
+
+    for (let i = 0; i < redList.length; i++) {
+      const element = redList[i];
+      element.className = 'blue';
+    }
+  </script>
   
 </body>
 </html>

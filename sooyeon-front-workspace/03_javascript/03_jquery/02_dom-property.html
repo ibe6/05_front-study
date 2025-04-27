@@ -8,6 +8,7 @@
 </head>
 <body>
 
+  <h2>innerHTML 및 textContent 속성 제어</h2>
 
   <!-- 
     * textContent 속성 관련 메소드
@@ -18,7 +19,6 @@
       1) 요소.html()        : 해당 요소의 innerHTML 속성값 반환 
       2) 요소.html('문구')  : 해당 요소의 innerHTML 속성값 변경
   -->
-  <h2>innerHTML 및 textContent 속성 제어</h2>
 
   <div id="content"><b>box</b></div>
 
@@ -30,24 +30,21 @@
 
   <script>
     function contentProp() {
-      // 1) JS 방식
-      console.log(document.getElementById('content').innerHTML );
-      // 2) JQuery 방식
-      console.log($('#content').html);
+      console.log(document.getElementById('content').innerHTML);
+      console.log($('#content').html());
 
-      // innerHTML 변경
-      // JS 방식
-      const divList = document.getElementsByClassName('content') // HTMLCollection[];
-      for (const element of divList) {
-        element.textContent = 'hi';
+      const divList = document.getElementsByClassName('content'); //HTMLConnection[div, div, div]
+      for(let divEl of divList) {
+        divEl.innerHTML = '<b>js방식으로 변경</b>';
       }
-      // JQuery 방식
-      $('.content').html('<b>jQuery<b>');
+
+      $('.content').html('<b>jq방식으로 변경</b>'); 
     }
   </script>
 
   <hr>
 
+  <h2>style 속성 제어</h2>
 
   <!-- 
     * style 속성 관련 메소드
@@ -56,9 +53,8 @@
     3) 요소.css({css속성: 'css속성값', 
                   css속성: 'css속성값'}) : 해당 요소에 다수의 css 한꺼번에 반영 가능 
   -->
-  <h2>style 속성 제어</h2>
 
-  <ul class="ott" style="background-color: lightblue;">
+  <ul class="ott" style="background-color: #b4efff;">
     <li id="netflex"><a href="#">넷플릭스</a></li>
     <li id="disneyplus"><a href="#">디즈니플러스</a></li>
     <li id="tving"><a id="tving-link" href="#">티빙</a></li>
@@ -70,22 +66,21 @@
 
   <script>
     function styleProp(){
-      // css 값 가져오기
-      // 1. JS
+      //css값 가져오기
       console.log(document.querySelector('.ott').style.backgroundColor);
-      // 2. jQuery
       console.log($('.ott').css('backgroundColor'));
 
-      // css 변경
-      // 1. JS
-      // const aList = document.querySelectorAll('.ott a'); // NodeList[];
-      // aList.forEach( a => {
-      //   a.style.textDecoration = 'none'; // 밑줄 제거
-      // })
-      $('.ott a').css('textDecoration', 'none');
-      $('.ott a').css('font-size', '32px');
-      $('.ott a').css('font-weight', '900').css('color', 'red');
-      $('#coupangplay > span').css({
+      //css 변경
+      const aList = document.querySelectorAll('.ott a');
+      aList.forEach(aEl => {
+        aEl.style.textDecoration = 'none';
+      });
+
+      //jquery. 방식
+      $('.ott a').css('textDecoration','none');
+      $('.ott a').css('font-size', '32px' );
+      $('.ott a').css('fontWeight', '900').css('color', 'red'); // 메소드 체이닝
+      $('#coupangplay > span').css( {
         backgroundColor: 'pink',
         color: 'green',
         fontSize: '32px'
@@ -109,14 +104,10 @@
   <script>
 
     function valueProp() {
-      // value 가져오기
-      // JS
       console.log(document.getElementById('userId').value);
-      // jQuery
-      console.log($('#userId').val('helloworld').css({
-        backgroundColor: 'blue',
-        color: 'red'
-      }));
+      console.log($('#userId').val());
+      document.getElementById('userId').value = 'javascript';
+      $('#userId').val('jQuery').css('color','red');
     }
   </script>
 
@@ -145,8 +136,8 @@
 
   <script>
     function hide() {
+      document.querySelect('#hello').classList.add('blind');
       $('#hello').addClass('blind');
-      // console.log(document.querySelector('#hello').classList.add('blind'))
     }
 
     function show() {
@@ -154,7 +145,7 @@
     }
 
     function toggle() {
-      $('#hello').toggleClass('blind');      
+      $('#hello').toggleClass('blind');
     }
   </script>
 
@@ -174,14 +165,10 @@
 
   <script>
     function attribute() {
-      // attribute 가져오기
-      console.log( $('#img-forest').attr('src') ); // document.getElementById('img-forest').getAttribute('src'));
-
-      // attribute 수정
-      $('#img-forest').attr('width', '120px').css('border', '2px dashed yellow');
-
-      // attribute 삭제
-      $('#img-forest').removeAttr('width');
+      // document.getElementById('img-forest').getAttribute('src');
+      console.log($('#img-forest').attr('src'));
+      $('#img-forest').attr('width', '120px').css('border','2px dashed pink');
+      $('#img-forest').removeAttr('width'); //.크기 지정 요소가 사라져서 원본 이미지로 
     }
   </script>
 
@@ -205,11 +192,11 @@
 
   <script>
     function property() {
-      console.log($('#img-city').prop('src')); 
-      // attr은 주소 그대로 저장(상대주소), prop은 저장된 곳 보내줌(절대주소)
-      console.log($('#yesorno :radio').eq(0).prop('checked') );
-      $('#img-city').prop('width', 250);
-      $('#yesorno :radio').eq(1).prop('checked', true);
+      console.log($('#img-city').prop('src'));
+      console.log($('#yesorno :radio').eq(0).prop('checked')); //true/false
+
+      $('#img-city').prop('width',250);
+      $('#yesorno :radio').eq(1).prop('checked',true);
     }
   </script>
 
@@ -226,13 +213,14 @@
   <div id="user" data-name="Go GilDong" data-home-address="Seoul" data-zipCode="12345">고길동</div>
 
   <script>
-    // console.log($('#user').data('name'));
-    // $('#user').text($('#user').data('homeAddress'));
-    // console.log($('#user').data('name', 'ino'));
-    // console.log($('#user').data('name'));
-  </script>
+    console.log($('#user').data('name'));
+    console.log($('#user').data('homeAddress'));
+    console.log($('#user').data('zipcode'));
 
-  
+    $('#user').data('name','GilDong');
+
+    console.log($('#user').data('name'));
+  </script>
 
 
 </body>

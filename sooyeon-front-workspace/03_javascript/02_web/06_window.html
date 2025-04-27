@@ -43,7 +43,19 @@
   <button id="prompt">prompt챵출력</button>
 
   <script>
+    document.getElementById('alert').addEventListener('click', function(evt) {
+      window.alert('alert창 입니다.');
+    });
 
+    document.getElementById('confirm').addEventListener('click', (evt) => {
+      const answer = confirm('계속하시겟습가'); //true, false로 반환
+      console.log(answer ? '잘해ㅛㅅㄱ다' : '아습;ㅣ다')
+    });
+
+    document.getElementById('prompt').addEventListener('click', (evt) => {
+      const answer = prompt('좋아하는 숫자 입력'); //string 타입으로 반환, 아무것도 반환 안할 시 '' 빈문자열 / 취소시 null
+      console.log(answer, typeof answer);
+    });
 
   </script>
   
@@ -61,7 +73,7 @@
        1) url      : 새로운 창에 띄우고자 하는 url 주소
        2) target   : 띄우고자 하는 창의 이름 (해당 창 이름이 존재할 경우 새 창으로 열리지 않고 기존의 창에서 새로고침 됨)
        3) features : 새로 띄울 창의 특성 
-           → widtn      : 창의 너비
+           → width      : 창의 너비
            → height     : 창의 높이
            → top, left  : 창의 위치
            → resizable  : 창 크기 조절 가능 여부 
@@ -77,8 +89,30 @@
   <button id="naver_popup">네이버 창</button> 
   <button id="my_popup">내가 만든 창</button> <br>
 
-  <script>
+  <input type = "text" id="parent_msg">
+  <button id="parent_btn">팝업창 자식에게 전송</button>
 
+  <div id="child_msg_result"></div>
+
+  <script>
+    document.getElementById('naver_popup').addEventListener('click', (evt) => {
+      //새로운 창으로 네이이버 / 이미 열린 창이 있다면 기존의 창에서 새로고침
+      open('https://www.naver.com/','네이버~~~~~~~~~안보임~','width=500, height=500'); 
+    });
+
+    let popupWindow;
+    document.getElementById('my_popup').addEventListener('click', (evt) => {
+      popupWindow = open('./popup.html', 'mypopup', 'width=360, height=530');
+    });
+
+    document.getElementById('parent_btn').addEventListener('click', (evt) => {
+      if(popupWindow) {//팝업창이 떠있을 경우
+        popupWindow.document.getElementById('parent_msg_result').textContent //자식창의 윈도우 객체에 접근하여
+          = document.getElementById('parent_msg').value;  //부모창에 입력된 데이터 띄움
+      }else {
+        alert('팝업창이 열려있지 않습니다.');
+      }
+    });
   </script>
 
   <hr>
@@ -99,7 +133,16 @@
   <button id="timeout2">팝업창</button>
 
   <script>
+    document.getElementById('timeout1').addEventListener('click', (evt) => {
+      setTimeout(() => alert('3초뒤'), 3000);
+    });
 
+    document.getElementById('timeout2').addEventListener('click', (evt) => {
+      const popupWindow = open('./popuo.html', 'mypopup', 'width=500, height=500');
+      popupWindow.alert('알람창이 꺼지면 2초후에 팝업창꺼진다'); //자식창 띄우고 자식창에 alert띄움
+
+      setTimeout(() => popupWindow.close(), 2000); //alert를 일단 꺼야 동작함
+    });
 
   </script>
 
@@ -108,10 +151,28 @@
   <h2>setInterval</h2>
 
   <div id="time" style="font-size: 32px; color: red;"></div>
+  <button id="start_time">시계 시작</button>
+
 
   <script>
-    
+    function changeTime() {
+      const now = new Date();
+      let hour = now.getHours();
+      let minute = now.getMinutes();
+      let second = now.getSeconds();
 
+      hour = hour > 12 ? hour = 12 : hour;
+      hour = hour < 10 ? "0"+hour : hour;
+      minute = minute < 10 ? "0"+minute : minute;
+      second = second < 10 ? "0"+second : second;
+      
+      document.getElementById('time').textContent = `${hour}:${minute}:${second}`;
+    }
+
+    document.getElementById('start_time').addEventListener('click', (evt) => {
+      changeTime(); //시간 기본으로 뜨ㅏ유ㅜ고
+      setInterval(changeTime, 1000); //1초마다 업데이트
+    });
     
   </script>
 

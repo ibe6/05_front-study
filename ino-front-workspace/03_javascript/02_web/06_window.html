@@ -77,8 +77,27 @@
   <button id="naver_popup">네이버 창</button> 
   <button id="my_popup">내가 만든 창</button> <br>
 
-  <script>
+  <input type="text" id="parent_msg">
+  <button id="parent_btn">팝업창 전송</button> <br><br>
 
+  <div id="child_msg_result"></div>
+
+  <script>
+    document.getElementById('naver_popup').addEventListener('click', (evt) => {
+      open('http://www.naver.com', '네이버창');
+    })
+    let popupWinodw;
+    document.getElementById('my_popup').addEventListener('click', (evt) => {
+      popupWinodw = open('./popup.html', 'mypopup', 'width=360, height = 520');
+    })
+    document.getElementById('parent_btn').addEventListener('click', (evt) => {
+      if(popupWinodw) {
+        popupWinodw.document.getElementById('parent_msg_result').textContent
+        = document.getElementById('parent_msg').value;
+      }else{
+        alert('팝업창 안열림');
+      }
+    });
   </script>
 
   <hr>
@@ -99,8 +118,16 @@
   <button id="timeout2">팝업창</button>
 
   <script>
-
-
+    document.getElementById('timeout1').addEventListener('click', (evt) => {
+      setTimeout( (evt) => {
+        alert('hello world');
+      }, 3000)
+    });
+    document.getElementById('timeout2').addEventListener('click', (evt) => {
+      const popup = open('./popup.html', 'mypopup', 'width=500, height=500');
+      popup.alert('bomb');
+      setTimeout(() => popup.close(), 3000);
+    });
   </script>
 
   <hr>
@@ -109,10 +136,21 @@
 
   <div id="time" style="font-size: 32px; color: red;"></div>
 
-  <script>
-    
+  <button id="start_time">시계 시작</button>
 
-    
+  <script>
+    function changeTime(){
+      const now = new Date();
+      const time = now.getHours(); // 24h
+      let minute = now.getMinutes();
+      let second = now.getSeconds();
+      
+      document.getElementById('time').textContent = `${time}:${minute}:${second}`;
+    } 
+
+    document.getElementById('start_time').addEventListener('click', (evt) => {
+      setInterval(changeTime, 1000);
+    });
   </script>
 
 

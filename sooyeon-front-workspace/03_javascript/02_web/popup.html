@@ -9,9 +9,18 @@
 
   <h1 style="text-align:center;">팝업창(자식창)</h1>
 
+  <div id="parent_msg_result"></div>
+
+  <input type = "text" id="child_msg">
+  <button id="child_btn">부모창에게 전송</button>
+
 
   <script>
-
+    document.getElementById('child_btn').addEventListener('click', (evt) => {
+      // opener : 부모창의 window객체를 의미
+      opener.document.getElementById('child_msg_result').textContent
+        = document.getElementById('child_msg').value;
+    });
     
   </script>
   

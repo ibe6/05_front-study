@@ -36,8 +36,39 @@
   <h3>클릭해보세요2</h3>
 
   <script>
+    // const h3List = document.getElementById('h3');
+    // Array.from(h3List).forEach( h3 => {
+    //   h3.addEventListener('click', function(){
+    //     console.log('clicked');
+    //   })
+    // })
+    $('h3').click(function(evt){
+      console.log('clicked');
+      console.log(window.event.target);
+      console.log(evt.target);
+      console.log(this); // 화살표함수일 경우 x
+    })
 
+    $('h3').dblclick(function(evt){
+      console.log('dblclick');
+      // evt.target.text('dblclicked') evt.target == 순수 js 객체여서 오류발생
+      // evt.target.textContent = 'dblclicked';
+      $(evt.target).text('dblclicked');
+    })
 
+    // $('h3').mouseenter(function() {
+    //   $(this).addClass('yellow');
+    // });
+
+    // $('h3').mouseleave(function() {
+    //   $(this).removeClass('yellow');
+    // });
+
+    $('h3').hover(function(){
+      $(this).addClass('yellow');
+    }, function() {
+      $(this).removeClass('yellow');
+    })
 
   </script>
 
@@ -71,7 +102,39 @@
 
   <script>
     
+    // $('#test1').on('mouseenter', function(){
 
+    // });
+    
+    // $('#test1').on('mouseout', function(){
+
+    // });
+
+    $('#test1').on({
+      mouseenter: function(){
+        $(this).css('backgroundColor', 'yellow').text('mouse on');
+      },
+      mouseout: function(){
+        $(this).css('backgroundColor', 'red').text('mouse off');
+      }
+    })
+
+    $('#test1').on('click', function(){
+      $(this).css('backgroundColor', 'orangered')
+      .text('mouseenter, mouseout event 제거')
+      .off('mouseenter')
+      .off('mouseout');
+
+      $('#wrap').append( $('<h5>dynamic element</h5>'));
+    })
+
+    // $('h5').on('click', function(){
+    //   alert('h5 component clicked'); // 동적 요소엔 부여 x
+    // })
+    // dynamic 요소 이벤트 핸들러 할당 원할시
+    $('#wrap').on('click', 'h5', function(){
+      alert('h5 component clicked');
+    }) // wrap 요소의 하위 h5에 click 이벤트핸들러 할당, 할당 주체는 #wrap
   </script>
 
   <hr>
@@ -89,7 +152,12 @@
       문제1.
       .menu 요소 클릭시 현재 클릭된 요소의 textContent 값이 alert로 띄워지도록
     */
-   
+   $('#jjigae li').on({
+    click: function(){
+      console.log(this.textContent);
+      alert(`${this.textContent}`);
+    }
+   })
 
   </script>
 
@@ -115,7 +183,19 @@
       현재 클릭된 checkbox 요소가 checked 상태일 경우 가로,세로 길이를 30px로 변경하고 그 뒤의 문구 크기를 32px로 변경
                                   checked 상태가 아닐 경우 원상복구 하시오. 
     */
-   
+   $('#hobby :checkbox').click(function(evt){
+    console.log($(this).is(':checked'));
+    if ($(this).is(':checked')) {
+      $(this).css('width', '30px').css('height', '30px').next('label');
+      $(this).next('label').css('font-size', '32px')
+    } else {
+      $(this).css({
+        width: "",
+        height: ''
+      }).next('label').css('fontSize', '');
+    }
+   })
+
 
 
     /*
@@ -123,7 +203,18 @@
       #hobby-btn 클릭시 현재 checked 상태의 checkbox 요소들의 value값을 alert로 출력하시오.
       만일 checked 된 checkbox 가 없을 경우 '선택된 취미가 없습니다.' 출력
     */
-   
+   $('#hobby-btn').on('click', function(){
+    console.log($('#hobby :checked'));
+    if ($('#hobby :checked').length == 0) {
+      alert('선택된 취미가 없습니다.');
+    } else {
+      let result = '';
+      $('#hobby :checked').each(function() {
+        result += $(this).attr('value');
+      });
+      alert(result)
+    }
+   })
 
   </script>
 

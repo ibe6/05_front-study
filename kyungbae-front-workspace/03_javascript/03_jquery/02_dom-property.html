@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -30,7 +30,20 @@
 
   <script>
     function contentProp() {
+      // innerHTML 값 가져오기
+      // javaScript 방식
+      console.log(document.getElementById('content').innerHTML);
+      // jQuery 방식
+      console.log($('#content').html());
 
+      // innterHTML 값 변경
+      // JavaScript 방식
+      const divList = document.getElementsByClassName('content');
+      for (const i of divList) {
+        i.innerHTML = '또 변경된 이름';
+      }
+      // jQuery 방식
+      $('.content').html('<b>변경</b>')
     }
   </script>
 
@@ -58,8 +71,28 @@
 
   <script>
     function styleProp(){
-      
+      // css 값 가져오기
+      // JavaScript 방식
+      console.log(document.querySelector('.ott').style.backgroundColor);
+      // jQuery 방식
+      console.log($('.ott').css('backgroundColor'));
 
+      // css 변경
+      // javaScript 방식
+      const aList = document.querySelectorAll('.ott a');
+      aList.forEach(a => {
+        a.style.textDecoration = 'none';
+      });
+      // jQuery 방식
+      $('.ott a').css('textDecoration', 'none');
+      $('.ott a').css('font-size', '32px'); // 속성명 camel-case dash-case 둘 다 가능
+
+      $('.ott a').css('font-weight', '900').css('color', 'red'); // 메소드 체이닝 가능
+      $('#coupangplay>span').css({
+        backgroundColor: 'pink', 
+        color: 'green', 
+        fontSize: '32px'
+      })
     }
   </script>
 
@@ -79,8 +112,17 @@
   <script>
 
     function valueProp() {
-      
+      // value 값 가져오기
+      // javaScript 방식
+      console.log(document.getElementById('userId').value);
+      // jQuery 방식
+      console.log($('#userId').val());
 
+      // value 값 변경
+      // JavaScript 방식
+      document.getElementById('userId').value = 'javaScript';
+      // jQuery 방식
+      $('#userId').val('jQuery').css('color', 'red');
     }
   </script>
 
@@ -109,15 +151,16 @@
 
   <script>
     function hide() {
-      
+      // document.querySelector('#hello').classList.add('blind');
+      $('#hello').addClass('blind');
     }
 
     function show() {
-      
+      $('#hello').removeClass('blind');
     }
 
     function toggle() {
-      
+      $('#hello').toggleClass('blind');
     }
   </script>
 
@@ -137,7 +180,12 @@
 
   <script>
     function attribute() {
-      
+      // attribute 가져오기
+      console.log($('#img-forest').attr('src'));
+      // attribute 수정
+      $('#img-forest').attr('width', '120px').css('border', '2px dashed pink');
+      // attribute 삭제
+      $('#img-forest').removeAttr('width');
 
     }
   </script>
@@ -162,9 +210,14 @@
 
   <script>
     function property() {
-      
-
+      // property 값 가져오기
+      console.log($('#img-city').prop('src'));
+      console.log($('#yesorno :radio').first().prop('checked'));
     }
+
+    // property 값 수정
+    $('#img-city').prop('width', 400);
+    $('#yesorno :radio').last().prop('checked', true);
   </script>
 
   <hr>
@@ -180,7 +233,14 @@
   <div id="user" data-name="Go GilDong" data-home-address="Seoul" data-zipCode="12345">고길동</div>
 
   <script>
+    // data 속성 가져오기
+    console.log($('#user').data('name'));
+    console.log($('#user').data('home-address')); // camelCase, dash-case 둘 다 사용 가능
+    console.log($('#user').data('zipcode')); // 소문자로 바꿔서 사용해야 함
     
+    // data 속성 변경
+    $('#user').data('name', 'GilDong');
+    console.log($('#user').data('name'));
     
   </script>
 

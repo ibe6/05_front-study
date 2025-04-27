@@ -189,8 +189,11 @@ zipcodes.forEach(zipcode => verifyZipcode(zipcode));
   6. \S : 단일 공백 문자가 아님을 의미
 */
 
-
-
+// 첫글자는 반드시 숫자, 이후에는 숫자/영문자/밑줄로 이루어져있는지 비교
+regExp = /^\d\w+$/;
+console.log(regExp.test('0kTT_2D'));
+console.log(regExp.test('user01_'));
+console.log(regExp.test('99akof*_Fk'));
 
 /*
   ## 플래그 문자 ##
@@ -199,7 +202,63 @@ zipcodes.forEach(zipcode => verifyZipcode(zipcode));
   3. m : 여러줄 탐색            (multiple-line)
 */
 
+// 첫글자가 대소문자를 가리지 않고 j로 시작하는지 비교
+regExp = /^j/i;
+console.log(regExp.test('javascript'));
+console.log(regExp.test('JavaScript'));
+
+// j로 시작하는 부분을 찾아서 (***) 로 치환
+console.log('javascript'.replace(regExp, '(***)'));
+console.log('javascript\nJavaScript'.replace(regExp, '(***)'));
+
+regExp = /^j/igm;
+console.log('javascript\nJavaScript'.replace(regExp, '(***)'));
 
 
+/*
+  실습. verityMobile() 함수 구현하기
+  
+  1. 기능 
+      전달된 인자값이 휴대전화번호 형식이 맞는지를 검사하여
+      맞을 경우 '전화번호 형식이 맞습니다.' 그게 아닐 경우 '전화번호 형식에 맞지 않습니다' 출력
+     * 전화번호 형식 : 010-숫자4자리-숫자4자리
+  2. 인자
+      검사할 전화번호 문자열
+  3. 반환
+      없음
+*/
 
+const verifyMobile = (phone) => {
+  const regExp = /^010(-\d{4}){2}$/;
+  if(regExp.test(phone)){
+    console.log('전화번호 형식이 맞습니다.');
+  }else{
+    console.log('전화번호 형식에 맞지 않습니다.');
+  }
+};
+let phoneTest = ['010-1234-1234', '011-1090-4400', '01023233030', '010-12345-1234'];
+phoneTest.forEach(a => verifyMobile(a));
 
+/*
+  실습. verifyId() 함수 구현하기
+
+  1. 기능 
+      전달된 인자값이 아이디 형식이 맞는지를 검사하여
+      맞을 경우 '아이디 형식이 맞습니다.' 그게 아닐 경우 '아이디 형식에 맞지 않습니다' 출력
+     * 아이디 형식 : 소문자|숫자|특수문자(-_)로만 구성, 첫글자는 소문자, 총 5~20자
+  2. 인자
+      검사할 아이디 문자열
+  3. 반환
+      없음
+*/
+
+const verifyId = (id) => {
+  const regExp = /^[a-z][a-z0-9_-]{4,19}$/;
+  if(regExp.test(id)){
+    console.log('아이디 형식이 맞습니다.');
+  }else{
+    console.log('아이디 형식에 맞지 않습니다.');
+  }
+};
+let idTest = ['newId01-', 'Iduser01', 'id!01U', 'id_-user1', 'id01', 'id20dogneGowdk_-dkwog'];
+idTest.forEach(a => verifyId(a));

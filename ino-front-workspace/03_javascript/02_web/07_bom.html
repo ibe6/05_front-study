@@ -37,8 +37,14 @@
   </div>
 
   <script>
-
-
+    document.getElementById('back-btn').onclick = (evt) => {
+      history.back();
+      // history.go(-1);
+    }
+    document.getElementById('forward-btn').addEventListener = ('click', (evt) => {
+      history.forward();
+      // history.go(-1);
+    });
   </script>
 
   <hr>
@@ -57,7 +63,7 @@
 
   <h4>다른 페이지로 이동하기</h4>
   <div>
-    <a>네이버로 이동</a> <br>
+    <a href="http://www.naver.com">네이버로 이동</a> <br>
     <button id="google-btn"><i class="fa-brands fa-google"></i></button> <!--구글로 이동-->
     <button><i class="fa-brands fa-youtube"></i></button> <!--유튜브로 이동-->
   </div>
@@ -68,8 +74,24 @@
   </div>
 
   <script>
+    document.getElementById('google-btn').addEventListener('click', function(){
+      console.log('google btn')
+      // location.href = 'http://www.google.com';
+      location.assign('https://www.google.com');
+      // location.replace('http://www.google.com');
+      
+    })
+    
+    document.getElementById('google-btn').nextElementSibling.addEventListener('click', () => {
+      console.log('youtube btn')      
+    })
 
+    document.getElementById('refresh-btn').addEventListener('click', (evt) => {
+      // location.href = location.href // 새로고침을 하며 최상단으로 올라감
+      // location.assign(location.href); // 얘도
+      location.reload(); // 얜아님
 
+    })
   </script>
 
   <hr>

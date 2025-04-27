@@ -37,10 +37,49 @@
 
   <script>
 
+    // 1) JavaScript 방식
+    /*
+    const h3List = document.getElementByTagName('h3');
+    Array.from(h3List).forEach(h3 => {
+      h3.addEventListener('click', function(){
+        console.log('클릭됨');
+      });
+    });
+    */
 
+    // 2) jQueary 방식
+    $('h3').click(function(evt){
+      console.log('클릭됨');
+      console.log(window.event.target);
+      console.log(evt.target);
+      console.log(this);  // 화살표 함수일 때는 안됨
+    });
+
+    $('h3').dblclick((evt) => {
+      // evt.target == 순수 JavaScript용 객체
+      // evt.target.textContent = '더블클릭됨';
+
+      // $(evt.target) == JavaScript객체를 jQuery 객체로 변경
+      $(evt.target).text('더블클릭됨');
+    });
+    
+    /*
+    $('h3').mouseenter(function(){
+      $(this).addClass('yellow');
+    });
+
+    $('h3').mouseout(function(){
+      $(this).removeClass('yellow');
+    });
+    */
+
+    $('h3').hover(function(){
+      $(this).addClass('yellow');
+    }, function(){
+      $(this).removeClass('yellow');
+    })
 
   </script>
-
 
   <h2>on 메소드</h2>
 
@@ -70,8 +109,48 @@
   </div>
 
   <script>
-    
+    /*
+    $('#test1').on('mouseenter', function(){
 
+    });
+    
+    $('#test1').on('mouseout', function(){
+
+    });
+    */
+
+    $('#test1').on({
+      mouseenter: function(){
+        $(this).css('backgroundColor', 'yellow')
+               .text('마우스 올라감');
+      },
+      mouseout: function(){
+        $(this).css('backgroundColor', 'yellowgreen')
+               .text('마우스 빠져나감')
+      }
+    });
+
+    $('#test1').on('click', function(){
+      $(this).css('backgroundColor', 'orangered')
+             .text('mouseenter, mouseout 이벤트 제거할꺼임!')
+             .off('mouseenter')
+             .off('mouseout');
+
+      $('#wrap').append( $('<h5>동적요소(페이지 로드시 없던 요소)</h5>') );
+    });
+
+    // 동적요소에는 반영 안됨
+    /*
+    $('h5').on('click', function(){
+      alert('h5요소 클릭됨');
+    });
+    */
+
+    //동적요소에도 이벤트 핸들러 할당하고자 할 경우
+    $('#wrap').on('click', 'h5', function(){
+      alert('h5요소 클릭됨');
+    });
+    // 상위요소.on('이벤트타입', '하위요소', 이벤트핸들러)
   </script>
 
   <hr>

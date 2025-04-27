@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,10 +14,10 @@
     2. 브라우저의 구성 요소를 객체로 처리하는 방식
     3. 브라우저 객체는 내장 객체로 이미 만들어져 있음 
     4. 주요 브라우저 객체
-       1) screen   : 브라우저 화면 정보
-       2) history  : 방문했던 경로를 처리하는 객체
-       3) location : 주소(URL)를 처리하는 객체
-       4) navigator: 브라우저와 운영체제에 대한 정보를 제공하는 객체
+      1) screen   : 브라우저 화면 정보
+      2) history  : 방문했던 경로를 처리하는 객체
+      3) location : 주소(URL)를 처리하는 객체
+      4) navigator: 브라우저와 운영체제에 대한 정보를 제공하는 객체
   -->
 
   <h2>history</h2>
@@ -38,6 +38,13 @@
 
   <script>
 
+    document.getElementById('back-btn').onclick = (evt) => {
+    history.back();
+    };
+
+    document.getElementById('forward-btn').addEventListener('click', (evt)=> {
+      history.forward();
+    });
 
   </script>
 
@@ -57,9 +64,12 @@
 
   <h4>다른 페이지로 이동하기</h4>
   <div>
-    <a>네이버로 이동</a> <br>
+    <!-- a태그에서는 herf속성을 지원하여 디폴트 이벤트 적용 -->
+    <a href="https://www.naver.com">네이버로 이동</a> <br>
+
+    <!-- 그외 태그에서는 직접 링크연결 이벤트를 핸들링 해줘야 한다. -->
     <button id="google-btn"><i class="fa-brands fa-google"></i></button> <!--구글로 이동-->
-    <button><i class="fa-brands fa-youtube"></i></button> <!--유튜브로 이동-->
+    <button onclick="location.href='https://www.youtube.com'"><i class="fa-brands fa-youtube"></i></button> <!--유튜브로 이동-->
   </div>
   
   <h4>새로고침</h4>
@@ -68,8 +78,17 @@
   </div>
 
   <script>
+    document.getElementById('google-btn').addEventListener('click', function(){
+      // location.href = 'https://www.google.com';
+      // location.assign('https://www.google.com');
+      location.replace('https://www.google.com');
+    });
 
+    document.getElementById('refresh-btn').addEventListener('click', (evt) => {
+      // location.href = location.href;
+      location.reload();
 
+    });
   </script>
 
   <hr>

@@ -7,9 +7,15 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
+
+
+
+
+
   <h3>문제1. 버튼 클릭시 테이블이 완성되도록 하시오.</h3>
 
   <button id="movie_info_btn">영화정보가져오기</button> <br><br>
+
 
   <table border="1">
     <thead>
@@ -20,6 +26,7 @@
         <th>제목</th>
         <th>감독</th>
       </tr>
+      
     </thead>
     <tbody id="movies">
       <!-- 위의 '영화정보가져오기' 버튼 클릭시 하단의 영화 데이터(movies)를 가지고 tr 요소를 동적으로 만들어 tbody 안에 추가하시오 -->
@@ -62,39 +69,66 @@
         }
       ]
     };
-    const movieTable = document.getElementById('movies');
-    const movieButton = document.getElementById('movie_info_btn');
-    movieButton.addEventListener('click', (evt) => {
-        movies.items.forEach( movie => {
-            const tr = document.createElement('tr');
-            const td1 = document.createElement('td');
-            const checkbox = document.createElement('input')
-            checkbox.type = 'checkbox';
-            checkbox.value = `${movie.no}`;
-            td1.appendChild(checkbox);
-            const td2 = document.createElement('td');
-            td2.textContent = movie.no;
-            const td3 = document.createElement('td');
-            const img = document.createElement('img');
-            img.src = `${movie.thumbnail}`;
-            td3.appendChild(img);
-            const td4 = document.createElement('td');
-            td4.textContent = movie.title;
-            const td5 = document.createElement('td');
-            td5.textContent = movie.director;
-            tr.appendChild(td1);
-            tr.appendChild(td2);
-            tr.appendChild(td3);
-            tr.appendChild(td4);
-            tr.appendChild(td5);
-            movieTable.appendChild(tr);
-        })
-    })
 
+    const movieInfoBtn = document.getElementById('movie_info_btn');
+    const printMoviesTarget = document.getElementById('movies');
+
+    movieInfoBtn.addEventListener('click', (evt) => {
+      // if(printMoviesTarget.children.length > 0){ 새로고침이 필요할수도 있으므로 이 동작보다는 다시 생성하는게 좋을 거 같다./
+      //   return
+      // }
+      printMoviesTarget.innerHTML = '';
+
+      movies.items.forEach(item => {
+        const trEl = document.createElement('tr');
+
+
+        const checkEl = document.createElement('td');
+        const checkboxEl = document.createElement('input');
+        checkboxEl.type = 'checkbox';
+        checkboxEl.value = item.no;
+        checkboxEl.class = 'check_movie';
+        checkEl.appendChild(checkboxEl);
+
+        const noEl = document.createElement('td');
+        noEl.textContent = item.no;
+
+        const thumbnailEl = document.createElement('td');
+        const imgEl = document.createElement('img');
+        imgEl.src = item.thumbnail;
+        imgEl.width = 50;
+        thumbnailEl.appendChild(imgEl);
+
+        const titleEl = document.createElement('td');
+        titleEl.textContent = item.title;
+
+        const directorEl = document.createElement('td');
+        directorEl.textContent = item.director;
+        
+      
+        trEl.appendChild(checkEl);
+        trEl.appendChild(noEl);
+        trEl.appendChild(thumbnailEl);
+        trEl.appendChild(titleEl);
+        trEl.appendChild(directorEl);
+
+        printMoviesTarget.appendChild(trEl);
+      });
+    });
+
+    printMoviesTarget.addEventListener('change', (evt) => { //클리ㄱ되는 체크박스 번호 출력하기
+      if(evt.target.checked){
+        console.log(evt.target.value); //;근데 성택이 되면 그 자테evt를 넘기나 아니면 영화 번호만 넘겨서 처리하나
+      }
+    });
   </script>
 
-  <hr>
 
+
+
+
+
+  <hr>
   <h3>문제2. 버튼 클릭시 마다 이미지 및 텍스트를 교환하시오.</h3>
 
   <img id="light_img" src="../../../assets/image/light1.png" width="50px"> <br>
@@ -103,25 +137,26 @@
   <script>
     // #light_toglle_btn 요소 클릭시마다 light1.png, light2.png 이미지를 교환하고 
     // 버튼의 문구도 ON, OFF로 텍스트를 교환하시오. 
-    const lightButton = document.querySelector('#light_toggle_btn');
-    const img = document.getElementById('light_img');
-    lightButton.addEventListener('click', (evt) => {
-        console.log(evt);
-        if(lightButton.textContent == 'ON') {
-            console.log('ON');
-            lightButton.textContent = 'OFF';
-            img.src = "../../../assets/image/light2.png"
-        } else {
-            console.log('OFF');
-            lightButton.textContent = 'ON';
-            img.src = "../../../assets/image/light1.png"
-        }
-    })
+    const lightImgEl = document.getElementById('light_img');
+    const lightBtn = document.getElementById('light_toggle_btn');
 
+    lightBtn.addEventListener('click', (evt) => {
+      if(lightBtn.textContent == 'ON'){
+        lightImgEl.src = '../../../assets/image/light2.png';
+        lightBtn.textContent = 'OFF';
+      }else {
+        lightImgEl.src = '../../../assets/image/light1.png';
+        lightBtn.textContent = 'ON';
+      }
+    });
   </script>
 
-  <hr>
 
+
+
+
+
+  <hr>
   <h3>문제3. 슬라이드 이미지(flower1.jpg ~ flower5.jpg)를 구현하시오.</h3>
   
   <style>
@@ -133,7 +168,7 @@
     #img_container{
       width: 200px;
       height: 300px;
-      background-image: url('../../assets/image/flower1.jpg');
+      background-image: url('../../../assets/image/flower1.jpg');
       background-size: cover;
     }
   </style>
@@ -149,35 +184,58 @@
   </div>
 
   <script>
-    const imageCount = 5;
-    let idx = 1;
     // 초기 css에 의해 현재 #img_container의 배경이미지로 flower1.jpg가 보여져있는 상태이다.
     // 이때 flower1.jpg ~ flower5.jpg 까지의 총 5개의 이미지를 이전, 다음 버튼 클릭시 보여지도록 하시오.
-    // 슬라이드 번호 숫자도 변경되도록 하시오.
-    const basePath = '../../assets/image/flower';
-    const prev = document.getElementById('prev_btn');
-    const next = document.getElementById('next_btn');
-    const imgNo = document.getElementById('img_no');
-    const imgContainer = document.getElementById('img_container');
+    // 슬라이드 번호 숫자도 변경되도록 하시오. 
 
-    function updateView(){
-        imgNo.textContent = `${idx} / ${imageCount}`;
-        imgContainer.style.backgroundImage = `url('${basePath}${idx}.jpg')`;   
+    //이미지 뒤에 번호로?불러올까했는데 그럴경우 만약 순서를 변경하ㅓ기 윌해서는 파일 명을 2개 변경해야한다,ㅡ 또한 만약 추가될 사진이 flower- 사진이 아니라면?
+    const imgs = [
+      '../../../assets/image/flower1.jpg',
+      '../../../assets/image/flower2.jpg',
+      '../../../assets/image/flower3.jpg',
+      '../../../assets/image/flower4.jpg',
+      '../../../assets/image/flower5.jpg'
+    ];
+
+    const prevBtnEl = document.getElementById('prev_btn');
+    const nextBtnEl = document.getElementById('next_btn');
+    const imgEl = document.getElementById('img_container');
+    const imgNoEl = document.getElementById('img_no');
+
+    let nowPageImgIndex = 0; //현재 이미지를 인덱스로 바로 초기화해준다. 페이지를 이동시킬때마다 현재 이미지로 인덱스를 찾아오려고 했는데 애초에 초기화해두면 될거같다.
+
+
+    prevBtnEl.addEventListener('click', (evt) => {
+      nowPageImgIndex = (nowPageImgIndex - 1 + imgs.length) % imgs.length;
+      updateImgView(nowPageImgIndex);
+    });
+
+    nextBtnEl.addEventListener('click', (evt) => {
+      nowPageImgIndex = (nowPageImgIndex + 1) % imgs.length;
+      updateImgView(nowPageImgIndex);
+    });
+
+
+    const updateImgView = () => { //공통적으로 사요ㅕㅇ될 메서드를 빼줘서 모듈화하면 된다.
+      updateNowImgNo(nowPageImgIndex);
+      updateNowImgSrc(nowPageImgIndex); //.테스트를 위해서는 메개변수로 넘겨주는게 좋ㄹ나? 프론트에도 테스트코드를 작성하나?
     }
 
-    prev.addEventListener('click', (evt) => {
-        idx = idx === 1 ? imageCount : idx - 1;
-        updateView();
-    })
+    const updateNowImgNo = (index) => {
+      imgNoEl.textContent = `${index+1} /${imgs.length}`;
+    };
 
-    next.addEventListener('click', (evt) => {
-        idx = idx === 5 ? 1 : idx + 1;
-        updateView();
-    })
+    const updateNowImgSrc = (index) => {
+      imgEl.style.backgroundImage = `url(${imgs[index]})`;
+    };
   </script>
 
-  <hr>
 
+
+
+
+
+  <hr>
   <h3>문제4. 비밀번호 보이기 / 숨기기</h3>
 
   <style>
@@ -196,40 +254,39 @@
   <script>
     // icon을 클릭할 때마다 입력한 비밀번호를 보여주거나 숨기도록 구현하시오.
     // 또한 icon 요소의 모양도 매번 변경되도록 하시오. 
-    const input = document.getElementById('pw');
-    const eyeSpan = document.getElementById('eye');
-    const icon = document.querySelector('i');
-    // icon.addEventListener('click', (evt) => {
-    //     if (input.type == 'password') {
-    //         input.type = 'text';
-    //         console.log(icon.children.classList);
-    //     } else {
-    //         input.type = 'password';
-    //         console.log(icon.children);
-    //     }
+    const inputPwdEl = document.getElementById('pw');
+    const eyeBtnEl = document.getElementById('eye');
 
-    // })
-    eyeSpan.addEventListener('click', () => {
-  if (icon.classList.contains('fa-eye-slash')) {
-    input.type = 'text';
-    icon.classList.remove('fa-eye-slash');
-    icon.classList.add('fa-eye');
-  } else {
-    input.type = 'password';
-    icon.classList.remove('fa-eye');
-    icon.classList.add('fa-eye-slash');
-  }
-});
+    eyeBtnEl.addEventListener('click', (evt) => {
+      const eyeImg = document.querySelector('#eye > i');
+      let isHidden = inputPwdEl.type == 'password'; //아이콘으로 판단? 
 
+      if(isHidden) {
+        inputPwdEl.type = 'text';
+        eyeImg.classList.remove('fa-eye-slash');
+        eyeImg.classList.add('fa-eye');
+      }else {
+        inputPwdEl.type = 'password';
+        eyeImg.classList.remove('fa-eye');
+        eyeImg.classList.add('fa-eye-slash');
+      }
+    });
   </script>
 
-  <hr>
 
+
+
+
+
+  <hr>
   <h3>문제5. 검색 화면 구성하기</h3>
 
   <style>
     .search-boxes {
       display: none;
+    }
+    .show {
+      display: block;
     }
   </style>
 
@@ -273,12 +330,10 @@
     // 각 카테고리 선택시 호출되는 함수 (radio 매개변수 : 현재 선택된 radio 요소가 전달됨)
     function displaySearchBox(radio) {
       // 현재 선택된 카테고리의 검색 박스만 보여지게 처리하시오.
-      switch (radio.textContent) {
-        case '제목': break;
-        case '날짜': break;
-        case '가격': break;
-      }
-
+      Array.from(document.getElementsByClassName('search-boxes'))
+                         .forEach(box => box.classList.remove('show'));
+      
+      document.getElementById(`${radio.id}-search`).classList.add('show');
     }
   </script>
 

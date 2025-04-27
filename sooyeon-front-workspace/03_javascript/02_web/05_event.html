@@ -358,6 +358,18 @@
 
   <div id="result" style="background:lightgray; width: 300px;">&nbsp;</div>
 
+  <script>
+    // document.getElementById('content').onkeypress = function(evt {}); 고전 방식
+
+    document.getElementById('content').addEventListener('keyup', (evt) => {
+      // console.log(evt);
+      // console.log(evt.key);     //a
+      // console.log(evt.keyCode); //65
+      // console.log(evt.code);    //KeyA
+      // console.log(evt.target.value);
+      document.getElementById('result').innerHTML = evt.target.value;
+    });
+  </script>
 
 </body>
 </html>

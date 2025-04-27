@@ -444,6 +444,12 @@
 
   <div id="result" style="background:lightgray; width: 300px;">&nbsp;</div>
 
-
+  <script>
+    document.getElementById('content').addEventListener('keyup', (evt) => {
+      console.log('key pressed');
+      console.log(evt);
+      document.getElementById('result').textContent = evt.target.value;
+    })
+  </script>
 </body>
 </html>
